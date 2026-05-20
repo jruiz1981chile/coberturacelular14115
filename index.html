@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.5:-Cobertura Celular 14115-:.</title>
+<title>.v1.6:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -42,15 +42,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   #app{height:auto;min-height:100vh;overflow:visible;}
   #main{grid-template-columns:1fr;grid-template-rows:auto;gap:0.4em;padding:0.4em;overflow:visible;}
   #col-right{display:none;}
-  #col-center{order:1;}
+  #col-center{order:1;flex:none;height:260px;min-height:260px;}
   #col-left{order:2;}
   #footer{display:none;}
-  /* mapa con altura fija en móvil */
-  #map-card{flex:none;height:55vw;min-height:220px;max-height:340px;}
-  #map{height:100%;}
-  /* col-center no crece infinito */
-  #col-center{flex:none;}
-  /* botón flotante nueva búsqueda */
+  #map-card{height:260px;min-height:260px;flex:none;}
+  #map{height:210px;min-height:210px;}
+  .col{overflow:visible;}
   #fab-search{display:flex;}
 }
 
@@ -334,6 +331,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div class="subtitle">antenas cercanas · operadores · tecnología · cobertura real · datos abiertos</div>
   </div>
   <div style="display:flex;gap:0.5em;align-items:center;flex-shrink:0;">
+    <button class="hdr-btn" style="border:1px solid var(--danger);color:var(--danger);text-shadow:0 0 8px var(--danger);display:none;" id="btn-reset" onclick="location.reload()">↺ NUEVA</button>
     <button class="hdr-btn hdr-btn-info" onclick="openInfoModal()">ℹ FUENTES</button>
     <button class="hdr-btn hdr-btn-ops" onclick="openOpsModal()">📶 OPERADORES</button>
   </div>
@@ -632,8 +630,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 </footer>
 
 <!-- FAB búsqueda móvil -->
-<div id="fab-search" onclick="scrollToSearch()">
-  <span>🔍</span><span>NUEVA BÚSQUEDA</span>
+<div id="fab-search" onclick="location.reload()">
+  <span>↺</span><span>NUEVA BÚSQUEDA</span>
 </div>
 
 </div>
@@ -1025,11 +1023,12 @@ function renderDensityChart(towers,uLat,uLon,radiusM){
 
 // ── MÓVIL: scroll a búsqueda ──
 function scrollToSearch() {
-  const el = document.getElementById('search-card') || document.getElementById('addr-input');
-  if(el) {
-    el.scrollIntoView({behavior:'smooth', block:'start'});
-    setTimeout(()=>{ document.getElementById('addr-input').focus(); }, 400);
-  }
+  location.reload();
+}
+
+function showResetBtn() {
+  const btn = document.getElementById('btn-reset');
+  if(btn) btn.style.display = '';
 }
 
 // ── BENCHMARKS ──
@@ -1283,6 +1282,7 @@ async function doSearch(){
     if(!towers[0]||!towers[0]._demo){
       setStatus(`✓ ${towers.length} antenas · radio ${radiusM}m · OpenCelliD`, 100);
     }
+    showResetBtn();
   }catch(e){
     setStatus('⚠ '+e.message, 0);
   }
