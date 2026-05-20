@@ -922,7 +922,20 @@ function initMap(lat,lon){
 }
 
 // ── BÚSQUEDA POR CLICK EN MAPA ──
+// Bounding box de Chile continental + Isla de Pascua (aprox)
+function isInChile(lat, lon){
+  const continental = lat >= -55.9 && lat <= -17.5 && lon >= -75.7 && lon <= -66.0;
+  const islaEaster  = lat >= -27.25 && lat <= -26.95 && lon >= -109.55 && lon <= -109.15;
+  return continental || islaEaster;
+}
+
 async function doSearchFromCoords(lat, lon){
+  // Validar que el punto esté en Chile
+  if(!isInChile(lat, lon)){
+    alert('⚠️ Esta página es exclusiva para Chile.\nEl punto seleccionado está fuera del territorio chileno.\n\nHaz clic dentro de Chile para consultar cobertura.');
+    return;
+  }
+
   const btn = document.getElementById('btn-search');
   btn.disabled = true;
   document.getElementById('towers-placeholder').style.display='';
@@ -1014,10 +1027,18 @@ function setStatus(msg,pct){
 
 // ── GEOCODIFICACIÓN ──
 async function geocode(addr){
-  const url=`${NOMINATIM}?q=${encodeURIComponent(addr)}&format=json&limit=1&countrycodes=cl`;
+  const url=`${NOMINATIM}?q=${encodeURIComponent(addr)}&format=json&limit=1&countrycodes=cl&addressdetails=1`;
   const r = await fetch(url,{headers:{'Accept-Language':'es','User-Agent':'SeñalCelular14115/1.0'}});
   const j = await r.json();
-  if(!j||!j.length) throw new Error('Dirección no encontrada. Intenta ser más específico (ciudad, región).');
+  if(!j||!j.length){
+    alert('⚠️ Esta página es exclusiva para Chile.\nNo se encontró esa dirección dentro del territorio chileno.\n\nIngresa una dirección, ciudad o región de Chile.');
+    throw new Error('Dirección no encontrada en Chile. Esta herramienta es exclusiva para territorio chileno.');
+  }
+  const cc = (j[0].address && j[0].address.country_code) ? j[0].address.country_code.toLowerCase() : '';
+  if(cc && cc !== 'cl'){
+    alert('⚠️ Esta página es exclusiva para Chile.\nLa dirección ingresada corresponde a otro país.\n\nIngresa una dirección, ciudad o región de Chile.');
+    throw new Error('Ubicación fuera de Chile. Esta herramienta es exclusiva para territorio chileno.');
+  }
   return {lat:+j[0].lat,lon:+j[0].lon,display:j[0].display_name};
 }
 
