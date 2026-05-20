@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.6:-Cobertura Celular 14115-:.</title>
+<title>.v1.7:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -320,6 +320,191 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 @keyframes pulse-glow{0%,100%{opacity:1;}50%{opacity:0.55;}}
 .pulsing{animation:pulse-glow 0.9s ease-in-out infinite;}
 @keyframes neon-flicker{0%,100%{opacity:1;}92%{opacity:1;}93%{opacity:0.4;}94%{opacity:1;}96%{opacity:0.6;}97%{opacity:1;}}
+
+/* ═══════════════════════════════════════════════════════
+   MÓVIL VERTICAL — Letras más grandes y mejor contraste
+   ═══════════════════════════════════════════════════════ */
+@media (orientation:portrait) {
+  /* Base general */
+  html, body { font-size: 16px; }
+
+  /* Subtítulo del header */
+  #header-left .subtitle {
+    font-size: 11px !important;
+    color: #9090b0 !important;
+    letter-spacing: 0.08em;
+  }
+
+  /* Botones del header */
+  .hdr-btn { font-size: 11px !important; padding: 0.4em 1em !important; }
+
+  /* Etiquetas de tarjetas */
+  .card-label {
+    font-size: 11px !important;
+    color: #9090b0 !important;
+    letter-spacing: 0.12em;
+  }
+
+  /* Input de búsqueda */
+  #addr-input { font-size: 15px !important; padding: 0.5em 0.7em !important; }
+  #btn-search { font-size: 12px !important; padding: 0.5em 1em !important; }
+
+  /* Radio label y valor */
+  .radius-row label {
+    font-size: 11px !important;
+    color: #9090b0 !important;
+  }
+  #radius-val { font-size: 12px !important; }
+
+  /* Línea de estado */
+  #status-line {
+    font-size: 11px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Métricas — etiquetas y subtítulos */
+  .met-lbl {
+    font-size: 10px !important;
+    letter-spacing: 0.08em;
+  }
+  .met-lbl-c { color: var(--neon-c) !important; }
+  .met-lbl-v { color: var(--neon-v) !important; }
+  .met-lbl-y { color: var(--neon-y) !important; }
+
+  .met-sub {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Nombre del operador en cards */
+  .op-name { font-size: 11px !important; }
+
+  /* Tecnología debajo del operador */
+  .op-tech {
+    font-size: 9px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Tech badges (GSM, LTE…) */
+  .tech-badge { font-size: 11px !important; padding: 0.25em 0.6em !important; }
+
+  /* Etiqueta del mapa */
+  #map-label {
+    font-size: 11px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Tabla de antenas */
+  #towers-table { font-size: 11px !important; }
+  #towers-table th {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+    padding: 0.3em 0.5em !important;
+  }
+  #towers-table td {
+    font-size: 11px !important;
+    color: #c0c0d8 !important;
+    padding: 0.28em 0.5em !important;
+  }
+  #towers-placeholder {
+    font-size: 12px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Filtros — etiquetas de sección */
+  .filter-section-label {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Chips de filtro */
+  .chip { font-size: 10px !important; padding: 0.3em 0.65em !important; }
+  .filter-count-badge {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Mejor operador */
+  .best-op-reason {
+    font-size: 12px !important;
+    color: #c0c0d8 !important;
+  }
+  .best-op-stats {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+  .best-op-score-label {
+    font-size: 9px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Benchmarks — tabs */
+  .bm-tab { font-size: 10px !important; padding: 0.28em 0.7em !important; }
+
+  /* Benchmarks — nota de fuente */
+  .bm-source-note {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Benchmarks — tabla */
+  .bm-table th {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+  .bm-table td { font-size: 11px !important; }
+  .bm-table td:first-child { font-size: 12px !important; }
+
+  /* Benchmarks — links */
+  .bm-link-name { font-size: 10px !important; }
+  .bm-link-desc {
+    font-size: 9px !important;
+    color: #9090b0 !important;
+  }
+  .bm-award { font-size: 9px !important; }
+  .bm-period {
+    font-size: 9px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Diagrama / métricas auxiliares */
+  .mc-lbl {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+  .mc-unit {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Modal títulos y contenido */
+  .modal-head-title { font-size: 13px !important; }
+  .modal-close-btn { font-size: 11px !important; }
+  .info-title { font-size: 12px !important; }
+  .info-desc {
+    font-size: 13px !important;
+    color: #c0c0d8 !important;
+  }
+  .info-note {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+
+  /* Modal operadores */
+  .ops-mncs {
+    font-size: 10px !important;
+    color: #9090b0 !important;
+  }
+
+  /* FAB botón flotante */
+  #fab-search { font-size: 13px !important; }
+
+  /* Texto genérico dim → legible en blanco apagado */
+  [style*="color:var(--text-dim)"],
+  [style*="color: var(--text-dim)"] {
+    color: #9090b0 !important;
+  }
+}
 </style>
 </head>
 <body>
