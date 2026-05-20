@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.9:-Cobertura Celular 14115-:.</title>
+<title>.v2.0:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -300,6 +300,33 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .best-op-score-label{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);letter-spacing:0.1em;text-align:center;}
 .filter-count-badge{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.06em;margin-top:0.1em;}
 
+/* BOTONES COBERTURA OFICIAL */
+.cob-btn{
+  font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;
+  padding:0.3em 0.65em;border-radius:4px;border:1px solid;
+  text-decoration:none;letter-spacing:0.05em;transition:all 0.15s;
+  display:inline-flex;align-items:center;gap:0.3em;white-space:nowrap;
+}
+.cob-5g{font-size:clamp(10px,0.9vw,12px) !important;border-width:2px !important;}
+.cob-entel{border-color:var(--neon-entel);color:var(--neon-entel);}
+.cob-entel:hover{background:rgba(0,255,224,0.15);box-shadow:0 0 10px rgba(0,255,224,0.4);}
+.cob-movistar{border-color:var(--neon-movistar);color:var(--neon-movistar);}
+.cob-movistar:hover{background:rgba(191,0,255,0.15);box-shadow:0 0 10px rgba(191,0,255,0.4);}
+.cob-wom{border-color:var(--neon-wom);color:var(--neon-wom);}
+.cob-wom:hover{background:rgba(255,224,0,0.15);box-shadow:0 0 10px rgba(255,224,0,0.4);}
+.cob-claro{border-color:var(--neon-claro);color:var(--neon-claro);}
+.cob-claro:hover{background:rgba(255,34,68,0.15);box-shadow:0 0 10px rgba(255,34,68,0.4);}
+.cob-gtd{border-color:var(--neon-gtd);color:var(--neon-gtd);}
+.cob-gtd:hover{background:rgba(255,106,0,0.15);box-shadow:0 0 10px rgba(255,106,0,0.4);}
+.cob-otro{border-color:var(--neon-otro);color:var(--neon-otro);}
+.cob-otro:hover{background:rgba(68,170,255,0.15);box-shadow:0 0 10px rgba(68,170,255,0.4);}
+.cob-5g.cob-entel{text-shadow:0 0 8px var(--neon-entel);}
+.cob-5g.cob-movistar{text-shadow:0 0 8px var(--neon-movistar);}
+@media(orientation:portrait){
+  .cob-btn{font-size:12px !important;padding:0.4em 0.8em !important;}
+  .cob-5g{font-size:13px !important;}
+}
+
 /* BENCHMARKS */
 #benchmarks-card{flex-shrink:0;}
 .bm-tabs{display:flex;gap:0.25em;margin-bottom:0.5em;border-bottom:1px solid var(--border);padding-bottom:0.35em;}
@@ -590,6 +617,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="bm-tabs">
         <span class="bm-tab active" onclick="switchBmTab('speed')">VELOCIDAD</span>
         <span class="bm-tab" onclick="switchBmTab('5g')">5G</span>
+        <span class="bm-tab" onclick="switchBmTab('cob')">📡 COBERTURA</span>
         <span class="bm-tab" onclick="switchBmTab('links')">EXPLORAR</span>
       </div>
 
@@ -676,6 +704,64 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
             <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:${Math.round(op.val/165.5*100)}%;background:${op.color};box-shadow:0 0 4px ${op.color}80;"></div></div>
             <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">${op.val}</div>
           </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- PANEL COBERTURA OFICIAL -->
+      <div class="bm-panel" id="bm-cob">
+        <div class="bm-source-note" style="margin-bottom:0.5em;">Mapas oficiales de cada operador · se abren en nueva pestaña</div>
+
+        <!-- ENTEL -->
+        <div style="margin-bottom:0.5em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-entel);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-entel);">▸ ENTEL</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+            <a href="https://www.entel.cl/cobertura/movil/" target="_blank" class="cob-btn cob-entel">📶 COBERTURA 2G·3G·4G·5G</a>
+            <a href="https://www.entel.cl/5g" target="_blank" class="cob-btn cob-entel cob-5g">⚡ MAPA 5G ENTEL</a>
+          </div>
+        </div>
+
+        <!-- MOVISTAR -->
+        <div style="margin-bottom:0.5em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-movistar);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-movistar);">▸ MOVISTAR</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+            <a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" class="cob-btn cob-movistar">📶 COBERTURA 2G·3G·4G</a>
+            <a href="https://ww2.movistar.cl/5g/" target="_blank" class="cob-btn cob-movistar cob-5g">⚡ MAPA 5G MOVISTAR</a>
+          </div>
+        </div>
+
+        <!-- WOM -->
+        <div style="margin-bottom:0.5em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-wom);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-wom);">▸ WOM</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+            <a href="https://www.wom.cl/cobertura/" target="_blank" class="cob-btn cob-wom">📶 COBERTURA 3G·4G·5G</a>
+          </div>
+        </div>
+
+        <!-- CLARO -->
+        <div style="margin-bottom:0.5em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-claro);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-claro);">▸ CLARO</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+            <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" class="cob-btn cob-claro">📶 CONSULTA COBERTURA</a>
+          </div>
+        </div>
+
+        <!-- GTD -->
+        <div style="margin-bottom:0.5em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-gtd);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-gtd);">▸ GTD / TELSUR</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+            <a href="https://www.gtd.cl/cobertura" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA GTD</a>
+            <a href="https://www.telsur.cl/cobertura-movil" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA TELSUR</a>
+          </div>
+        </div>
+
+        <!-- REFERENCIA GLOBAL -->
+        <div style="border-top:1px solid var(--border);padding-top:0.4em;margin-top:0.1em;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.75vw,10px);color:var(--neon-otro);letter-spacing:0.08em;margin-bottom:0.3em;">▸ REFERENCIAS GLOBALES</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+            <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" class="cob-btn cob-otro">🌐 OOKLA 5G MAP</a>
+            <a href="https://www.nperf.com/es/map/CL/-/-/signal/" target="_blank" class="cob-btn cob-otro">📡 nPERF CHILE</a>
+            <a href="https://www.subtel.gob.cl/banner-mapa-cobertura-digital/" target="_blank" class="cob-btn cob-otro">🏛 SUBTEL</a>
+          </div>
         </div>
       </div>
 
@@ -1041,10 +1127,16 @@ function renderResults(towers,uLat,uLon,radiusM){
   document.getElementById('m-tech').textContent = techs.length||'0';
   document.getElementById('m-tech-sub').textContent = techs.join(' · ') || '—';
 
-  // tech badges
+  // tech badges — siempre 4, con conteo, los ausentes en gris
   const techRow = document.getElementById('tech-row');
-  if(techs.length){
-    techRow.innerHTML = techs.map(t=>`<span class="tech-badge tech-${t}">${t} ${t==='GSM'?'2G':t==='UMTS'?'3G':t==='LTE'?'4G':t==='NR'?'5G':''}</span>`).join('');
+  const techOrder2 = ['GSM','UMTS','LTE','NR'];
+  const techGen = {GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'};
+  if(withDist.length){
+    techRow.innerHTML = techOrder2.map(t => {
+      const count = withDist.filter(tw => tw.radio === t).length;
+      const dim = count === 0 ? 'opacity:0.25;' : '';
+      return `<span class="tech-badge tech-${t}" style="${dim}">${t} ${techGen[t]} <span style="font-size:0.8em;opacity:0.8;">${count>0?'×'+count:'—'}</span></span>`;
+    }).join('');
   } else {
     techRow.innerHTML = '<span style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span>';
   }
@@ -1210,7 +1302,7 @@ function showResetBtn() {
 // ── BENCHMARKS ──
 function switchBmTab(tab) {
   document.querySelectorAll('.bm-tab').forEach((el,i) => {
-    const tabs = ['speed','5g','links'];
+    const tabs = ['speed','5g','cob','links'];
     el.classList.toggle('active', tabs[i] === tab);
   });
   document.querySelectorAll('.bm-panel').forEach(el => el.classList.remove('active'));
@@ -1248,14 +1340,18 @@ function buildFilterChips(towers) {
     opsMap[op.name] = op.cls;
   });
 
-  // chips de tecnología
+  // chips de tecnología — siempre mostrar los 4, deshabilitar los que no tienen datos
   const techChips = document.getElementById('tech-chips');
   const techOrder = ['GSM','UMTS','LTE','NR'];
   const techLabels = {GSM:'2G GSM',UMTS:'3G UMTS',LTE:'4G LTE',NR:'5G NR'};
-  techChips.innerHTML = techOrder.filter(t=>techSet.has(t)).map(t=>
-    `<span class="chip chip-${t} active" data-tech="${t}" onclick="toggleTechFilter('${t}')">${techLabels[t]||t}</span>`
-  ).join('');
-  _activeTechs = new Set(techSet); // todos activos al inicio
+  techChips.innerHTML = techOrder.map(t => {
+    const hasData = techSet.has(t);
+    const countForTech = towers.filter(tw => tw.radio === t).length;
+    const disabledStyle = hasData ? '' : 'style="opacity:0.22;cursor:not-allowed;" title="Sin antenas ' + (techLabels[t]||t) + ' en este radio"';
+    const countBadge = hasData ? ` <small style="font-size:0.75em;opacity:0.7;">(${countForTech})</small>` : ' <small style="font-size:0.7em;opacity:0.5;">—</small>';
+    return `<span class="chip chip-${t}${hasData?' active':''}" data-tech="${t}" ${disabledStyle} onclick="${hasData?`toggleTechFilter('${t}')`:'void(0)'}">${techLabels[t]||t}${countBadge}</span>`;
+  }).join('');
+  _activeTechs = new Set(techSet); // activos = los que tienen datos
 
   // chips de operador
   const opChips = document.getElementById('op-chips');
