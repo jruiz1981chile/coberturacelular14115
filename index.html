@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v2.2:-Cobertura Celular 14115-:.</title>
+<title>.v2.3:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -28,6 +28,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 #header{display:flex;align-items:center;justify-content:space-between;padding:0.4em 1.2em;border-bottom:1px solid var(--border);background:linear-gradient(90deg,#0d0d14 0%,#0a0a16 50%,#0d0d14 100%);flex-shrink:0;gap:0.8em;}
 #header-left h1{font-family:'Orbitron',monospace;font-size:clamp(15px,2vw,24px);font-weight:900;background:linear-gradient(90deg,var(--neon-c),var(--neon-v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.18em;line-height:1;animation:neon-flicker 6s ease-in-out infinite;}
 #header-left .subtitle{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.85vw,11px);color:var(--text-dim);letter-spacing:0.12em;margin-top:0.15em;}
+#header-btns{display:flex;gap:0.5em;align-items:center;flex-shrink:0;}
 .hdr-btn{padding:0.35em 0.9em;border-radius:3px;font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:0.1em;cursor:pointer;background:transparent;transition:all 0.18s;white-space:nowrap;}
 .hdr-btn-info{border:1px solid var(--neon-c);color:var(--neon-c);text-shadow:0 0 8px var(--neon-c);}
 .hdr-btn-info:hover{background:var(--neon-c);color:#000;box-shadow:0 0 18px var(--neon-c);}
@@ -51,6 +52,26 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   #map{height:210px;min-height:210px;}
   .col{overflow:visible;}
   #fab-search{display:flex;}
+
+  /* ── HEADER EN PORTRAIT: título arriba, botones abajo en dos filas ── */
+  #header{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:0.5em 0.9em 0.55em;
+    gap:0.45em;
+  }
+  #header-left h1{font-size:clamp(14px,4.5vw,20px);}
+  #header-left .subtitle{font-size:11px !important;color:#b0b0cc !important;}
+  #header-btns{
+    width:100%;
+    flex-wrap:wrap;
+    gap:0.35em;
+  }
+  #header-btns .hdr-btn{
+    font-size:11px !important;
+    padding:0.38em 0.75em !important;
+    flex-shrink:0;
+  }
 }
 
 /* FAB nueva búsqueda (solo móvil portrait) */
@@ -160,11 +181,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 #map-label .map-click-hint{font-size:clamp(8px,0.75vw,10px);color:var(--neon-c);opacity:0.7;letter-spacing:0.06em;white-space:nowrap;}
 #map{flex:1;min-height:0;}
 
-/* Cursor crosshair sobre el mapa cuando está en modo click */
 #map.map-clickable{cursor:crosshair !important;}
 #map.map-clickable .leaflet-interactive{cursor:crosshair !important;}
 
-/* Toast de confirmación click en mapa */
 #map-click-toast{
   position:absolute;bottom:2.2em;left:50%;transform:translateX(-50%);
   background:var(--surface2);border:1px solid var(--neon-c);
@@ -304,12 +323,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .filter-count-badge{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.06em;margin-top:0.1em;}
 
 /* BOTONES COBERTURA OFICIAL */
-.cob-btn{
-  font-family:'Orbitron',monospace;font-size:clamp(10px,0.95vw,12px);font-weight:700;
-  padding:0.4em 0.85em;border-radius:4px;border:1.5px solid;
-  text-decoration:none;letter-spacing:0.05em;transition:all 0.15s;
-  display:inline-flex;align-items:center;gap:0.35em;white-space:nowrap;
-}
+.cob-btn{font-family:'Orbitron',monospace;font-size:clamp(10px,0.95vw,12px);font-weight:700;padding:0.4em 0.85em;border-radius:4px;border:1.5px solid;text-decoration:none;letter-spacing:0.05em;transition:all 0.15s;display:inline-flex;align-items:center;gap:0.35em;white-space:nowrap;}
 .cob-5g{font-size:clamp(11px,1vw,13px) !important;border-width:2px !important;}
 .cob-entel{border-color:var(--neon-entel);color:var(--neon-entel);}
 .cob-entel:hover{background:rgba(0,255,224,0.15);box-shadow:0 0 10px rgba(0,255,224,0.4);}
@@ -340,7 +354,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .bm-source-note{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);letter-spacing:0.06em;margin-bottom:0.4em;}
 .bm-source-note a{color:var(--neon-c);text-decoration:none;}
 .bm-source-note a:hover{text-decoration:underline;}
-/* speed table */
 .bm-table{width:100%;border-collapse:collapse;}
 .bm-table th{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.65vw,8px);color:var(--text-dim);letter-spacing:0.1em;padding:0.18em 0.3em;text-align:right;border-bottom:1px solid var(--border);}
 .bm-table th:first-child{text-align:left;}
@@ -349,7 +362,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .bm-bar-wrap{display:flex;align-items:center;gap:0.3em;}
 .bm-bar-bg{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
 .bm-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
-/* links section */
 .bm-links-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.4em;}
 .bm-link-item{background:var(--surface2);border:1.5px solid var(--border);border-radius:5px;padding:0.5em 0.6em;display:flex;flex-direction:column;gap:0.18em;cursor:pointer;transition:all 0.18s;text-decoration:none;}
 .bm-link-item:hover{border-color:var(--neon-c);box-shadow:0 0 10px rgba(0,255,224,0.2);background:rgba(0,255,224,0.04);}
@@ -374,62 +386,38 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
    ═══════════════════════════════════════════════════════ */
 @media (orientation:portrait) {
   html, body { font-size: 16px; }
-
-  /* Header subtítulo */
   #header-left .subtitle { font-size: 12px !important; color: #b0b0cc !important; }
-
-  /* Botones header */
   .hdr-btn { font-size: 12px !important; padding: 0.45em 1em !important; }
-
-  /* Card labels */
   .card-label { font-size: 12px !important; color: #b0b0cc !important; }
-
-  /* Búsqueda */
   #addr-input { font-size: 16px !important; padding: 0.55em 0.7em !important; }
   #btn-search { font-size: 13px !important; padding: 0.55em 1em !important; }
   .radius-row label { font-size: 12px !important; color: #b0b0cc !important; }
   #radius-val { font-size: 13px !important; }
   #status-line { font-size: 12px !important; color: #b0b0cc !important; }
-
-  /* Métricas */
   .met-lbl { font-size: 11px !important; }
   .met-lbl-c { color: var(--neon-c) !important; }
   .met-lbl-v { color: var(--neon-v) !important; }
   .met-lbl-y { color: var(--neon-y) !important; }
   .met-sub { font-size: 11px !important; color: #b0b0cc !important; }
   .met-val { font-size: clamp(22px,7vw,36px) !important; }
-
-  /* Operadores */
   .op-name { font-size: 12px !important; }
   .op-count { font-size: 14px !important; }
   .op-tech { font-size: 11px !important; color: #b0b0cc !important; }
-
-  /* Tech badges */
   .tech-badge { font-size: 12px !important; padding: 0.3em 0.7em !important; }
-
-  /* Mapa */
   #map-label { font-size: 12px !important; color: #b0b0cc !important; }
   #map-label .map-click-hint { font-size: 11px !important; }
-
-  /* Tabla antenas */
   #towers-table { font-size: 12px !important; }
   #towers-table th { font-size: 11px !important; color: #b0b0cc !important; padding: 0.35em 0.5em !important; }
   #towers-table td { font-size: 12px !important; color: #d0d0e8 !important; padding: 0.32em 0.5em !important; }
   #towers-placeholder { font-size: 13px !important; color: #b0b0cc !important; }
-
-  /* Filtros */
   .filter-section-label { font-size: 11px !important; color: #b0b0cc !important; }
   .chip { font-size: 11px !important; padding: 0.35em 0.7em !important; }
   .filter-count-badge { font-size: 11px !important; color: #b0b0cc !important; }
-
-  /* Mejor operador */
   .best-op-badge { font-size: 13px !important; }
   .best-op-reason { font-size: 13px !important; color: #d0d0e8 !important; }
   .best-op-stats { font-size: 11px !important; color: #b0b0cc !important; }
   .best-op-score { font-size: clamp(20px,6vw,28px) !important; }
   .best-op-score-label { font-size: 10px !important; color: #b0b0cc !important; }
-
-  /* Benchmarks */
   .bm-tab { font-size: 12px !important; padding: 0.38em 0.85em !important; }
   .bm-source-note { font-size: 11px !important; color: #b0b0cc !important; }
   .bm-table th { font-size: 11px !important; color: #b0b0cc !important; }
@@ -442,16 +430,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   .bm-link-icon { font-size: 18px !important; }
   .cob-btn { font-size: 13px !important; padding: 0.5em 1em !important; }
   .cob-5g { font-size: 14px !important; }
-
-  /* Diagnóstico */
   .mc-lbl { font-size: 11px !important; color: #b0b0cc !important; }
   .mc-val { font-size: clamp(15px,4.5vw,20px) !important; }
   .mc-unit { font-size: 11px !important; color: #b0b0cc !important; }
   .dlc-lbl { font-size: 11px !important; color: #b0b0cc !important; }
   .dlc-val { font-size: clamp(13px,4vw,18px) !important; }
   .dlc-sub { font-size: 11px !important; color: #b0b0cc !important; }
-
-  /* Modales */
   .modal-head-title { font-size: 14px !important; }
   .modal-close-btn { font-size: 12px !important; }
   .info-title { font-size: 13px !important; }
@@ -460,15 +444,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   .ops-name { font-size: 13px !important; }
   .ops-mncs { font-size: 11px !important; color: #b0b0cc !important; }
   .ops-count { font-size: 14px !important; }
-
-  /* FAB */
   #fab-search { font-size: 14px !important; }
-
-  /* Textos dim genéricos → legibles */
-  [style*="color:var(--text-dim)"],
-  [style*="color: var(--text-dim)"] { color: #b0b0cc !important; }
-  [style*="color:var(--text-mid)"],
-  [style*="color: var(--text-mid)"] { color: #d0d0e8 !important; }
+  [style*="color:var(--text-dim)"],[style*="color: var(--text-dim)"] { color: #b0b0cc !important; }
+  [style*="color:var(--text-mid)"],[style*="color: var(--text-mid)"] { color: #d0d0e8 !important; }
 }
 </style>
 </head>
@@ -480,7 +458,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <h1>📡 COBERTURA CELULAR 14115</h1>
     <div class="subtitle">antenas cercanas · operadores · tecnología · cobertura real · datos abiertos</div>
   </div>
-  <div style="display:flex;gap:0.5em;align-items:center;flex-shrink:0;">
+  <div id="header-btns">
     <button class="hdr-btn" style="border:1px solid var(--danger);color:var(--danger);text-shadow:0 0 8px var(--danger);display:none;" id="btn-reset" onclick="location.reload()">↺ NUEVA</button>
     <button class="hdr-btn hdr-btn-info" onclick="openInfoModal()">ℹ FUENTES</button>
     <button class="hdr-btn hdr-btn-cob" onclick="openCobModal()">📡 COBERTURA</button>
@@ -531,7 +509,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div id="tech-row"><span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span></div>
     </div>
 
-    <!-- FILTROS INTERACTIVOS -->
     <div class="card" id="filter-bar" style="display:none;">
       <div class="card-label">FILTRAR ANTENAS</div>
       <div style="margin-bottom:0.4em;">
@@ -548,7 +525,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       </div>
     </div>
 
-    <!-- MEJOR OPERADOR -->
     <div class="card" id="best-op-card" style="display:none;">
       <div class="card-label">⭐ MEJOR OPERADOR EN LA ZONA</div>
       <div id="best-op-content"></div>
@@ -625,81 +601,35 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <span class="bm-tab" onclick="switchBmTab('5g')">5G</span>
       </div>
 
-      <!-- PANEL VELOCIDAD -->
       <div class="bm-panel active" id="bm-speed">
         <div class="bm-source-note">Fuente: <a href="https://insights.opensignal.com/reports/2025/02/chile/mobile-network-experience" target="_blank">Opensignal</a> · datos reales de usuarios · todas las tecnologías</div>
         <table class="bm-table">
           <thead><tr><th>Operador</th><th>↓ Mbps</th><th>↑ Mbps</th><th>ms</th></tr></thead>
           <tbody>
-            <tr>
-              <td style="color:var(--neon-entel);">Entel <span class="bm-award award-gold">★ LÍDER</span></td>
-              <td style="color:var(--neon-c);">62.7</td><td style="color:var(--neon-c);">15.1</td><td style="color:var(--neon-c);">40</td>
-            </tr>
-            <tr>
-              <td style="color:var(--neon-wom);">WOM</td>
-              <td style="color:var(--neon-y);">49.5</td><td style="color:var(--neon-y);">13.3 <span class="bm-award award-gold">★</span></td><td style="color:var(--neon-y);">45</td>
-            </tr>
-            <tr>
-              <td style="color:var(--neon-movistar);">Movistar</td>
-              <td style="color:var(--neon-v);">41.4</td><td style="color:var(--neon-v);">10.2</td><td style="color:var(--neon-v);">48</td>
-            </tr>
-            <tr>
-              <td style="color:var(--neon-claro);">Claro <span class="bm-award award-gold">★ Fiab.</span></td>
-              <td style="color:var(--neon-claro);">38.1</td><td style="color:var(--neon-claro);">9.8</td><td style="color:var(--neon-claro);">52</td>
-            </tr>
+            <tr><td style="color:var(--neon-entel);">Entel <span class="bm-award award-gold">★ LÍDER</span></td><td style="color:var(--neon-c);">62.7</td><td style="color:var(--neon-c);">15.1</td><td style="color:var(--neon-c);">40</td></tr>
+            <tr><td style="color:var(--neon-wom);">WOM</td><td style="color:var(--neon-y);">49.5</td><td style="color:var(--neon-y);">13.3 <span class="bm-award award-gold">★</span></td><td style="color:var(--neon-y);">45</td></tr>
+            <tr><td style="color:var(--neon-movistar);">Movistar</td><td style="color:var(--neon-v);">41.4</td><td style="color:var(--neon-v);">10.2</td><td style="color:var(--neon-v);">48</td></tr>
+            <tr><td style="color:var(--neon-claro);">Claro <span class="bm-award award-gold">★ Fiab.</span></td><td style="color:var(--neon-claro);">38.1</td><td style="color:var(--neon-claro);">9.8</td><td style="color:var(--neon-claro);">52</td></tr>
           </tbody>
         </table>
         <div style="margin-top:0.4em;">
           <div class="bm-source-note" style="margin-bottom:0.25em;">Velocidad descarga comparada</div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-entel);min-width:4.5em;">Entel</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:100%;background:var(--neon-entel);box-shadow:0 0 4px rgba(0,255,224,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">62.7</div>
-          </div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-wom);min-width:4.5em;">WOM</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:79%;background:var(--neon-wom);box-shadow:0 0 4px rgba(255,224,0,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">49.5</div>
-          </div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-movistar);min-width:4.5em;">Movistar</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:66%;background:var(--neon-movistar);box-shadow:0 0 4px rgba(191,0,255,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">41.4</div>
-          </div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-claro);min-width:4.5em;">Claro</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:61%;background:var(--neon-claro);box-shadow:0 0 4px rgba(255,34,68,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">38.1</div>
-          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-entel);min-width:4.5em;">Entel</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:100%;background:var(--neon-entel);box-shadow:0 0 4px rgba(0,255,224,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">62.7</div></div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-wom);min-width:4.5em;">WOM</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:79%;background:var(--neon-wom);box-shadow:0 0 4px rgba(255,224,0,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">49.5</div></div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-movistar);min-width:4.5em;">Movistar</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:66%;background:var(--neon-movistar);box-shadow:0 0 4px rgba(191,0,255,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">41.4</div></div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-claro);min-width:4.5em;">Claro</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:61%;background:var(--neon-claro);box-shadow:0 0 4px rgba(255,34,68,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">38.1</div></div>
         </div>
       </div>
 
-      <!-- PANEL 5G -->
       <div class="bm-panel" id="bm-5g">
         <div class="bm-source-note">Fuentes: <a href="https://insights.opensignal.com/reports/2025/02/chile/mobile-network-experience" target="_blank">Opensignal</a> · <a href="https://www.telefonicahispam.com/2025/09/01/n1-segun-speedtest-movistar-se-posiciona-como-la-red-movil-mas-rapida-de-todo-chile/" target="_blank">Ookla Speedtest</a> · 2025</div>
         <table class="bm-table">
           <thead><tr><th>Operador</th><th>↓ 5G Mbps</th><th>Award</th></tr></thead>
           <tbody>
-            <tr>
-              <td style="color:var(--neon-movistar);">Movistar</td>
-              <td style="color:var(--neon-v);">165.5</td>
-              <td><span class="bm-award award-gold">Ookla #1</span></td>
-            </tr>
-            <tr>
-              <td style="color:var(--neon-entel);">Entel</td>
-              <td style="color:var(--neon-c);">162.9</td>
-              <td><span class="bm-award award-silver">OS líder gral</span></td>
-            </tr>
-            <tr>
-              <td style="color:var(--neon-wom);">WOM</td>
-              <td style="color:var(--neon-y);">138.3</td>
-              <td><span class="bm-award award-gold">Cob. 5G</span></td>
-            </tr>
-            <tr>
-              <td style="color:var(--neon-claro);">Claro</td>
-              <td style="color:var(--neon-claro);">~110</td>
-              <td><span class="bm-award award-gold">MWC 2026</span></td>
-            </tr>
+            <tr><td style="color:var(--neon-movistar);">Movistar</td><td style="color:var(--neon-v);">165.5</td><td><span class="bm-award award-gold">Ookla #1</span></td></tr>
+            <tr><td style="color:var(--neon-entel);">Entel</td><td style="color:var(--neon-c);">162.9</td><td><span class="bm-award award-silver">OS líder gral</span></td></tr>
+            <tr><td style="color:var(--neon-wom);">WOM</td><td style="color:var(--neon-y);">138.3</td><td><span class="bm-award award-gold">Cob. 5G</span></td></tr>
+            <tr><td style="color:var(--neon-claro);">Claro</td><td style="color:var(--neon-claro);">~110</td><td><span class="bm-award award-gold">MWC 2026</span></td></tr>
           </tbody>
         </table>
         <div style="margin-top:0.45em;padding:0.35em 0.5em;background:var(--surface2);border-radius:4px;border-left:2px solid var(--neon-o);">
@@ -708,29 +638,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         </div>
         <div style="margin-top:0.4em;">
           <div class="bm-source-note" style="margin-bottom:0.25em;">Velocidad descarga 5G comparada</div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-movistar);min-width:4.5em;">Movistar</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:100%;background:var(--neon-movistar);box-shadow:0 0 4px rgba(191,0,255,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">165.5</div>
-          </div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-entel);min-width:4.5em;">Entel</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:98%;background:var(--neon-entel);box-shadow:0 0 4px rgba(0,255,224,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">162.9</div>
-          </div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-wom);min-width:4.5em;">WOM</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:84%;background:var(--neon-wom);box-shadow:0 0 4px rgba(255,224,0,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">138.3</div>
-          </div>
-          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-claro);min-width:4.5em;">Claro</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:66%;background:var(--neon-claro);box-shadow:0 0 4px rgba(255,34,68,0.5);"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">~110</div>
-          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-movistar);min-width:4.5em;">Movistar</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:100%;background:var(--neon-movistar);box-shadow:0 0 4px rgba(191,0,255,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">165.5</div></div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-entel);min-width:4.5em;">Entel</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:98%;background:var(--neon-entel);box-shadow:0 0 4px rgba(0,255,224,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">162.9</div></div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-wom);min-width:4.5em;">WOM</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:84%;background:var(--neon-wom);box-shadow:0 0 4px rgba(255,224,0,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">138.3</div></div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;"><div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-claro);min-width:4.5em;">Claro</div><div class="bm-bar-bg"><div class="bm-bar-fill" style="width:66%;background:var(--neon-claro);box-shadow:0 0 4px rgba(255,34,68,0.5);"></div></div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">~110</div></div>
         </div>
       </div>
-
     </div>
 
     <div class="card" style="flex-shrink:0;">
@@ -753,12 +666,13 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <div class="f-right">v1.0 · 2025<br>datos abiertos</div>
 </footer>
 
-<!-- FAB búsqueda móvil -->
 <div id="fab-search" onclick="location.reload()">
   <span>↺</span><span>NUEVA BÚSQUEDA</span>
 </div>
 
 </div>
+
+<!-- MODAL INFO -->
 <div class="modal-overlay" id="info-modal">
   <div class="modal-box">
     <div class="modal-head">
@@ -766,27 +680,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <button class="modal-close-btn" onclick="closeInfoModal()">✕ CERRAR</button>
     </div>
     <div class="modal-body">
-      <div class="info-row info-c0">
-        <div class="info-title">OpenCelliD · Torres de celular</div>
-        <div class="info-desc">Base de datos abierta y colaborativa con millones de torres de telefonía móvil en todo el mundo. Para Chile (MCC 730) incluye antenas de Entel, Movistar, Claro, WOM y GTD con coordenadas, tipo de red y operador.</div>
-      </div>
-      <div class="info-row info-c1">
-        <div class="info-title">Nominatim · Geocodificación</div>
-        <div class="info-desc">Servicio de geocodificación de OpenStreetMap. Convierte una dirección de texto a coordenadas lat/lon para consultar las torres cercanas.</div>
-      </div>
-      <div class="info-row info-c2">
-        <div class="info-title">OpenStreetMap · Mapa base</div>
-        <div class="info-desc">Mapa colaborativo y gratuito del mundo. Se usa como capa base para visualizar las antenas y la dirección buscada.</div>
-      </div>
-      <div class="info-row info-c3">
-        <div class="info-title">Índice de señal · Cálculo propio</div>
-        <div class="info-desc">El índice se calcula combinando: número de antenas en el radio, diversidad de operadores, presencia de LTE/NR (4G/5G) y distancia mínima a la antena más cercana. <strong>No</strong> mide potencia de señal real.</div>
-      </div>
-      <div class="info-note">
-        ■ Los datos de OpenCelliD son crowdsourced y pueden no reflejar toda la infraestructura real ·
-        Para cobertura oficial consulta los mapas de cada operador ·
-        Licencia: OpenCelliD CC BY-SA 4.0 · OSM ODbL
-      </div>
+      <div class="info-row info-c0"><div class="info-title">OpenCelliD · Torres de celular</div><div class="info-desc">Base de datos abierta y colaborativa con millones de torres de telefonía móvil en todo el mundo. Para Chile (MCC 730) incluye antenas de Entel, Movistar, Claro, WOM y GTD con coordenadas, tipo de red y operador.</div></div>
+      <div class="info-row info-c1"><div class="info-title">Nominatim · Geocodificación</div><div class="info-desc">Servicio de geocodificación de OpenStreetMap. Convierte una dirección de texto a coordenadas lat/lon para consultar las torres cercanas.</div></div>
+      <div class="info-row info-c2"><div class="info-title">OpenStreetMap · Mapa base</div><div class="info-desc">Mapa colaborativo y gratuito del mundo. Se usa como capa base para visualizar las antenas y la dirección buscada.</div></div>
+      <div class="info-row info-c3"><div class="info-title">Índice de señal · Cálculo propio</div><div class="info-desc">El índice se calcula combinando: número de antenas en el radio, diversidad de operadores, presencia de LTE/NR (4G/5G) y distancia mínima a la antena más cercana. <strong>No</strong> mide potencia de señal real.</div></div>
+      <div class="info-note">■ Los datos de OpenCelliD son crowdsourced y pueden no reflejar toda la infraestructura real · Para cobertura oficial consulta los mapas de cada operador · Licencia: OpenCelliD CC BY-SA 4.0 · OSM ODbL</div>
     </div>
   </div>
 </div>
@@ -798,9 +696,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <span class="modal-head-title">📶 OPERADORES CHILE · MCC 730</span>
       <button class="modal-close-btn" onclick="closeOpsModal()">✕ CERRAR</button>
     </div>
-    <div class="modal-body" id="ops-modal-body">
-      <!-- generado por JS -->
-    </div>
+    <div class="modal-body" id="ops-modal-body"></div>
   </div>
 </div>
 
@@ -812,55 +708,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <button class="modal-close-btn" onclick="closeCobModal()">✕ CERRAR</button>
     </div>
     <div class="modal-body">
-
-      <div class="ops-op-row ops-entel">
-        <div>
-          <div class="ops-name">ENTEL</div>
-          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
-            <a href="https://www.entel.cl/cobertura/movil/" target="_blank" class="cob-btn cob-entel">📶 COBERTURA 2G·3G·4G·5G</a>
-            <a href="https://www.entel.cl/5g" target="_blank" class="cob-btn cob-entel cob-5g">⚡ MAPA 5G</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="ops-op-row ops-movistar">
-        <div>
-          <div class="ops-name">MOVISTAR</div>
-          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
-            <a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" class="cob-btn cob-movistar">📶 COBERTURA 2G·3G·4G</a>
-            <a href="https://ww2.movistar.cl/5g/" target="_blank" class="cob-btn cob-movistar cob-5g">⚡ MAPA 5G</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="ops-op-row ops-wom">
-        <div>
-          <div class="ops-name">WOM</div>
-          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
-            <a href="https://www.wom.cl/cobertura/" target="_blank" class="cob-btn cob-wom">📶 COBERTURA 3G·4G·5G</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="ops-op-row ops-claro">
-        <div>
-          <div class="ops-name">CLARO</div>
-          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
-            <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" class="cob-btn cob-claro">📶 CONSULTA COBERTURA</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="ops-op-row ops-gtd">
-        <div>
-          <div class="ops-name">GTD / TELSUR</div>
-          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
-            <a href="https://www.gtd.cl/cobertura" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA GTD</a>
-            <a href="https://www.telsur.cl/cobertura-movil" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA TELSUR</a>
-          </div>
-        </div>
-      </div>
-
+      <div class="ops-op-row ops-entel"><div><div class="ops-name">ENTEL</div><div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;"><a href="https://www.entel.cl/cobertura/movil/" target="_blank" class="cob-btn cob-entel">📶 COBERTURA 2G·3G·4G·5G</a><a href="https://www.entel.cl/5g" target="_blank" class="cob-btn cob-entel cob-5g">⚡ MAPA 5G</a></div></div></div>
+      <div class="ops-op-row ops-movistar"><div><div class="ops-name">MOVISTAR</div><div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;"><a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" class="cob-btn cob-movistar">📶 COBERTURA 2G·3G·4G</a><a href="https://ww2.movistar.cl/5g/" target="_blank" class="cob-btn cob-movistar cob-5g">⚡ MAPA 5G</a></div></div></div>
+      <div class="ops-op-row ops-wom"><div><div class="ops-name">WOM</div><div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;"><a href="https://www.wom.cl/cobertura/" target="_blank" class="cob-btn cob-wom">📶 COBERTURA 3G·4G·5G</a></div></div></div>
+      <div class="ops-op-row ops-claro"><div><div class="ops-name">CLARO</div><div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;"><a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" class="cob-btn cob-claro">📶 CONSULTA COBERTURA</a></div></div></div>
+      <div class="ops-op-row ops-gtd"><div><div class="ops-name">GTD / TELSUR</div><div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;"><a href="https://www.gtd.cl/cobertura" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA GTD</a><a href="https://www.telsur.cl/cobertura-movil" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA TELSUR</a></div></div></div>
       <div style="border-top:1px solid var(--border);padding-top:0.6em;margin-top:0.2em;">
         <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.85vw,11px);color:var(--neon-otro);letter-spacing:0.1em;margin-bottom:0.5em;">▸ REFERENCIAS GLOBALES</div>
         <div style="display:flex;flex-wrap:wrap;gap:0.5em;">
@@ -870,702 +722,251 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
           <a href="https://www.opensignal.com/networks" target="_blank" class="cob-btn cob-otro">📊 OPENSIGNAL</a>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 
 <script>
-// ── CONSTANTES ──
-const OCID_API = 'https://opencellid.org/cell/getInArea';
-const NOMINATIM = 'https://nominatim.openstreetmap.org/search';
-const MCC_CHILE = 730;
+const OCID_API='https://opencellid.org/cell/getInArea';
+const NOMINATIM='https://nominatim.openstreetmap.org/search';
+const MCC_CHILE=730;
+const MNC_MAP={1:{name:'Entel',cls:'entel',mncs:'1,4,15'},2:{name:'Movistar',cls:'movistar',mncs:'2,5'},3:{name:'Claro',cls:'claro',mncs:'3,9,10,14'},4:{name:'Entel',cls:'entel',mncs:'1,4,15'},5:{name:'Movistar',cls:'movistar',mncs:'2,5'},6:{name:'WOM',cls:'wom',mncs:'6,8,13'},7:{name:'GTD',cls:'gtd',mncs:'7'},8:{name:'WOM',cls:'wom',mncs:'6,8,13'},9:{name:'Claro',cls:'claro',mncs:'3,9,10,14'},10:{name:'Claro',cls:'claro',mncs:'3,9,10,14'},13:{name:'WOM',cls:'wom',mncs:'6,8,13'},14:{name:'Claro',cls:'claro',mncs:'3,9,10,14'},15:{name:'Entel',cls:'entel',mncs:'1,4,15'}};
+const OP_COLORS={entel:'#00ffe0',movistar:'#bf00ff',claro:'#ff2244',wom:'#ffe000',gtd:'#ff6a00',otro:'#44aaff'};
+const TECH_COLORS={GSM:'#00ffe0',UMTS:'#bf00ff',LTE:'#ffe000',NR:'#ff6a00'};
+function getOp(mnc){return MNC_MAP[mnc]||{name:'Otro',cls:'otro',mncs:String(mnc)};}
 
-const MNC_MAP = {
-  1:  {name:'Entel',    cls:'entel',    mncs:'1,4,15'},
-  2:  {name:'Movistar', cls:'movistar', mncs:'2,5'},
-  3:  {name:'Claro',    cls:'claro',    mncs:'3,9,10,14'},
-  4:  {name:'Entel',    cls:'entel',    mncs:'1,4,15'},
-  5:  {name:'Movistar', cls:'movistar', mncs:'2,5'},
-  6:  {name:'WOM',      cls:'wom',      mncs:'6,8,13'},
-  7:  {name:'GTD',      cls:'gtd',      mncs:'7'},
-  8:  {name:'WOM',      cls:'wom',      mncs:'6,8,13'},
-  9:  {name:'Claro',    cls:'claro',    mncs:'3,9,10,14'},
-  10: {name:'Claro',    cls:'claro',    mncs:'3,9,10,14'},
-  13: {name:'WOM',      cls:'wom',      mncs:'6,8,13'},
-  14: {name:'Claro',    cls:'claro',    mncs:'3,9,10,14'},
-  15: {name:'Entel',    cls:'entel',    mncs:'1,4,15'},
-};
-
-const OP_COLORS = {entel:'#00ffe0',movistar:'#bf00ff',claro:'#ff2244',wom:'#ffe000',gtd:'#ff6a00',otro:'#44aaff'};
-const TECH_COLORS = {GSM:'#00ffe0',UMTS:'#bf00ff',LTE:'#ffe000',NR:'#ff6a00'};
-
-function getOp(mnc){return MNC_MAP[mnc] || {name:'Otro',cls:'otro',mncs:String(mnc)};}
-
-// ── MAPA ──
-let map, markerLayer, circleLayer, userMarker;
-
+let map,markerLayer,circleLayer,userMarker;
 function initMap(lat,lon){
   if(!map){
-    map = L.map('map',{zoomControl:true,attributionControl:true}).setView([lat,lon],14);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-      attribution:'© OpenStreetMap contributors',maxZoom:19
-    }).addTo(map);
-    markerLayer = L.layerGroup().addTo(map);
-    circleLayer = L.layerGroup().addTo(map);
-  } else {
-    map.setView([lat,lon],14);
-    markerLayer.clearLayers();
-    circleLayer.clearLayers();
-    if(userMarker) userMarker.remove();
-  }
+    map=L.map('map',{zoomControl:true,attributionControl:true}).setView([lat,lon],14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
+    markerLayer=L.layerGroup().addTo(map);
+    circleLayer=L.layerGroup().addTo(map);
+  }else{map.setView([lat,lon],14);markerLayer.clearLayers();circleLayer.clearLayers();if(userMarker)userMarker.remove();}
 }
 
-// ── BÚSQUEDA POR CLICK EN MAPA ──
-async function doSearchFromCoords(lat, lon){
-  const btn = document.getElementById('btn-search');
-  btn.disabled = true;
-  document.getElementById('towers-placeholder').style.display='';
-  document.getElementById('towers-table').style.display='none';
-  const radiusM = +document.getElementById('radius-slider').value;
-
-  // Mostrar toast
-  const toast = document.getElementById('map-click-toast');
-  toast.classList.add('show');
-
+async function doSearchFromCoords(lat,lon){
+  const btn=document.getElementById('btn-search');btn.disabled=true;
+  document.getElementById('towers-placeholder').style.display='';document.getElementById('towers-table').style.display='none';
+  const radiusM=+document.getElementById('radius-slider').value;
+  const toast=document.getElementById('map-click-toast');toast.classList.add('show');
   try{
-    setStatus('OBTENIENDO DIRECCIÓN DEL PUNTO...', 10);
-    const addr = await reverseGeocode(lat, lon);
-    document.getElementById('addr-input').value = addr.substring(0, 80);
-    setStatus(`✓ ${addr.substring(0,60)}...`, 35);
-    initMap(lat, lon);
-    setupMapClickHandler();
-    addUserPin(lat, lon, addr.substring(0, 60));
-    updateBmLinks(lat, lon, addr);
-    setStatus('CONSULTANDO OPENCELLID...', 55);
-    const towers = await fetchTowers(lat, lon, radiusM);
-    setStatus(`✓ ${towers.length} antenas encontradas · procesando...`, 85);
-    renderResults(towers, lat, lon, radiusM);
-    if(!towers[0]||!towers[0]._demo){
-      setStatus(`✓ ${towers.length} antenas · radio ${radiusM}m · OpenCelliD`, 100);
-    }
+    setStatus('OBTENIENDO DIRECCIÓN DEL PUNTO...',10);
+    const addr=await reverseGeocode(lat,lon);
+    document.getElementById('addr-input').value=addr.substring(0,80);
+    setStatus(`✓ ${addr.substring(0,60)}...`,35);
+    initMap(lat,lon);setupMapClickHandler();addUserPin(lat,lon,addr.substring(0,60));updateBmLinks(lat,lon,addr);
+    setStatus('CONSULTANDO OPENCELLID...',55);
+    const towers=await fetchTowers(lat,lon,radiusM);
+    setStatus(`✓ ${towers.length} antenas encontradas · procesando...`,85);
+    renderResults(towers,lat,lon,radiusM);
+    if(!towers[0]||!towers[0]._demo)setStatus(`✓ ${towers.length} antenas · radio ${radiusM}m · OpenCelliD`,100);
     showResetBtn();
-  }catch(e){
-    setStatus('⚠ '+e.message, 0);
-  }
-
-  toast.classList.remove('show');
-  btn.disabled = false;
+  }catch(e){setStatus('⚠ '+e.message,0);}
+  toast.classList.remove('show');btn.disabled=false;
 }
 
-// Registrar click en mapa (se llama después de initMap)
 function setupMapClickHandler(){
-  if(typeof L === 'undefined' || !map || map._clickHandlerSet) return;
-  map._clickHandlerSet = true;
-  try{ map.getContainer().classList.add('map-clickable'); }catch(e){}
-  map.on('click', function(e){
-    doSearchFromCoords(e.latlng.lat, e.latlng.lng);
-  });
+  if(typeof L==='undefined'||!map||map._clickHandlerSet)return;
+  map._clickHandlerSet=true;
+  try{map.getContainer().classList.add('map-clickable');}catch(e){}
+  map.on('click',function(e){doSearchFromCoords(e.latlng.lat,e.latlng.lng);});
 }
 
 function addUserPin(lat,lon,addr){
-  const icon = L.divIcon({
-    html:`<div style="width:14px;height:14px;background:#00ffe0;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 4px rgba(0,255,224,0.25),0 0 16px #00ffe0"></div>`,
-    className:'',iconAnchor:[7,7]
-  });
-  userMarker = L.marker([lat,lon],{icon}).addTo(map).bindPopup(`<b style="color:#00ffe0">📍 ${addr}</b>`).openPopup();
+  const icon=L.divIcon({html:`<div style="width:14px;height:14px;background:#00ffe0;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 4px rgba(0,255,224,0.25),0 0 16px #00ffe0"></div>`,className:'',iconAnchor:[7,7]});
+  userMarker=L.marker([lat,lon],{icon}).addTo(map).bindPopup(`<b style="color:#00ffe0">📍 ${addr}</b>`).openPopup();
 }
 
-function addTowerMarkers(towers, uLat, uLon, radiusM){
-  const col = '#00ffe0';
-  circleLayer.addLayer(L.circle([uLat,uLon],{
-    radius:radiusM,color:col,fillColor:col,fillOpacity:0.04,weight:1,dashArray:'4'
-  }));
+function addTowerMarkers(towers,uLat,uLon,radiusM){
+  const col='#00ffe0';
+  circleLayer.addLayer(L.circle([uLat,uLon],{radius:radiusM,color:col,fillColor:col,fillOpacity:0.04,weight:1,dashArray:'4'}));
   towers.forEach(t=>{
-    const op = getOp(t.mnc);
-    const c = OP_COLORS[op.cls]||'#44aaff';
-    const icon = L.divIcon({
-      html:`<div style="width:9px;height:9px;background:${c};border:1.5px solid rgba(255,255,255,0.5);border-radius:50%;box-shadow:0 0 6px ${c}"></div>`,
-      className:'',iconAnchor:[4,4]
-    });
-    const dist = distM(uLat,uLon,+t.lat,+t.lon).toFixed(0);
-    L.marker([+t.lat,+t.lon],{icon})
-      .bindPopup(
-        `<b style="color:${c}">${op.name}</b><br>`+
-        `Red: <b style="color:${TECH_COLORS[t.radio]||'#fff'}">${t.radio||'?'}</b><br>`+
-        `MCC:${t.mcc} MNC:${t.mnc}<br>`+
-        `Distancia: <b>${dist} m</b><br>`+
-        `Rango aprox: ${t.range||'?'} m`
-      ).addTo(markerLayer);
+    const op=getOp(t.mnc);const c=OP_COLORS[op.cls]||'#44aaff';
+    const icon=L.divIcon({html:`<div style="width:9px;height:9px;background:${c};border:1.5px solid rgba(255,255,255,0.5);border-radius:50%;box-shadow:0 0 6px ${c}"></div>`,className:'',iconAnchor:[4,4]});
+    const dist=distM(uLat,uLon,+t.lat,+t.lon).toFixed(0);
+    L.marker([+t.lat,+t.lon],{icon}).bindPopup(`<b style="color:${c}">${op.name}</b><br>Red: <b style="color:${TECH_COLORS[t.radio]||'#fff'}">${t.radio||'?'}</b><br>MCC:${t.mcc} MNC:${t.mnc}<br>Distancia: <b>${dist} m</b><br>Rango aprox: ${t.range||'?'} m`).addTo(markerLayer);
   });
 }
 
-// ── UTILIDADES ──
-function distM(la1,lo1,la2,lo2){
-  const R=6371e3,d1=(la2-la1)*Math.PI/180,d2=(lo2-lo1)*Math.PI/180;
-  const a=Math.sin(d1/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(d2/2)**2;
-  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-}
+function distM(la1,lo1,la2,lo2){const R=6371e3,d1=(la2-la1)*Math.PI/180,d2=(lo2-lo1)*Math.PI/180;const a=Math.sin(d1/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(d2/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}
+function setStatus(msg,pct){document.getElementById('status-line').textContent=msg;document.getElementById('progress-fill').style.width=pct+'%';}
 
-function setStatus(msg,pct){
-  document.getElementById('status-line').textContent = msg;
-  document.getElementById('progress-fill').style.width = pct+'%';
-}
-
-// ── GEOCODIFICACIÓN ──
 async function geocode(addr){
   const url=`${NOMINATIM}?q=${encodeURIComponent(addr)}&format=json&limit=1&countrycodes=cl`;
-  const r = await fetch(url,{headers:{'Accept-Language':'es','User-Agent':'SeñalCelular14115/1.0'}});
-  const j = await r.json();
-  if(!j||!j.length) throw new Error('Dirección no encontrada. Intenta ser más específico (ciudad, región).');
-  return {lat:+j[0].lat,lon:+j[0].lon,display:j[0].display_name};
+  const r=await fetch(url,{headers:{'Accept-Language':'es','User-Agent':'SeñalCelular14115/1.0'}});
+  const j=await r.json();
+  if(!j||!j.length)throw new Error('Dirección no encontrada. Intenta ser más específico (ciudad, región).');
+  return{lat:+j[0].lat,lon:+j[0].lon,display:j[0].display_name};
 }
 
 async function reverseGeocode(lat,lon){
-  try{
-    const url=`${NOMINATIM}?lat=${lat}&lon=${lon}&format=json`;
-    const r = await fetch(url,{headers:{'Accept-Language':'es','User-Agent':'SeñalCelular14115/1.0'}});
-    const j = await r.json();
-    if(j && j.display_name) return j.display_name;
-  }catch(e){}
-  return `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+  try{const url=`${NOMINATIM}?lat=${lat}&lon=${lon}&format=json`;const r=await fetch(url,{headers:{'Accept-Language':'es','User-Agent':'SeñalCelular14115/1.0'}});const j=await r.json();if(j&&j.display_name)return j.display_name;}catch(e){}
+  return`${lat.toFixed(5)}, ${lon.toFixed(5)}`;
 }
 
-// ── OPENCELLID ──
 async function fetchTowers(lat,lon,radiusM){
-  const latDelta = radiusM/111000;
-  const lonDelta = radiusM/(111000*Math.cos(lat*Math.PI/180));
-  const bbox = `${lat-latDelta},${lon-lonDelta},${lat+latDelta},${lon+lonDelta}`;
-  const apiUrl = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
-  const proxies = [
-    u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
-    u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
-    u => `https://thingproxy.freeboard.io/fetch/${u}`,
-  ];
-  for(let i=0; i<proxies.length; i++){
+  const latDelta=radiusM/111000;const lonDelta=radiusM/(111000*Math.cos(lat*Math.PI/180));
+  const bbox=`${lat-latDelta},${lon-lonDelta},${lat+latDelta},${lon+lonDelta}`;
+  const apiUrl=`https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
+  const proxies=[u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,u=>`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,u=>`https://thingproxy.freeboard.io/fetch/${u}`];
+  for(let i=0;i<proxies.length;i++){
     try{
-      setStatus(`CONSULTANDO OPENCELLID · proxy ${i+1}/${proxies.length}...`, 60+i*8);
-      const ctrl = new AbortController();
-      const tid = setTimeout(()=>ctrl.abort(), 8000);
-      const r = await fetch(proxies[i](apiUrl), {signal: ctrl.signal});
-      clearTimeout(tid);
-      if(!r.ok) continue;
-      const text = await r.text();
-      let data;
-      try{ data = JSON.parse(text); }catch(e){ continue; }
-      if(data.contents){ try{ data = JSON.parse(data.contents); }catch(e){ continue; } }
-      if(data.cells) return data.cells;
-      if(Array.isArray(data)) return data;
-    }catch(e){ /* siguiente proxy */ }
+      setStatus(`CONSULTANDO OPENCELLID · proxy ${i+1}/${proxies.length}...`,60+i*8);
+      const ctrl=new AbortController();const tid=setTimeout(()=>ctrl.abort(),8000);
+      const r=await fetch(proxies[i](apiUrl),{signal:ctrl.signal});clearTimeout(tid);
+      if(!r.ok)continue;const text=await r.text();let data;
+      try{data=JSON.parse(text);}catch(e){continue;}
+      if(data.contents){try{data=JSON.parse(data.contents);}catch(e){continue;}}
+      if(data.cells)return data.cells;if(Array.isArray(data))return data;
+    }catch(e){}
   }
   return generateDemoTowers(lat,lon,radiusM);
 }
 
-// Generador demo (para cuando no hay API key real o CORS falla)
 function generateDemoTowers(lat,lon,radiusM){
-  const ops=[
-    {mnc:1,name:'Entel'},{mnc:1,name:'Entel'},{mnc:1,name:'Entel'},
-    {mnc:2,name:'Movistar'},{mnc:2,name:'Movistar'},
-    {mnc:3,name:'Claro'},{mnc:3,name:'Claro'},
-    {mnc:6,name:'WOM'},{mnc:6,name:'WOM'},
-    {mnc:7,name:'GTD'},
-  ];
-  const radios=['GSM','UMTS','LTE','LTE','LTE','LTE','NR'];
-  const towers=[];
-  const count = Math.floor(8+(radiusM/250)*3);
+  const ops=[{mnc:1,name:'Entel'},{mnc:1,name:'Entel'},{mnc:1,name:'Entel'},{mnc:2,name:'Movistar'},{mnc:2,name:'Movistar'},{mnc:3,name:'Claro'},{mnc:3,name:'Claro'},{mnc:6,name:'WOM'},{mnc:6,name:'WOM'},{mnc:7,name:'GTD'}];
+  const radios=['GSM','UMTS','LTE','LTE','LTE','LTE','NR'];const towers=[];const count=Math.floor(8+(radiusM/250)*3);
   for(let i=0;i<Math.min(count,25);i++){
-    const angle=Math.random()*2*Math.PI;
-    const r=Math.random()*radiusM*0.9;
-    const dLat=r*Math.cos(angle)/111000;
-    const dLon=r*Math.sin(angle)/(111000*Math.cos(lat*Math.PI/180));
+    const angle=Math.random()*2*Math.PI;const r=Math.random()*radiusM*0.9;
+    const dLat=r*Math.cos(angle)/111000;const dLon=r*Math.sin(angle)/(111000*Math.cos(lat*Math.PI/180));
     const op=ops[Math.floor(Math.random()*ops.length)];
-    towers.push({
-      lat:lat+dLat,lon:lon+dLon,
-      mcc:MCC_CHILE,mnc:op.mnc,
-      radio:radios[Math.floor(Math.random()*radios.length)],
-      range:Math.floor(200+Math.random()*800),
-      _demo:true
-    });
+    towers.push({lat:lat+dLat,lon:lon+dLon,mcc:MCC_CHILE,mnc:op.mnc,radio:radios[Math.floor(Math.random()*radios.length)],range:Math.floor(200+Math.random()*800),_demo:true});
   }
   return towers;
 }
 
-// ── RENDER RESULTADOS ──
 function renderResults(towers,uLat,uLon,radiusM){
-  const withDist = towers.map(t=>({...t,_dist:distM(uLat,uLon,+t.lat,+t.lon)}))
-    .sort((a,b)=>a._dist-b._dist);
-
-  // guardar estado para filtros
-  _allTowers = withDist;
-  _uLat = uLat; _uLon = uLon; _radiusM = radiusM;
-
-  // métricas
-  const opsMap={}, techSet=new Set();
-  withDist.forEach(t=>{
-    const op=getOp(t.mnc);
-    opsMap[op.name]=(opsMap[op.name]||{count:0,cls:op.cls});
-    opsMap[op.name].count++;
-    if(t.radio) techSet.add(t.radio);
-  });
-  const opsArr=Object.entries(opsMap).sort((a,b)=>b[1].count-a[1].count);
-  const techs=[...techSet];
-
-  document.getElementById('m-towers').textContent = withDist.length||'0';
-  document.getElementById('m-towers-sub').textContent = `radio ${radiusM}m`;
-  document.getElementById('m-ops').textContent = opsArr.length||'0';
-  document.getElementById('m-ops-sub').textContent = opsArr.map(o=>o[0]).join(', ');
-  document.getElementById('m-tech').textContent = techs.length||'0';
-  document.getElementById('m-tech-sub').textContent = techs.join(' · ') || '—';
-
-  // tech badges — siempre 4, con conteo, los ausentes en gris
-  const techRow = document.getElementById('tech-row');
-  const techOrder2 = ['GSM','UMTS','LTE','NR'];
-  const techGen = {GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'};
+  const withDist=towers.map(t=>({...t,_dist:distM(uLat,uLon,+t.lat,+t.lon)})).sort((a,b)=>a._dist-b._dist);
+  _allTowers=withDist;_uLat=uLat;_uLon=uLon;_radiusM=radiusM;
+  const opsMap={},techSet=new Set();
+  withDist.forEach(t=>{const op=getOp(t.mnc);opsMap[op.name]=(opsMap[op.name]||{count:0,cls:op.cls});opsMap[op.name].count++;if(t.radio)techSet.add(t.radio);});
+  const opsArr=Object.entries(opsMap).sort((a,b)=>b[1].count-a[1].count);const techs=[...techSet];
+  document.getElementById('m-towers').textContent=withDist.length||'0';document.getElementById('m-towers-sub').textContent=`radio ${radiusM}m`;
+  document.getElementById('m-ops').textContent=opsArr.length||'0';document.getElementById('m-ops-sub').textContent=opsArr.map(o=>o[0]).join(', ');
+  document.getElementById('m-tech').textContent=techs.length||'0';document.getElementById('m-tech-sub').textContent=techs.join(' · ')||'—';
+  const techRow=document.getElementById('tech-row');
+  const techOrder2=['GSM','UMTS','LTE','NR'];const techGen={GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'};
   if(withDist.length){
-    techRow.innerHTML = techOrder2.map(t => {
-      const count = withDist.filter(tw => tw.radio === t).length;
-      const dim = count === 0 ? 'opacity:0.25;' : '';
-      return `<span class="tech-badge tech-${t}" style="${dim}">${t} ${techGen[t]} <span style="font-size:0.8em;opacity:0.8;">${count>0?'×'+count:'—'}</span></span>`;
-    }).join('');
-  } else {
-    techRow.innerHTML = '<span style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span>';
-  }
-
-  // operadores grid
-  const opsGrid = document.getElementById('ops-grid');
-  if(opsArr.length){
-    opsGrid.innerHTML = opsArr.map(([name,info])=>`
-      <div class="op-row op-${info.cls}">
-        <div>
-          <div class="op-name">${name}</div>
-          <div class="op-tech">${techsForOp(withDist,name)}</div>
-        </div>
-        <div class="op-count">${info.count}</div>
-      </div>`).join('');
-  } else {
-    opsGrid.innerHTML = '<span style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span>';
-  }
-
-  // tabla torres
+    techRow.innerHTML=techOrder2.map(t=>{const count=withDist.filter(tw=>tw.radio===t).length;const dim=count===0?'opacity:0.25;':'';return`<span class="tech-badge tech-${t}" style="${dim}">${t} ${techGen[t]} <span style="font-size:0.8em;opacity:0.8;">${count>0?'×'+count:'—'}</span></span>`;}).join('');
+  }else{techRow.innerHTML='<span style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span>';}
+  const opsGrid=document.getElementById('ops-grid');
+  if(opsArr.length){opsGrid.innerHTML=opsArr.map(([name,info])=>`<div class="op-row op-${info.cls}"><div><div class="op-name">${name}</div><div class="op-tech">${techsForOp(withDist,name)}</div></div><div class="op-count">${info.count}</div></div>`).join('');}
+  else{opsGrid.innerHTML='<span style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span>';}
   if(withDist.length){
-    document.getElementById('towers-placeholder').style.display='none';
-    document.getElementById('towers-table').style.display='table';
-    document.getElementById('towers-tbody').innerHTML = withDist.slice(0,30).map(t=>{
-      const op=getOp(t.mnc);
-      const c=OP_COLORS[op.cls]||'#44aaff';
-      const tc=TECH_COLORS[t.radio]||'#9090b0';
-      return `<tr>
-        <td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td>
-        <td style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${t.radio||'?'}</td>
-        <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td>
-        <td style="color:var(--text-dim);">${t.mnc}</td>
-        <td style="color:var(--text-dim);">${t.range||'?'}m</td>
-      </tr>`;
-    }).join('');
+    document.getElementById('towers-placeholder').style.display='none';document.getElementById('towers-table').style.display='table';
+    document.getElementById('towers-tbody').innerHTML=withDist.slice(0,30).map(t=>{const op=getOp(t.mnc);const c=OP_COLORS[op.cls]||'#44aaff';const tc=TECH_COLORS[t.radio]||'#9090b0';return`<tr><td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td><td style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${t.radio||'?'}</td><td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td><td style="color:var(--text-dim);">${t.mnc}</td><td style="color:var(--text-dim);">${t.range||'?'}m</td></tr>`;}).join('');
   }
-
-  // diag col right
   if(opsArr.length){
-    document.getElementById('d-best-op').textContent = opsArr[0][0].substring(0,6);
-    document.getElementById('d-min-dist').textContent = withDist[0]._dist.toFixed(0);
-    const avg = withDist.reduce((a,t)=>a+t._dist,0)/withDist.length;
-    document.getElementById('d-avg-dist').textContent = avg.toFixed(0);
-    const modern = withDist.filter(t=>t.radio==='LTE'||t.radio==='NR').length;
-    document.getElementById('d-modern').textContent = modern;
-    document.getElementById('cov-entel').textContent = countOp(opsMap,'Entel');
-    document.getElementById('cov-movistar').textContent = countOp(opsMap,'Movistar');
-    document.getElementById('cov-claro').textContent = countOp(opsMap,'Claro');
-    document.getElementById('cov-wom').textContent = countOp(opsMap,'WOM');
+    document.getElementById('d-best-op').textContent=opsArr[0][0].substring(0,6);document.getElementById('d-min-dist').textContent=withDist[0]._dist.toFixed(0);
+    const avg=withDist.reduce((a,t)=>a+t._dist,0)/withDist.length;document.getElementById('d-avg-dist').textContent=avg.toFixed(0);
+    const modern=withDist.filter(t=>t.radio==='LTE'||t.radio==='NR').length;document.getElementById('d-modern').textContent=modern;
+    document.getElementById('cov-entel').textContent=countOp(opsMap,'Entel');document.getElementById('cov-movistar').textContent=countOp(opsMap,'Movistar');document.getElementById('cov-claro').textContent=countOp(opsMap,'Claro');document.getElementById('cov-wom').textContent=countOp(opsMap,'WOM');
   }
-
-  // índice de señal
-  renderSignalIndex(withDist,opsArr,techs,radiusM);
-
-  // chart densidad
-  renderDensityChart(withDist,uLat,uLon,radiusM);
-
-  // mapa
-  addTowerMarkers(withDist,uLat,uLon,radiusM);
-
-  // filtros interactivos
-  buildFilterChips(withDist);
-
-  // mejor operador
-  renderBestOperator(withDist, opsArr);
-
-  const isDemo = withDist.length && withDist[0]._demo;
-  if(isDemo) setStatus('⚠ MODO DEMO — Conecta tu API key de OpenCelliD para datos reales',100);
+  renderSignalIndex(withDist,opsArr,techs,radiusM);renderDensityChart(withDist,uLat,uLon,radiusM);addTowerMarkers(withDist,uLat,uLon,radiusM);buildFilterChips(withDist);renderBestOperator(withDist,opsArr);
+  const isDemo=withDist.length&&withDist[0]._demo;if(isDemo)setStatus('⚠ MODO DEMO — Conecta tu API key de OpenCelliD para datos reales',100);
 }
 
-function countOp(opsMap,name){
-  return opsMap[name]?opsMap[name].count:'0';
-}
-
-function techsForOp(towers,opName){
-  const techs=new Set();
-  towers.forEach(t=>{if(getOp(t.mnc).name===opName&&t.radio)techs.add(t.radio);});
-  return [...techs].join('·')||'?';
-}
+function countOp(opsMap,name){return opsMap[name]?opsMap[name].count:'0';}
+function techsForOp(towers,opName){const techs=new Set();towers.forEach(t=>{if(getOp(t.mnc).name===opName&&t.radio)techs.add(t.radio);});return[...techs].join('·')||'?';}
 
 function renderSignalIndex(towers,opsArr,techs,radiusM){
-  if(!towers.length){
-    document.getElementById('signal-score').textContent='—';
-    document.getElementById('signal-score').style.color='var(--text-dim)';
-    document.getElementById('signal-label').textContent='SIN DATOS';
-    document.getElementById('signal-desc').textContent='Busca una dirección';
-    return;
-  }
-  let score=0;
-  // factor cantidad torres (max 40pts)
-  score += Math.min(40, towers.length*2.5);
-  // factor operadores (max 20pts)
-  score += Math.min(20, opsArr.length*5);
-  // factor techs modernas (max 20pts)
-  if(techs.includes('NR')) score+=20;
-  else if(techs.includes('LTE')) score+=14;
-  else if(techs.includes('UMTS')) score+=7;
-  // factor distancia mínima (max 20pts)
-  const minD=towers[0]._dist;
-  if(minD<100)score+=20;
-  else if(minD<250)score+=16;
-  else if(minD<500)score+=10;
-  else if(minD<1000)score+=5;
+  if(!towers.length){document.getElementById('signal-score').textContent='—';document.getElementById('signal-score').style.color='var(--text-dim)';document.getElementById('signal-label').textContent='SIN DATOS';document.getElementById('signal-desc').textContent='Busca una dirección';return;}
+  let score=0;score+=Math.min(40,towers.length*2.5);score+=Math.min(20,opsArr.length*5);
+  if(techs.includes('NR'))score+=20;else if(techs.includes('LTE'))score+=14;else if(techs.includes('UMTS'))score+=7;
+  const minD=towers[0]._dist;if(minD<100)score+=20;else if(minD<250)score+=16;else if(minD<500)score+=10;else if(minD<1000)score+=5;
   score=Math.min(100,Math.round(score));
-
   let color,label,desc;
   if(score>=85){color='var(--neon-c)';label='EXCELENTE';desc='Cobertura muy densa · múltiples operadores · tecnología avanzada';}
   else if(score>=65){color='var(--neon-y)';label='BUENA';desc='Cobertura sólida · varios operadores presentes en la zona';}
   else if(score>=45){color='var(--neon-o)';label='REGULAR';desc='Cobertura básica · puede haber zonas con baja señal';}
   else{color='var(--danger)';label='DÉBIL';desc='Poca infraestructura detectada · posibles problemas de cobertura';}
-
-  document.getElementById('signal-score').textContent=score;
-  document.getElementById('signal-score').style.color=color;
-  document.getElementById('signal-score').style.textShadow=`0 0 30px ${color},0 0 60px ${color}40`;
-  document.getElementById('signal-label').textContent=label;
-  document.getElementById('signal-label').style.color=color;
-  document.getElementById('signal-desc').textContent=desc;
+  document.getElementById('signal-score').textContent=score;document.getElementById('signal-score').style.color=color;document.getElementById('signal-score').style.textShadow=`0 0 30px ${color},0 0 60px ${color}40`;
+  document.getElementById('signal-label').textContent=label;document.getElementById('signal-label').style.color=color;document.getElementById('signal-desc').textContent=desc;
 }
 
 function renderDensityChart(towers,uLat,uLon,radiusM){
-  const canvas=document.getElementById('canvas-chart');
-  const dpr=window.devicePixelRatio||1,w=canvas.clientWidth,h=canvas.clientHeight;
-  if(!w||!h)return;
-  canvas.width=w*dpr;canvas.height=h*dpr;
-  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+  const canvas=document.getElementById('canvas-chart');const dpr=window.devicePixelRatio||1,w=canvas.clientWidth,h=canvas.clientHeight;
+  if(!w||!h)return;canvas.width=w*dpr;canvas.height=h*dpr;const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
   if(!towers.length)return;
-
-  const bands=10;
-  const counts=new Array(bands).fill(0);
-  towers.forEach(t=>{
-    const band=Math.min(bands-1,Math.floor((t._dist/radiusM)*bands));
-    counts[band]++;
-  });
-  const maxC=Math.max(...counts,1);
-  const bw=w/bands;
-  counts.forEach((c,i)=>{
-    const bh=(c/maxC)*(h*0.88);
-    const ratio=i/bands;
-    const r=Math.round(0+ratio*0);
-    const g=Math.round(255-ratio*100);
-    const b=Math.round(224-ratio*100);
-    ctx.fillStyle=`rgba(${r},${g},${b},0.7)`;
-    ctx.shadowColor=`rgba(${r},${g},${b},0.8)`;
-    ctx.shadowBlur=4;
-    ctx.fillRect(i*bw+1,h-bh,bw-2,bh);
-    ctx.shadowBlur=0;
-  });
-  // eje
-  ctx.strokeStyle='rgba(30,30,50,0.8)';ctx.lineWidth=0.5;
-  ctx.beginPath();ctx.moveTo(0,h-0.5);ctx.lineTo(w,h-0.5);ctx.stroke();
+  const bands=10;const counts=new Array(bands).fill(0);
+  towers.forEach(t=>{const band=Math.min(bands-1,Math.floor((t._dist/radiusM)*bands));counts[band]++;});
+  const maxC=Math.max(...counts,1);const bw=w/bands;
+  counts.forEach((c,i)=>{const bh=(c/maxC)*(h*0.88);const ratio=i/bands;const g=Math.round(255-ratio*100);const b=Math.round(224-ratio*100);ctx.fillStyle=`rgba(0,${g},${b},0.7)`;ctx.shadowColor=`rgba(0,${g},${b},0.8)`;ctx.shadowBlur=4;ctx.fillRect(i*bw+1,h-bh,bw-2,bh);ctx.shadowBlur=0;});
+  ctx.strokeStyle='rgba(30,30,50,0.8)';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(0,h-0.5);ctx.lineTo(w,h-0.5);ctx.stroke();
 }
 
-// ── MÓVIL: scroll a búsqueda ──
-function scrollToSearch() {
-  location.reload();
+function showResetBtn(){const btn=document.getElementById('btn-reset');if(btn)btn.style.display='';}
+function switchBmTab(tab){document.querySelectorAll('.bm-tab').forEach((el,i)=>{const tabs=['speed','5g','cob','links'];el.classList.toggle('active',tabs[i]===tab);});document.querySelectorAll('.bm-panel').forEach(el=>el.classList.remove('active'));document.getElementById('bm-'+tab).classList.add('active');}
+function updateBmLinks(lat,lon,addr){const nperf=document.getElementById('link-nperf');if(nperf)nperf.href=`https://www.nperf.com/es/map/CL/-/-/signal/?ll=${lat.toFixed(5)}&lng=${lon.toFixed(5)}&zoom=14`;}
+
+let _allTowers=[],_uLat=0,_uLon=0,_radiusM=750;
+let _activeTechs=new Set();let _activeOps=new Set();
+
+function buildFilterChips(towers){
+  const techSet=new Set(),opsMap={};
+  towers.forEach(t=>{if(t.radio)techSet.add(t.radio);const op=getOp(t.mnc);opsMap[op.name]=op.cls;});
+  const techChips=document.getElementById('tech-chips');
+  const techOrder=['GSM','UMTS','LTE','NR'];const techLabels={GSM:'2G GSM',UMTS:'3G UMTS',LTE:'4G LTE',NR:'5G NR'};
+  techChips.innerHTML=techOrder.map(t=>{const hasData=techSet.has(t);const countForTech=towers.filter(tw=>tw.radio===t).length;const disabledStyle=hasData?'':'style="opacity:0.22;cursor:not-allowed;" title="Sin antenas '+(techLabels[t]||t)+' en este radio"';const countBadge=hasData?` <small style="font-size:0.75em;opacity:0.7;">(${countForTech})</small>`+' <small style="font-size:0.7em;opacity:0.5;">—</small>';return`<span class="chip chip-${t}${hasData?' active':''}" data-tech="${t}" ${disabledStyle} onclick="${hasData?`toggleTechFilter('${t}')`:'void(0)'}">${techLabels[t]||t}${countBadge}</span>`;}).join('');
+  _activeTechs=new Set(techSet);
+  const opChips=document.getElementById('op-chips');const opsSorted=Object.entries(opsMap);
+  opChips.innerHTML=opsSorted.map(([name,cls])=>`<span class="chip chip-op active-${cls}" data-op="${name}" onclick="toggleOpFilter('${name}','${cls}')">${name}</span>`).join('');
+  _activeOps=new Set(opsSorted.map(([n])=>n));
+  document.getElementById('filter-bar').style.display='';updateFilterCount();
 }
 
-function showResetBtn() {
-  const btn = document.getElementById('btn-reset');
-  if(btn) btn.style.display = '';
+function toggleTechFilter(tech){if(_activeTechs.has(tech)){if(_activeTechs.size===1)return;_activeTechs.delete(tech);}else{_activeTechs.add(tech);}document.querySelectorAll(`[data-tech="${tech}"]`).forEach(el=>{el.classList.toggle('active',_activeTechs.has(tech));});applyFilters();}
+function toggleOpFilter(name,cls){if(_activeOps.has(name)){if(_activeOps.size===1)return;_activeOps.delete(name);}else{_activeOps.add(name);}const chip=document.querySelector(`[data-op="${name}"]`);if(chip){if(_activeOps.has(name))chip.className=`chip chip-op active-${cls}`;else chip.className=`chip chip-op`;}applyFilters();}
+function resetFilters(){document.querySelectorAll('[data-tech]').forEach(el=>{_activeTechs.add(el.dataset.tech);el.classList.add('active');});document.querySelectorAll('[data-op]').forEach(el=>{const op=el.dataset.op;const clsMatch=el.className.match(/active-(\w+)/);const cls=clsMatch?clsMatch[1]:'otro';_activeOps.add(op);el.className=`chip chip-op active-${cls}`;});applyFilters();}
+function applyFilters(){const filtered=_allTowers.filter(t=>{const op=getOp(t.mnc);return _activeTechs.has(t.radio)&&_activeOps.has(op.name);});updateFilterCount(filtered.length);markerLayer.clearLayers();circleLayer.clearLayers();addTowerMarkers(filtered,_uLat,_uLon,_radiusM);updateTowersTable(filtered);}
+function updateFilterCount(count){const total=_allTowers.length;const shown=count!==undefined?count:total;document.getElementById('filter-count').textContent=shown===total?`${total} antenas (todas)`:`Mostrando ${shown} de ${total} antenas`;}
+function updateTowersTable(towers){if(!towers.length)return;document.getElementById('towers-placeholder').style.display='none';document.getElementById('towers-table').style.display='table';document.getElementById('towers-tbody').innerHTML=towers.slice(0,30).map(t=>{const op=getOp(t.mnc);const c=OP_COLORS[op.cls]||'#44aaff';const tc=TECH_COLORS[t.radio]||'#9090b0';return`<tr><td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td><td style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${t.radio||'?'}</td><td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td><td style="color:var(--text-dim);">${t.mnc}</td><td style="color:var(--text-dim);">${t.range||'?'}m</td></tr>`;}).join('');}
+
+function renderBestOperator(towers,opsArr){
+  if(!opsArr.length){document.getElementById('best-op-card').style.display='none';return;}
+  const opScores=opsArr.map(([name,info])=>{
+    const opTowers=towers.filter(t=>getOp(t.mnc).name===name);let score=0;score+=Math.min(40,opTowers.length*4);
+    const hasNR=opTowers.some(t=>t.radio==='NR');const hasLTE=opTowers.some(t=>t.radio==='LTE');const hasUMTS=opTowers.some(t=>t.radio==='UMTS');
+    if(hasNR)score+=30;else if(hasLTE)score+=20;else if(hasUMTS)score+=10;
+    const minDist=Math.min(...opTowers.map(t=>t._dist));
+    if(minDist<100)score+=20;else if(minDist<300)score+=15;else if(minDist<600)score+=10;else if(minDist<1000)score+=5;
+    const techCount=new Set(opTowers.map(t=>t.radio)).size;score+=Math.min(10,techCount*3);score=Math.min(100,Math.round(score));
+    const techs=[...new Set(opTowers.map(t=>t.radio).filter(Boolean))];const topTech=['NR','LTE','UMTS','GSM'].find(t=>techs.includes(t))||techs[0];
+    return{name,cls:info.cls,count:info.count,score,techs,topTech,minDist:Math.round(minDist)};
+  }).sort((a,b)=>b.score-a.score);
+  const best=opScores[0];const runner=opScores[1];const c=OP_COLORS[best.cls]||'#44aaff';
+  const techStr=best.techs.map(t=>({GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'}[t]||t)).join('+');
+  let reason=`${best.count} antenas cercanas`;if(best.techs.includes('NR'))reason+=' · incluye 5G NR';else if(best.techs.includes('LTE'))reason+=' · cobertura 4G LTE';reason+=` · antena más cercana a ${best.minDist}m`;if(runner)reason+=` · supera a ${runner.name} por ${best.score-runner.score} pts`;
+  const scoreColor=best.score>=80?'var(--neon-c)':best.score>=60?'var(--neon-y)':'var(--neon-o)';
+  document.getElementById('best-op-content').innerHTML=`<div class="best-op-inner"><div><div class="best-op-badge" style="color:${c};border-color:${c};text-shadow:0 0 10px ${c};box-shadow:0 0 12px ${c}30;">${best.name}</div><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.65vw,8px);color:${c};text-align:center;margin-top:0.2em;letter-spacing:.06em;">${techStr}</div></div><div class="best-op-details"><div class="best-op-reason">${reason}</div><div style="display:flex;gap:.3em;margin-top:.2em;flex-wrap:wrap;">${opScores.slice(0,4).map((op,i)=>{const oc=OP_COLORS[op.cls]||'#44aaff';const w=Math.round((op.score/opScores[0].score)*60);return`<div style="display:flex;align-items:center;gap:.25em;"><span style="font-family:'Orbitron',monospace;font-size:clamp(7px,.65vw,8px);color:${oc};font-weight:700;">${op.name}</span><div style="width:${w}px;height:3px;background:${oc};border-radius:2px;box-shadow:0 0 4px ${oc}80;"></div><span style="font-family:'Share Tech Mono',monospace;font-size:clamp(6px,.6vw,8px);color:var(--text-dim);">${op.score}</span></div>`;}).join('')}</div></div><div style="text-align:center;flex-shrink:0;"><div class="best-op-score" style="color:${scoreColor};text-shadow:0 0 20px ${scoreColor};">${best.score}</div><div class="best-op-score-label">SCORE</div></div></div><div style="border-top:1px solid var(--border);margin-top:0.5em;padding-top:0.5em;"><div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.78vw,10px);color:var(--text-mid);letter-spacing:0.12em;margin-bottom:0.4em;">REVISAR 5G Y MÁS DETALLES →</div><div style="display:flex;flex-wrap:wrap;gap:0.35em;"><a href="https://www.entel.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-entel);color:var(--neon-entel);text-decoration:none;letter-spacing:0.07em;" onmouseover="this.style.background='rgba(0,255,224,0.14)'" onmouseout="this.style.background=''">ENTEL</a><a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-movistar);color:var(--neon-movistar);text-decoration:none;letter-spacing:0.07em;" onmouseover="this.style.background='rgba(191,0,255,0.14)'" onmouseout="this.style.background=''">MOVISTAR</a><a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-claro);color:var(--neon-claro);text-decoration:none;letter-spacing:0.07em;" onmouseover="this.style.background='rgba(255,34,68,0.14)'" onmouseout="this.style.background=''">CLARO</a><a href="https://www.wom.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-wom);color:var(--neon-wom);text-decoration:none;letter-spacing:0.07em;" onmouseover="this.style.background='rgba(255,224,0,0.14)'" onmouseout="this.style.background=''">WOM</a><a href="https://www.gtd.cl/cobertura" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-gtd);color:var(--neon-gtd);text-decoration:none;letter-spacing:0.07em;" onmouseover="this.style.background='rgba(255,106,0,0.14)'" onmouseout="this.style.background=''">GTD</a><a href="https://www.speedtest.net/ookla-5g-map" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-otro);color:var(--neon-otro);text-decoration:none;letter-spacing:0.07em;" onmouseover="this.style.background='rgba(68,170,255,0.14)'" onmouseout="this.style.background=''">MAPA 5G</a></div></div>`;
+  document.getElementById('best-op-card').style.display='';
 }
 
-// ── BENCHMARKS ──
-function switchBmTab(tab) {
-  document.querySelectorAll('.bm-tab').forEach((el,i) => {
-    const tabs = ['speed','5g','cob','links'];
-    el.classList.toggle('active', tabs[i] === tab);
-  });
-  document.querySelectorAll('.bm-panel').forEach(el => el.classList.remove('active'));
-  document.getElementById('bm-'+tab).classList.add('active');
-}
-
-function updateBmLinks(lat, lon, addr) {
-  // nPerf con coordenadas exactas
-  const nperf = document.getElementById('link-nperf');
-  if(nperf) nperf.href = `https://www.nperf.com/es/map/CL/-/-/signal/?ll=${lat.toFixed(5)}&lng=${lon.toFixed(5)}&zoom=14`;
-
-  // Ookla 5G map con coordenadas
-  const ooklaLinks = document.querySelectorAll('#bm-links-grid a');
-  ooklaLinks.forEach(a => {
-    if(a.textContent.includes('OOKLA 5G MAP')) {
-      a.href = `https://www.speedtest.net/ookla-5g-map?lat=${lat.toFixed(5)}&lng=${lon.toFixed(5)}`;
-      a.querySelector('.bm-link-desc').textContent = 'Cobertura 5G en tu zona buscada';
-    }
-    if(a.textContent.includes('nPERF')) {
-      a.querySelector('.bm-link-desc').textContent = 'Cobertura real en tus coordenadas';
-    }
-  });
-}
-
-// ── FILTROS ──
-let _allTowers = [], _uLat = 0, _uLon = 0, _radiusM = 750;
-let _activeTechs = new Set(); // vacío = todos
-let _activeOps = new Set();   // vacío = todos
-
-function buildFilterChips(towers) {
-  const techSet = new Set(), opsMap = {};
-  towers.forEach(t => {
-    if(t.radio) techSet.add(t.radio);
-    const op = getOp(t.mnc);
-    opsMap[op.name] = op.cls;
-  });
-
-  // chips de tecnología — siempre mostrar los 4, deshabilitar los que no tienen datos
-  const techChips = document.getElementById('tech-chips');
-  const techOrder = ['GSM','UMTS','LTE','NR'];
-  const techLabels = {GSM:'2G GSM',UMTS:'3G UMTS',LTE:'4G LTE',NR:'5G NR'};
-  techChips.innerHTML = techOrder.map(t => {
-    const hasData = techSet.has(t);
-    const countForTech = towers.filter(tw => tw.radio === t).length;
-    const disabledStyle = hasData ? '' : 'style="opacity:0.22;cursor:not-allowed;" title="Sin antenas ' + (techLabels[t]||t) + ' en este radio"';
-    const countBadge = hasData ? ` <small style="font-size:0.75em;opacity:0.7;">(${countForTech})</small>` : ' <small style="font-size:0.7em;opacity:0.5;">—</small>';
-    return `<span class="chip chip-${t}${hasData?' active':''}" data-tech="${t}" ${disabledStyle} onclick="${hasData?`toggleTechFilter('${t}')`:'void(0)'}">${techLabels[t]||t}${countBadge}</span>`;
-  }).join('');
-  _activeTechs = new Set(techSet); // activos = los que tienen datos
-
-  // chips de operador
-  const opChips = document.getElementById('op-chips');
-  const opsSorted = Object.entries(opsMap);
-  opChips.innerHTML = opsSorted.map(([name,cls])=>
-    `<span class="chip chip-op active-${cls}" data-op="${name}" onclick="toggleOpFilter('${name}','${cls}')">${name}</span>`
-  ).join('');
-  _activeOps = new Set(opsSorted.map(([n])=>n));
-
-  document.getElementById('filter-bar').style.display = '';
-  updateFilterCount();
-}
-
-function toggleTechFilter(tech) {
-  if(_activeTechs.has(tech)) {
-    if(_activeTechs.size === 1) return; // al menos 1 activo
-    _activeTechs.delete(tech);
-  } else {
-    _activeTechs.add(tech);
-  }
-  document.querySelectorAll(`[data-tech="${tech}"]`).forEach(el => {
-    el.classList.toggle('active', _activeTechs.has(tech));
-  });
-  applyFilters();
-}
-
-function toggleOpFilter(name, cls) {
-  if(_activeOps.has(name)) {
-    if(_activeOps.size === 1) return;
-    _activeOps.delete(name);
-  } else {
-    _activeOps.add(name);
-  }
-  const chip = document.querySelector(`[data-op="${name}"]`);
-  if(chip) {
-    if(_activeOps.has(name)) chip.className = `chip chip-op active-${cls}`;
-    else chip.className = `chip chip-op`;
-  }
-  applyFilters();
-}
-
-function resetFilters() {
-  // reactivar todo
-  document.querySelectorAll('[data-tech]').forEach(el => {
-    const tech = el.dataset.tech;
-    _activeTechs.add(tech);
-    el.classList.add('active');
-  });
-  document.querySelectorAll('[data-op]').forEach(el => {
-    const op = el.dataset.op;
-    const clsMatch = el.className.match(/active-(\w+)/);
-    const cls = clsMatch ? clsMatch[1] : 'otro';
-    _activeOps.add(op);
-    el.className = `chip chip-op active-${cls}`;
-  });
-  applyFilters();
-}
-
-function applyFilters() {
-  const filtered = _allTowers.filter(t => {
-    const op = getOp(t.mnc);
-    return _activeTechs.has(t.radio) && _activeOps.has(op.name);
-  });
-  updateFilterCount(filtered.length);
-  // re-render mapa y tabla con filtered
-  markerLayer.clearLayers();
-  circleLayer.clearLayers();
-  addTowerMarkers(filtered, _uLat, _uLon, _radiusM);
-  updateTowersTable(filtered);
-}
-
-function updateFilterCount(count) {
-  const total = _allTowers.length;
-  const shown = count !== undefined ? count : total;
-  document.getElementById('filter-count').textContent =
-    shown === total ? `${total} antenas (todas)` : `Mostrando ${shown} de ${total} antenas`;
-}
-
-function updateTowersTable(towers) {
-  if(!towers.length) return;
-  document.getElementById('towers-placeholder').style.display='none';
-  document.getElementById('towers-table').style.display='table';
-  document.getElementById('towers-tbody').innerHTML = towers.slice(0,30).map(t => {
-    const op=getOp(t.mnc);
-    const c=OP_COLORS[op.cls]||'#44aaff';
-    const tc=TECH_COLORS[t.radio]||'#9090b0';
-    return `<tr>
-      <td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td>
-      <td style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${t.radio||'?'}</td>
-      <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td>
-      <td style="color:var(--text-dim);">${t.mnc}</td>
-      <td style="color:var(--text-dim);">${t.range||'?'}m</td>
-    </tr>`;
-  }).join('');
-}
-
-// ── MEJOR OPERADOR ──
-function renderBestOperator(towers, opsArr) {
-  if(!opsArr.length) { document.getElementById('best-op-card').style.display='none'; return; }
-
-  // Calcular score por operador
-  const opScores = opsArr.map(([name, info]) => {
-    const opTowers = towers.filter(t => getOp(t.mnc).name === name);
-    let score = 0;
-    // cantidad (máx 40)
-    score += Math.min(40, opTowers.length * 4);
-    // tecnología más avanzada (máx 30)
-    const hasNR = opTowers.some(t => t.radio === 'NR');
-    const hasLTE = opTowers.some(t => t.radio === 'LTE');
-    const hasUMTS = opTowers.some(t => t.radio === 'UMTS');
-    if(hasNR) score += 30; else if(hasLTE) score += 20; else if(hasUMTS) score += 10;
-    // distancia mínima (máx 20)
-    const minDist = Math.min(...opTowers.map(t => t._dist));
-    if(minDist < 100) score += 20; else if(minDist < 300) score += 15;
-    else if(minDist < 600) score += 10; else if(minDist < 1000) score += 5;
-    // diversidad de techs (máx 10)
-    const techCount = new Set(opTowers.map(t=>t.radio)).size;
-    score += Math.min(10, techCount * 3);
-
-    score = Math.min(100, Math.round(score));
-    const techs = [...new Set(opTowers.map(t=>t.radio).filter(Boolean))];
-    const techLabels = {GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'};
-    const topTech = ['NR','LTE','UMTS','GSM'].find(t => techs.includes(t)) || techs[0];
-    return {name, cls: info.cls, count: info.count, score, techs, topTech, minDist: Math.round(minDist)};
-  }).sort((a,b) => b.score - a.score);
-
-  const best = opScores[0];
-  const runner = opScores[1];
-  const c = OP_COLORS[best.cls] || '#44aaff';
-  const techStr = best.techs.map(t => ({GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'}[t]||t)).join('+');
-
-  let reason = `${best.count} antenas cercanas`;
-  if(best.techs.includes('NR')) reason += ' · incluye 5G NR';
-  else if(best.techs.includes('LTE')) reason += ' · cobertura 4G LTE';
-  reason += ` · antena más cercana a ${best.minDist}m`;
-  if(runner) reason += ` · supera a ${runner.name} por ${best.score-runner.score} pts`;
-
-  const scoreColor = best.score>=80?'var(--neon-c)':best.score>=60?'var(--neon-y)':'var(--neon-o)';
-
-  document.getElementById('best-op-content').innerHTML = `
-    <div class="best-op-inner">
-      <div>
-        <div class="best-op-badge" style="color:${c};border-color:${c};text-shadow:0 0 10px ${c};box-shadow:0 0 12px ${c}30;">${best.name}</div>
-        <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.65vw,8px);color:${c};text-align:center;margin-top:0.2em;letter-spacing:.06em;">${techStr}</div>
-      </div>
-      <div class="best-op-details">
-        <div class="best-op-reason">${reason}</div>
-        <div style="display:flex;gap:.3em;margin-top:.2em;flex-wrap:wrap;">
-          ${opScores.slice(0,4).map((op,i)=>{
-            const oc = OP_COLORS[op.cls]||'#44aaff';
-            const w = Math.round((op.score/opScores[0].score)*60);
-            return `<div style="display:flex;align-items:center;gap:.25em;">
-              <span style="font-family:'Orbitron',monospace;font-size:clamp(7px,.65vw,8px);color:${oc};font-weight:700;">${op.name}</span>
-              <div style="width:${w}px;height:3px;background:${oc};border-radius:2px;box-shadow:0 0 4px ${oc}80;"></div>
-              <span style="font-family:'Share Tech Mono',monospace;font-size:clamp(6px,.6vw,8px);color:var(--text-dim);">${op.score}</span>
-            </div>`;
-          }).join('')}
-        </div>
-      </div>
-      <div style="text-align:center;flex-shrink:0;">
-        <div class="best-op-score" style="color:${scoreColor};text-shadow:0 0 20px ${scoreColor};">${best.score}</div>
-        <div class="best-op-score-label">SCORE</div>
-      </div>
-    </div>
-      <div style="border-top:1px solid var(--border);margin-top:0.5em;padding-top:0.5em;">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.78vw,10px);color:var(--text-mid);letter-spacing:0.12em;margin-bottom:0.4em;">REVISAR 5G Y MÁS DETALLES →</div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
-        <a href="https://www.entel.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-entel);color:var(--neon-entel);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(0,255,224,0.4);" onmouseover="this.style.background='rgba(0,255,224,0.14)';this.style.boxShadow='0 0 10px rgba(0,255,224,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">ENTEL</a>
-        <a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-movistar);color:var(--neon-movistar);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(191,0,255,0.4);" onmouseover="this.style.background='rgba(191,0,255,0.14)';this.style.boxShadow='0 0 10px rgba(191,0,255,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">MOVISTAR</a>
-        <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-claro);color:var(--neon-claro);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(255,34,68,0.4);" onmouseover="this.style.background='rgba(255,34,68,0.14)';this.style.boxShadow='0 0 10px rgba(255,34,68,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">CLARO</a>
-        <a href="https://www.wom.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-wom);color:var(--neon-wom);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(255,224,0,0.4);" onmouseover="this.style.background='rgba(255,224,0,0.14)';this.style.boxShadow='0 0 10px rgba(255,224,0,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">WOM</a>
-        <a href="https://www.gtd.cl/cobertura" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-gtd);color:var(--neon-gtd);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(255,106,0,0.4);" onmouseover="this.style.background='rgba(255,106,0,0.14)';this.style.boxShadow='0 0 10px rgba(255,106,0,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">GTD</a>
-        <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-otro);color:var(--neon-otro);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(68,170,255,0.4);" onmouseover="this.style.background='rgba(68,170,255,0.14)';this.style.boxShadow='0 0 10px rgba(68,170,255,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">MAPA 5G</a>
-      </div>
-    </div>`;
-  document.getElementById('best-op-card').style.display = '';
-}
-
-// ── BÚSQUEDA PRINCIPAL ──
 async function doSearch(){
-  const addr=document.getElementById('addr-input').value.trim();
-  if(!addr)return;
-  const btn=document.getElementById('btn-search');
-  btn.disabled=true;
-  document.getElementById('towers-placeholder').style.display='';
-  document.getElementById('towers-table').style.display='none';
+  const addr=document.getElementById('addr-input').value.trim();if(!addr)return;
+  const btn=document.getElementById('btn-search');btn.disabled=true;
+  document.getElementById('towers-placeholder').style.display='';document.getElementById('towers-table').style.display='none';
   const radiusM=+document.getElementById('radius-slider').value;
-
   try{
-    setStatus('GEOCODIFICANDO DIRECCIÓN...', 10);
-    const loc = await geocode(addr);
-    setStatus(`✓ ${loc.display.substring(0,60)}...`, 35);
-    initMap(loc.lat,loc.lon);
-    addUserPin(loc.lat,loc.lon,addr);
-    updateBmLinks(loc.lat, loc.lon, addr);
-    setStatus('CONSULTANDO OPENCELLID...', 55);
-    const towers = await fetchTowers(loc.lat,loc.lon,radiusM);
-    setStatus(`✓ ${towers.length} antenas encontradas · procesando...`, 85);
+    setStatus('GEOCODIFICANDO DIRECCIÓN...',10);const loc=await geocode(addr);
+    setStatus(`✓ ${loc.display.substring(0,60)}...`,35);
+    initMap(loc.lat,loc.lon);addUserPin(loc.lat,loc.lon,addr);updateBmLinks(loc.lat,loc.lon,addr);
+    setStatus('CONSULTANDO OPENCELLID...',55);const towers=await fetchTowers(loc.lat,loc.lon,radiusM);
+    setStatus(`✓ ${towers.length} antenas encontradas · procesando...`,85);
     renderResults(towers,loc.lat,loc.lon,radiusM);
-    if(!towers[0]||!towers[0]._demo){
-      setStatus(`✓ ${towers.length} antenas · radio ${radiusM}m · OpenCelliD`, 100);
-    }
+    if(!towers[0]||!towers[0]._demo)setStatus(`✓ ${towers.length} antenas · radio ${radiusM}m · OpenCelliD`,100);
     showResetBtn();
-  }catch(e){
-    setStatus('⚠ '+e.message, 0);
-  }
+  }catch(e){setStatus('⚠ '+e.message,0);}
   btn.disabled=false;
 }
 
-// Enter para buscar
 document.getElementById('addr-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
+document.getElementById('radius-slider').addEventListener('input',function(){document.getElementById('radius-val').textContent=this.value+' m';});
 
-// Slider radio
-document.getElementById('radius-slider').addEventListener('input',function(){
-  document.getElementById('radius-val').textContent=this.value+' m';
-});
-
-// ── MODALES ──
 function openInfoModal(){document.getElementById('info-modal').classList.add('open');}
 function closeInfoModal(){document.getElementById('info-modal').classList.remove('open');}
-function openOpsModal(){
-  buildOpsModal();
-  document.getElementById('ops-modal').classList.add('open');
-}
+function openOpsModal(){buildOpsModal();document.getElementById('ops-modal').classList.add('open');}
 function closeOpsModal(){document.getElementById('ops-modal').classList.remove('open');}
 function openCobModal(){document.getElementById('cob-modal').classList.add('open');}
 function closeCobModal(){document.getElementById('cob-modal').classList.remove('open');}
@@ -1574,41 +975,18 @@ document.getElementById('cob-modal').addEventListener('click',e=>{if(e.target===
 document.getElementById('ops-modal').addEventListener('click',e=>{if(e.target===document.getElementById('ops-modal'))closeOpsModal();});
 
 function buildOpsModal(){
-  const ALL_OPS=[
-    {name:'Entel',cls:'entel',mncs:[1,4,15],techs:'GSM·UMTS·LTE·NR'},
-    {name:'Movistar',cls:'movistar',mncs:[2,5],techs:'GSM·UMTS·LTE'},
-    {name:'Claro',cls:'claro',mncs:[3,9,10,14],techs:'GSM·UMTS·LTE'},
-    {name:'WOM',cls:'wom',mncs:[6,8,13],techs:'LTE·NR'},
-    {name:'GTD',cls:'gtd',mncs:[7],techs:'LTE'},
-  ];
-  const tbody=document.getElementById('towers-tbody');
+  const ALL_OPS=[{name:'Entel',cls:'entel',mncs:[1,4,15],techs:'GSM·UMTS·LTE·NR'},{name:'Movistar',cls:'movistar',mncs:[2,5],techs:'GSM·UMTS·LTE'},{name:'Claro',cls:'claro',mncs:[3,9,10,14],techs:'GSM·UMTS·LTE'},{name:'WOM',cls:'wom',mncs:[6,8,13],techs:'LTE·NR'},{name:'GTD',cls:'gtd',mncs:[7],techs:'LTE'}];
   const body=document.getElementById('ops-modal-body');
   body.innerHTML='<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.1em;margin-bottom:.5em;">MCC CHILE: 730 · Todos los operadores con licencia vigente</div>'+
-  ALL_OPS.map(op=>{
-    const c=OP_COLORS[op.cls];
-    return `<div class="ops-op-row ops-${op.cls}">
-      <div>
-        <div class="ops-name">${op.name}</div>
-        <div class="ops-mncs">MNC: ${op.mncs.join(', ')} · ${op.techs}</div>
-      </div>
-      <div class="ops-bar-wrap"><div class="ops-bar" style="width:${Math.min(100,op.mncs.length*25)}%"></div></div>
-      <div class="ops-count">${op.mncs.length}</div>
-    </div>`;
-  }).join('')+
+  ALL_OPS.map(op=>`<div class="ops-op-row ops-${op.cls}"><div><div class="ops-name">${op.name}</div><div class="ops-mncs">MNC: ${op.mncs.join(', ')} · ${op.techs}</div></div><div class="ops-bar-wrap"><div class="ops-bar" style="width:${Math.min(100,op.mncs.length*25)}%"></div></div><div class="ops-count">${op.mncs.length}</div></div>`).join('')+
   '<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:.5em;margin-top:.3em;">■ El número indica cuántos MNC tiene asignados el operador · Fuente: OpenCelliD / ITU</div>';
 }
 
-// ── MAPA INICIAL (Santiago) ──
 window.addEventListener('load',()=>{
   initMap(-33.4489,-70.6693);
-  setTimeout(()=>{
-    if(map){ map.invalidateSize(); setupMapClickHandler(); }
-  },300);
+  setTimeout(()=>{if(map){map.invalidateSize();setupMapClickHandler();}},300);
 });
-
-window.addEventListener('resize',()=>{
-  if(typeof renderDensityChart === 'function') renderDensityChart([],0,0,0);
-});
+window.addEventListener('resize',()=>{if(typeof renderDensityChart==='function')renderDensityChart([],0,0,0);});
 </script>
 </body>
 </html>
