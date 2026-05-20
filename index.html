@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.3:-Cobertura Celular 14115-:.</title>
+<title>.v1.4:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -1004,6 +1004,17 @@ function renderBestOperator(towers, opsArr) {
       <div style="text-align:center;flex-shrink:0;">
         <div class="best-op-score" style="color:${scoreColor};text-shadow:0 0 20px ${scoreColor};">${best.score}</div>
         <div class="best-op-score-label">SCORE</div>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border);margin-top:0.5em;padding-top:0.5em;">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.12em;margin-bottom:0.35em;">REVISAR 5G Y MÁS DETALLES →</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+        <a href="https://www.entel.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-entel);color:var(--neon-entel);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(0,255,224,0.12)';this.style.boxShadow='0 0 8px rgba(0,255,224,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">ENTEL</a>
+        <a href="https://www.movistar.cl/cobertura-movil" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-movistar);color:var(--neon-movistar);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(191,0,255,0.12)';this.style.boxShadow='0 0 8px rgba(191,0,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MOVISTAR</a>
+        <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-claro);color:var(--neon-claro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,34,68,0.12)';this.style.boxShadow='0 0 8px rgba(255,34,68,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">CLARO</a>
+        <a href="https://www.wom.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-wom);color:var(--neon-wom);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,224,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,224,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">WOM</a>
+        <a href="https://www.gtd.cl/cobertura" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-gtd);color:var(--neon-gtd);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,106,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,106,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">GTD</a>
+        <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-otro);color:var(--neon-otro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(68,170,255,0.12)';this.style.boxShadow='0 0 8px rgba(68,170,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MAPA 5G</a>
       </div>
     </div>`;
   document.getElementById('best-op-card').style.display = '';
