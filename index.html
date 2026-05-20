@@ -522,22 +522,34 @@ async function geocode(addr){
   return {lat:+j[0].lat,lon:+j[0].lon,display:j[0].display_name};
 }
 
-// ── OPENCELLID (CORS proxy vía allorigins) ──
+// ── OPENCELLID ──
 async function fetchTowers(lat,lon,radiusM){
   const latDelta = radiusM/111000;
   const lonDelta = radiusM/(111000*Math.cos(lat*Math.PI/180));
   const bbox = `${lat-latDelta},${lon-lonDelta},${lat+latDelta},${lon+lonDelta}`;
-  const url = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
-  const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-  try{
-    const r = await fetch(proxy);
-    const j = await r.json();
-    const data = JSON.parse(j.contents);
-    return data.cells || [];
-  }catch(e){
-    // Fallback: usar datos simulados para demo sin API key real
-    return generateDemoTowers(lat,lon,radiusM);
+  const apiUrl = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
+  const proxies = [
+    u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+    u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+    u => `https://thingproxy.freeboard.io/fetch/${u}`,
+  ];
+  for(let i=0; i<proxies.length; i++){
+    try{
+      setStatus(`CONSULTANDO OPENCELLID · proxy ${i+1}/${proxies.length}...`, 60+i*8);
+      const ctrl = new AbortController();
+      const tid = setTimeout(()=>ctrl.abort(), 8000);
+      const r = await fetch(proxies[i](apiUrl), {signal: ctrl.signal});
+      clearTimeout(tid);
+      if(!r.ok) continue;
+      const text = await r.text();
+      let data;
+      try{ data = JSON.parse(text); }catch(e){ continue; }
+      if(data.contents){ try{ data = JSON.parse(data.contents); }catch(e){ continue; } }
+      if(data.cells) return data.cells;
+      if(Array.isArray(data)) return data;
+    }catch(e){ /* siguiente proxy */ }
   }
+  return generateDemoTowers(lat,lon,radiusM);
 }
 
 // Generador demo (para cuando no hay API key real o CORS falla)
