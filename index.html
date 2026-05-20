@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.0:-Señal Celular 14115-:.</title>
+<title>.v1.0:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 @font-face{font-family:'Orbitron';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2) format('woff2');}
@@ -239,7 +239,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 <header id="header">
   <div id="header-left">
-    <h1>📡 SEÑAL CELULAR 14115</h1>
+    <h1>📡 COBERTURA CELULAR 14115</h1>
     <div class="subtitle">antenas cercanas · operadores · tecnología · cobertura real · datos abiertos</div>
   </div>
   <div style="display:flex;gap:0.5em;align-items:center;flex-shrink:0;">
@@ -527,7 +527,7 @@ async function fetchTowers(lat,lon,radiusM){
   const latDelta = radiusM/111000;
   const lonDelta = radiusM/(111000*Math.cos(lat*Math.PI/180));
   const bbox = `${lat-latDelta},${lon-lonDelta},${lat+latDelta},${lon+lonDelta}`;
-  const url = `https://opencellid.org/cell/getInArea?key=pk.3f8e1e6d9b2c4a5f7e0d1c2b3a4e5f6a&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
+  const url = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
   const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
   try{
     const r = await fetch(proxy);
