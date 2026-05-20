@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.1:-Cobertura Celular 14115-:.</title>
+<title>.v1.3:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 @font-face{font-family:'Orbitron';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2) format('woff2');}
 @font-face{font-family:'Orbitron';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2) format('woff2');}
@@ -225,6 +226,40 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .ops-gtd .ops-count{color:var(--neon-gtd);}
 .ops-otro .ops-count{color:var(--neon-otro);}
 
+/* FILTROS */
+#filter-bar{display:flex;flex-direction:column;gap:0.35em;flex-shrink:0;}
+.filter-section-label{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.75vw,10px);color:var(--text-dim);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.1em;}
+.filter-chips{display:flex;flex-wrap:wrap;gap:0.25em;}
+.chip{font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.22em 0.55em;border-radius:3px;cursor:pointer;transition:all 0.15s;letter-spacing:0.06em;opacity:0.45;border:1px solid;}
+.chip.active{opacity:1;}
+.chip-GSM{border-color:var(--neon-c);color:var(--neon-c);}
+.chip-GSM.active{background:rgba(0,255,224,0.15);box-shadow:0 0 8px rgba(0,255,224,0.4);}
+.chip-UMTS{border-color:var(--neon-v);color:var(--neon-v);}
+.chip-UMTS.active{background:rgba(191,0,255,0.15);box-shadow:0 0 8px rgba(191,0,255,0.4);}
+.chip-LTE{border-color:var(--neon-y);color:var(--neon-y);}
+.chip-LTE.active{background:rgba(255,224,0,0.15);box-shadow:0 0 8px rgba(255,224,0,0.4);}
+.chip-NR{border-color:var(--neon-o);color:var(--neon-o);}
+.chip-NR.active{background:rgba(255,106,0,0.15);box-shadow:0 0 8px rgba(255,106,0,0.4);}
+.chip-op{border-color:var(--text-dim);color:var(--text-mid);}
+.chip-op.active-entel{border-color:var(--neon-entel);color:var(--neon-entel);background:rgba(0,255,224,0.1);box-shadow:0 0 8px rgba(0,255,224,0.3);}
+.chip-op.active-movistar{border-color:var(--neon-movistar);color:var(--neon-movistar);background:rgba(191,0,255,0.1);box-shadow:0 0 8px rgba(191,0,255,0.3);}
+.chip-op.active-claro{border-color:var(--neon-claro);color:var(--neon-claro);background:rgba(255,34,68,0.1);box-shadow:0 0 8px rgba(255,34,68,0.3);}
+.chip-op.active-wom{border-color:var(--neon-wom);color:var(--neon-wom);background:rgba(255,224,0,0.1);box-shadow:0 0 8px rgba(255,224,0,0.3);}
+.chip-op.active-gtd{border-color:var(--neon-gtd);color:var(--neon-gtd);background:rgba(255,106,0,0.1);box-shadow:0 0 8px rgba(255,106,0,0.3);}
+.chip-op.active-otro{border-color:var(--neon-otro);color:var(--neon-otro);background:rgba(68,170,255,0.1);box-shadow:0 0 8px rgba(68,170,255,0.3);}
+.chip-reset{border-color:var(--danger);color:var(--danger);opacity:0.6;}
+.chip-reset:hover{opacity:1;background:rgba(255,34,68,0.12);}
+/* BEST OP PANEL */
+#best-op-card{flex-shrink:0;}
+.best-op-inner{display:flex;align-items:center;gap:0.7em;padding:0.3em 0;}
+.best-op-badge{font-family:'Orbitron',monospace;font-size:clamp(10px,1.1vw,14px);font-weight:900;padding:0.3em 0.7em;border-radius:4px;border:2px solid;letter-spacing:0.1em;white-space:nowrap;text-align:center;min-width:5em;}
+.best-op-details{flex:1;display:flex;flex-direction:column;gap:0.15em;}
+.best-op-reason{font-family:'Rajdhani',sans-serif;font-size:clamp(10px,0.95vw,12px);color:var(--text-mid);font-weight:600;line-height:1.3;}
+.best-op-stats{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.06em;}
+.best-op-score{font-family:'Orbitron',monospace;font-size:clamp(18px,2vw,24px);font-weight:900;text-align:center;min-width:2.5em;}
+.best-op-score-label{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);letter-spacing:0.1em;text-align:center;}
+.filter-count-badge{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.06em;margin-top:0.1em;}
+
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:var(--surface);}
 ::-webkit-scrollbar-thumb{background:#1e1e32;border-radius:2px;}
@@ -289,6 +324,29 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     <div class="card" style="flex-shrink:0;">
       <div class="card-label">TECNOLOGÍAS DETECTADAS</div>
       <div id="tech-row"><span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span></div>
+    </div>
+
+    <!-- FILTROS INTERACTIVOS -->
+    <div class="card" id="filter-bar" style="display:none;">
+      <div class="card-label">FILTRAR ANTENAS</div>
+      <div style="margin-bottom:0.4em;">
+        <div class="filter-section-label">Por tecnología</div>
+        <div class="filter-chips" id="tech-chips"></div>
+      </div>
+      <div>
+        <div class="filter-section-label">Por operador</div>
+        <div class="filter-chips" id="op-chips"></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.35em;">
+        <div class="filter-count-badge" id="filter-count"></div>
+        <span class="chip chip-reset" onclick="resetFilters()">✕ LIMPIAR</span>
+      </div>
+    </div>
+
+    <!-- MEJOR OPERADOR -->
+    <div class="card" id="best-op-card" style="display:none;">
+      <div class="card-label">⭐ MEJOR OPERADOR EN LA ZONA</div>
+      <div id="best-op-content"></div>
     </div>
 
     <div class="card" style="flex-shrink:0;">
@@ -422,7 +480,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   </div>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // ── CONSTANTES ──
 const OCID_API = 'https://opencellid.org/cell/getInArea';
@@ -586,6 +643,10 @@ function renderResults(towers,uLat,uLon,radiusM){
   const withDist = towers.map(t=>({...t,_dist:distM(uLat,uLon,+t.lat,+t.lon)}))
     .sort((a,b)=>a._dist-b._dist);
 
+  // guardar estado para filtros
+  _allTowers = withDist;
+  _uLat = uLat; _uLon = uLon; _radiusM = radiusM;
+
   // métricas
   const opsMap={}, techSet=new Set();
   withDist.forEach(t=>{
@@ -667,6 +728,12 @@ function renderResults(towers,uLat,uLon,radiusM){
 
   // mapa
   addTowerMarkers(withDist,uLat,uLon,radiusM);
+
+  // filtros interactivos
+  buildFilterChips(withDist);
+
+  // mejor operador
+  renderBestOperator(withDist, opsArr);
 
   const isDemo = withDist.length && withDist[0]._demo;
   if(isDemo) setStatus('⚠ MODO DEMO — Conecta tu API key de OpenCelliD para datos reales',100);
@@ -752,6 +819,194 @@ function renderDensityChart(towers,uLat,uLon,radiusM){
   // eje
   ctx.strokeStyle='rgba(30,30,50,0.8)';ctx.lineWidth=0.5;
   ctx.beginPath();ctx.moveTo(0,h-0.5);ctx.lineTo(w,h-0.5);ctx.stroke();
+}
+
+// ── FILTROS ──
+let _allTowers = [], _uLat = 0, _uLon = 0, _radiusM = 750;
+let _activeTechs = new Set(); // vacío = todos
+let _activeOps = new Set();   // vacío = todos
+
+function buildFilterChips(towers) {
+  const techSet = new Set(), opsMap = {};
+  towers.forEach(t => {
+    if(t.radio) techSet.add(t.radio);
+    const op = getOp(t.mnc);
+    opsMap[op.name] = op.cls;
+  });
+
+  // chips de tecnología
+  const techChips = document.getElementById('tech-chips');
+  const techOrder = ['GSM','UMTS','LTE','NR'];
+  const techLabels = {GSM:'2G GSM',UMTS:'3G UMTS',LTE:'4G LTE',NR:'5G NR'};
+  techChips.innerHTML = techOrder.filter(t=>techSet.has(t)).map(t=>
+    `<span class="chip chip-${t} active" data-tech="${t}" onclick="toggleTechFilter('${t}')">${techLabels[t]||t}</span>`
+  ).join('');
+  _activeTechs = new Set(techSet); // todos activos al inicio
+
+  // chips de operador
+  const opChips = document.getElementById('op-chips');
+  const opsSorted = Object.entries(opsMap);
+  opChips.innerHTML = opsSorted.map(([name,cls])=>
+    `<span class="chip chip-op active-${cls}" data-op="${name}" onclick="toggleOpFilter('${name}','${cls}')">${name}</span>`
+  ).join('');
+  _activeOps = new Set(opsSorted.map(([n])=>n));
+
+  document.getElementById('filter-bar').style.display = '';
+  updateFilterCount();
+}
+
+function toggleTechFilter(tech) {
+  if(_activeTechs.has(tech)) {
+    if(_activeTechs.size === 1) return; // al menos 1 activo
+    _activeTechs.delete(tech);
+  } else {
+    _activeTechs.add(tech);
+  }
+  document.querySelectorAll(`[data-tech="${tech}"]`).forEach(el => {
+    el.classList.toggle('active', _activeTechs.has(tech));
+  });
+  applyFilters();
+}
+
+function toggleOpFilter(name, cls) {
+  if(_activeOps.has(name)) {
+    if(_activeOps.size === 1) return;
+    _activeOps.delete(name);
+  } else {
+    _activeOps.add(name);
+  }
+  const chip = document.querySelector(`[data-op="${name}"]`);
+  if(chip) {
+    if(_activeOps.has(name)) chip.className = `chip chip-op active-${cls}`;
+    else chip.className = `chip chip-op`;
+  }
+  applyFilters();
+}
+
+function resetFilters() {
+  // reactivar todo
+  document.querySelectorAll('[data-tech]').forEach(el => {
+    const tech = el.dataset.tech;
+    _activeTechs.add(tech);
+    el.classList.add('active');
+  });
+  document.querySelectorAll('[data-op]').forEach(el => {
+    const op = el.dataset.op;
+    const clsMatch = el.className.match(/active-(\w+)/);
+    const cls = clsMatch ? clsMatch[1] : 'otro';
+    _activeOps.add(op);
+    el.className = `chip chip-op active-${cls}`;
+  });
+  applyFilters();
+}
+
+function applyFilters() {
+  const filtered = _allTowers.filter(t => {
+    const op = getOp(t.mnc);
+    return _activeTechs.has(t.radio) && _activeOps.has(op.name);
+  });
+  updateFilterCount(filtered.length);
+  // re-render mapa y tabla con filtered
+  markerLayer.clearLayers();
+  circleLayer.clearLayers();
+  addTowerMarkers(filtered, _uLat, _uLon, _radiusM);
+  updateTowersTable(filtered);
+}
+
+function updateFilterCount(count) {
+  const total = _allTowers.length;
+  const shown = count !== undefined ? count : total;
+  document.getElementById('filter-count').textContent =
+    shown === total ? `${total} antenas (todas)` : `Mostrando ${shown} de ${total} antenas`;
+}
+
+function updateTowersTable(towers) {
+  if(!towers.length) return;
+  document.getElementById('towers-placeholder').style.display='none';
+  document.getElementById('towers-table').style.display='table';
+  document.getElementById('towers-tbody').innerHTML = towers.slice(0,30).map(t => {
+    const op=getOp(t.mnc);
+    const c=OP_COLORS[op.cls]||'#44aaff';
+    const tc=TECH_COLORS[t.radio]||'#9090b0';
+    return `<tr>
+      <td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td>
+      <td style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${t.radio||'?'}</td>
+      <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td>
+      <td style="color:var(--text-dim);">${t.mnc}</td>
+      <td style="color:var(--text-dim);">${t.range||'?'}m</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── MEJOR OPERADOR ──
+function renderBestOperator(towers, opsArr) {
+  if(!opsArr.length) { document.getElementById('best-op-card').style.display='none'; return; }
+
+  // Calcular score por operador
+  const opScores = opsArr.map(([name, info]) => {
+    const opTowers = towers.filter(t => getOp(t.mnc).name === name);
+    let score = 0;
+    // cantidad (máx 40)
+    score += Math.min(40, opTowers.length * 4);
+    // tecnología más avanzada (máx 30)
+    const hasNR = opTowers.some(t => t.radio === 'NR');
+    const hasLTE = opTowers.some(t => t.radio === 'LTE');
+    const hasUMTS = opTowers.some(t => t.radio === 'UMTS');
+    if(hasNR) score += 30; else if(hasLTE) score += 20; else if(hasUMTS) score += 10;
+    // distancia mínima (máx 20)
+    const minDist = Math.min(...opTowers.map(t => t._dist));
+    if(minDist < 100) score += 20; else if(minDist < 300) score += 15;
+    else if(minDist < 600) score += 10; else if(minDist < 1000) score += 5;
+    // diversidad de techs (máx 10)
+    const techCount = new Set(opTowers.map(t=>t.radio)).size;
+    score += Math.min(10, techCount * 3);
+
+    score = Math.min(100, Math.round(score));
+    const techs = [...new Set(opTowers.map(t=>t.radio).filter(Boolean))];
+    const techLabels = {GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'};
+    const topTech = ['NR','LTE','UMTS','GSM'].find(t => techs.includes(t)) || techs[0];
+    return {name, cls: info.cls, count: info.count, score, techs, topTech, minDist: Math.round(minDist)};
+  }).sort((a,b) => b.score - a.score);
+
+  const best = opScores[0];
+  const runner = opScores[1];
+  const c = OP_COLORS[best.cls] || '#44aaff';
+  const techStr = best.techs.map(t => ({GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'}[t]||t)).join('+');
+
+  let reason = `${best.count} antenas cercanas`;
+  if(best.techs.includes('NR')) reason += ' · incluye 5G NR';
+  else if(best.techs.includes('LTE')) reason += ' · cobertura 4G LTE';
+  reason += ` · antena más cercana a ${best.minDist}m`;
+  if(runner) reason += ` · supera a ${runner.name} por ${best.score-runner.score} pts`;
+
+  const scoreColor = best.score>=80?'var(--neon-c)':best.score>=60?'var(--neon-y)':'var(--neon-o)';
+
+  document.getElementById('best-op-content').innerHTML = `
+    <div class="best-op-inner">
+      <div>
+        <div class="best-op-badge" style="color:${c};border-color:${c};text-shadow:0 0 10px ${c};box-shadow:0 0 12px ${c}30;">${best.name}</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.65vw,8px);color:${c};text-align:center;margin-top:0.2em;letter-spacing:.06em;">${techStr}</div>
+      </div>
+      <div class="best-op-details">
+        <div class="best-op-reason">${reason}</div>
+        <div style="display:flex;gap:.3em;margin-top:.2em;flex-wrap:wrap;">
+          ${opScores.slice(0,4).map((op,i)=>{
+            const oc = OP_COLORS[op.cls]||'#44aaff';
+            const w = Math.round((op.score/opScores[0].score)*60);
+            return `<div style="display:flex;align-items:center;gap:.25em;">
+              <span style="font-family:'Orbitron',monospace;font-size:clamp(7px,.65vw,8px);color:${oc};font-weight:700;">${op.name}</span>
+              <div style="width:${w}px;height:3px;background:${oc};border-radius:2px;box-shadow:0 0 4px ${oc}80;"></div>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:clamp(6px,.6vw,8px);color:var(--text-dim);">${op.score}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <div class="best-op-score" style="color:${scoreColor};text-shadow:0 0 20px ${scoreColor};">${best.score}</div>
+        <div class="best-op-score-label">SCORE</div>
+      </div>
+    </div>`;
+  document.getElementById('best-op-card').style.display = '';
 }
 
 // ── BÚSQUEDA PRINCIPAL ──
