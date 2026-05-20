@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.7:-Cobertura Celular 14115-:.</title>
+<title>.v1.8:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -17,7 +18,7 @@
   --accent:#00ffe0;--accent2:#00bfaa;
   --neon-c:#00ffe0;--neon-v:#bf00ff;--neon-y:#ffe000;--neon-o:#ff6a00;--neon-p:#ff00aa;
   --neon-entel:#00ffe0;--neon-movistar:#bf00ff;--neon-claro:#ff2244;--neon-wom:#ffe000;--neon-gtd:#ff6a00;--neon-otro:#44aaff;
-  --text:#e8e8ff;--text-dim:#55556a;--text-mid:#9090b0;--danger:#ff2244;--ok:#00ffe0;
+  --text:#e8e8ff;--text-dim:#8888aa;--text-mid:#b0b0cc;--danger:#ff2244;--ok:#00ffe0;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:18px;}
@@ -27,8 +28,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 /* HEADER */
 #header{display:flex;align-items:center;justify-content:space-between;padding:0.4em 1.2em;border-bottom:1px solid var(--border);background:linear-gradient(90deg,#0d0d14 0%,#0a0a16 50%,#0d0d14 100%);flex-shrink:0;gap:0.8em;}
 #header-left h1{font-family:'Orbitron',monospace;font-size:clamp(15px,2vw,24px);font-weight:900;background:linear-gradient(90deg,var(--neon-c),var(--neon-v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.18em;line-height:1;animation:neon-flicker 6s ease-in-out infinite;}
-#header-left .subtitle{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.85vw,11px);color:var(--text-dim);letter-spacing:0.12em;margin-top:0.15em;}
-.hdr-btn{padding:0.35em 0.9em;border-radius:3px;font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:0.1em;cursor:pointer;background:transparent;transition:all 0.18s;white-space:nowrap;}
+#header-left .subtitle{font-family:'Share Tech Mono',monospace;font-size:clamp(11px,0.95vw,13px);color:var(--text-mid);letter-spacing:0.12em;margin-top:0.15em;}
+.hdr-btn{padding:0.35em 0.9em;border-radius:3px;font-family:'Orbitron',monospace;font-size:clamp(10px,0.9vw,12px);font-weight:700;letter-spacing:0.1em;cursor:pointer;background:transparent;transition:all 0.18s;white-space:nowrap;}
 .hdr-btn-info{border:1px solid var(--neon-c);color:var(--neon-c);text-shadow:0 0 8px var(--neon-c);}
 .hdr-btn-info:hover{background:var(--neon-c);color:#000;box-shadow:0 0 18px var(--neon-c);}
 .hdr-btn-ops{border:1px solid var(--neon-v);color:var(--neon-v);text-shadow:0 0 8px var(--neon-v);}
@@ -57,7 +58,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   position:fixed;bottom:1.4em;right:1.2em;z-index:2000;
   align-items:center;gap:0.45em;
   background:var(--surface2);border:1.5px solid var(--neon-c);
-  color:var(--neon-c);font-family:'Orbitron',monospace;font-size:11px;font-weight:700;
+  color:var(--neon-c);font-family:'Orbitron',monospace;font-size:12px;font-weight:700;
   letter-spacing:0.1em;padding:0.6em 1.1em;border-radius:24px;
   box-shadow:0 0 18px rgba(0,255,224,0.35),0 4px 20px rgba(0,0,0,0.6);
   cursor:pointer;text-shadow:0 0 8px var(--neon-c);
@@ -74,23 +75,23 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.6em 0.8em;flex-shrink:0;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.3;}
 .card.grow{flex:1;min-height:0;}
-.card-label{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.85vw,11px);color:var(--text-dim);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.35em;}
+.card-label{font-family:'Share Tech Mono',monospace;font-size:clamp(11px,0.95vw,13px);color:var(--neon-c);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.35em;}
 
 /* SEARCH */
 #search-card{flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.55em 0.8em;position:relative;overflow:hidden;}
 #search-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--neon-c),transparent);opacity:0.4;}
 .search-row{display:flex;gap:0.4em;margin-bottom:0.35em;}
-#addr-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:clamp(12px,1.1vw,14px);font-weight:600;padding:0.38em 0.6em;outline:none;transition:border-color 0.2s;}
-#addr-input::placeholder{color:var(--text-dim);}
+#addr-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:clamp(13px,1.1vw,15px);font-weight:600;padding:0.38em 0.6em;outline:none;transition:border-color 0.2s;}
+#addr-input::placeholder{color:var(--text-mid);}
 #addr-input:focus{border-color:var(--neon-c);box-shadow:0 0 8px rgba(0,255,224,0.2);}
-#btn-search{background:transparent;border:1px solid var(--neon-c);color:var(--neon-c);font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:0.1em;padding:0.38em 0.8em;border-radius:4px;cursor:pointer;transition:all 0.18s;white-space:nowrap;text-shadow:0 0 8px var(--neon-c);}
+#btn-search{background:transparent;border:1px solid var(--neon-c);color:var(--neon-c);font-family:'Orbitron',monospace;font-size:clamp(10px,0.9vw,12px);font-weight:700;letter-spacing:0.1em;padding:0.38em 0.8em;border-radius:4px;cursor:pointer;transition:all 0.18s;white-space:nowrap;text-shadow:0 0 8px var(--neon-c);}
 #btn-search:hover{background:var(--neon-c);color:#000;box-shadow:0 0 16px var(--neon-c);}
 #btn-search:disabled{opacity:0.4;cursor:not-allowed;}
 .radius-row{display:flex;align-items:center;gap:0.5em;}
-.radius-row label{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.78vw,10px);color:var(--text-dim);letter-spacing:0.1em;white-space:nowrap;}
+.radius-row label{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.85vw,12px);color:var(--text-mid);letter-spacing:0.1em;white-space:nowrap;}
 #radius-slider{flex:1;accent-color:var(--neon-c);}
-#radius-val{font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;color:var(--neon-c);min-width:3.5em;text-align:right;}
-#status-line{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.82vw,10px);color:var(--text-mid);letter-spacing:0.08em;min-height:1.2em;margin-top:0.25em;}
+#radius-val{font-family:'Orbitron',monospace;font-size:clamp(11px,0.95vw,13px);font-weight:700;color:var(--neon-c);min-width:3.5em;text-align:right;}
+#status-line{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.9vw,12px);color:var(--text-mid);letter-spacing:0.08em;min-height:1.2em;margin-top:0.25em;}
 #progress-wrap{width:100%;height:2px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:0.2em;}
 #progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--neon-c),var(--neon-v));border-radius:2px;transition:width 0.4s;box-shadow:0 0 6px var(--neon-c);}
 
@@ -100,7 +101,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .met-box-towers{border:2px solid var(--neon-c);box-shadow:0 0 14px rgba(0,255,224,0.15),inset 0 0 16px rgba(0,255,224,0.04);}
 .met-box-ops{border:2px solid var(--neon-v);box-shadow:0 0 14px rgba(191,0,255,0.15),inset 0 0 16px rgba(191,0,255,0.04);}
 .met-box-tech{border:2px solid var(--neon-y);box-shadow:0 0 14px rgba(255,224,0,0.15),inset 0 0 16px rgba(255,224,0,0.04);}
-.met-lbl{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);letter-spacing:0.1em;margin-bottom:0.1em;}
+.met-lbl{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.82vw,11px);letter-spacing:0.1em;margin-bottom:0.1em;}
 .met-lbl-c{color:var(--neon-c);}
 .met-lbl-v{color:var(--neon-v);}
 .met-lbl-y{color:var(--neon-y);}
@@ -108,7 +109,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .met-val-c{color:var(--neon-c);text-shadow:0 0 16px var(--neon-c);}
 .met-val-v{color:var(--neon-v);text-shadow:0 0 16px var(--neon-v);}
 .met-val-y{color:var(--neon-y);text-shadow:0 0 16px var(--neon-y);}
-.met-sub{font-family:'Rajdhani',sans-serif;font-size:clamp(8px,0.75vw,10px);color:var(--text-dim);font-weight:600;margin-top:0.15em;}
+.met-sub{font-family:'Rajdhani',sans-serif;font-size:clamp(10px,0.85vw,12px);color:var(--text-mid);font-weight:600;margin-top:0.15em;}
 
 /* OPERADORES */
 #ops-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.3em;}
@@ -120,25 +121,25 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .op-wom::after{background:var(--neon-wom);}
 .op-gtd::after{background:var(--neon-gtd);}
 .op-otro::after{background:var(--neon-otro);}
-.op-name{font-family:'Orbitron',monospace;font-size:clamp(8px,0.82vw,10px);font-weight:700;letter-spacing:0.06em;}
+.op-name{font-family:'Orbitron',monospace;font-size:clamp(9px,0.88vw,11px);font-weight:700;letter-spacing:0.06em;}
 .op-entel .op-name{color:var(--neon-entel);text-shadow:0 0 6px var(--neon-entel);}
 .op-movistar .op-name{color:var(--neon-movistar);text-shadow:0 0 6px var(--neon-movistar);}
 .op-claro .op-name{color:var(--neon-claro);text-shadow:0 0 6px var(--neon-claro);}
 .op-wom .op-name{color:var(--neon-wom);text-shadow:0 0 6px var(--neon-wom);}
 .op-gtd .op-name{color:var(--neon-gtd);text-shadow:0 0 6px var(--neon-gtd);}
 .op-otro .op-name{color:var(--neon-otro);text-shadow:0 0 6px var(--neon-otro);}
-.op-count{font-family:'Orbitron',monospace;font-size:clamp(11px,1.2vw,16px);font-weight:900;}
+.op-count{font-family:'Orbitron',monospace;font-size:clamp(12px,1.2vw,17px);font-weight:900;}
 .op-entel .op-count{color:var(--neon-entel);}
 .op-movistar .op-count{color:var(--neon-movistar);}
 .op-claro .op-count{color:var(--neon-claro);}
 .op-wom .op-count{color:var(--neon-wom);}
 .op-gtd .op-count{color:var(--neon-gtd);}
 .op-otro .op-count{color:var(--neon-otro);}
-.op-tech{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);}
+.op-tech{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.72vw,10px);color:var(--text-mid);}
 
 /* TECH BADGES */
 #tech-row{display:flex;flex-wrap:wrap;gap:0.3em;}
-.tech-badge{font-family:'Orbitron',monospace;font-size:clamp(8px,0.75vw,10px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;letter-spacing:0.06em;}
+.tech-badge{font-family:'Orbitron',monospace;font-size:clamp(9px,0.82vw,11px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;letter-spacing:0.06em;}
 .tech-GSM{border:1px solid var(--neon-c);color:var(--neon-c);background:rgba(0,255,224,0.07);}
 .tech-UMTS{border:1px solid var(--neon-v);color:var(--neon-v);background:rgba(191,0,255,0.07);}
 .tech-LTE{border:1px solid var(--neon-y);color:var(--neon-y);background:rgba(255,224,0,0.07);}
@@ -146,15 +147,15 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 /* TORRES LIST */
 #towers-scroll{overflow-y:auto;flex:1;min-height:0;}
-#towers-table{display:none;width:100%;border-collapse:collapse;font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.82vw,11px);}
-#towers-table th{padding:0.22em 0.4em;text-align:left;color:var(--text-dim);border-bottom:1px solid var(--border);font-family:'Orbitron',monospace;font-size:clamp(8px,0.72vw,9px);font-weight:700;letter-spacing:0.1em;}
-#towers-table td{padding:0.2em 0.4em;color:var(--text-mid);border-bottom:1px solid rgba(30,30,50,0.7);}
-#towers-placeholder{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.85vw,12px);color:var(--text-dim);font-style:italic;padding:0.3em 0;letter-spacing:0.08em;}
+#towers-table{display:none;width:100%;border-collapse:collapse;font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.88vw,12px);}
+#towers-table th{padding:0.25em 0.4em;text-align:left;color:var(--neon-c);border-bottom:1px solid var(--border);font-family:'Orbitron',monospace;font-size:clamp(9px,0.78vw,11px);font-weight:700;letter-spacing:0.1em;}
+#towers-table td{padding:0.22em 0.4em;color:var(--text-mid);border-bottom:1px solid rgba(30,30,50,0.7);}
+#towers-placeholder{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.9vw,13px);color:var(--text-mid);font-style:italic;padding:0.3em 0;letter-spacing:0.08em;}
 
 /* MAP CARD */
 #map-card{flex:1;min-height:0;background:var(--surface);border:1px solid var(--border);border-radius:6px;display:flex;flex-direction:column;overflow:hidden;position:relative;}
 #map-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--neon-c),transparent);opacity:0.5;z-index:10;}
-#map-label{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.82vw,11px);color:var(--text-dim);letter-spacing:0.14em;padding:0.35em 0.8em;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0;}
+#map-label{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.88vw,12px);color:var(--text-mid);letter-spacing:0.14em;padding:0.35em 0.8em;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0;}
 #map{flex:1;min-height:0;}
 .leaflet-container{background:#080810 !important;}
 .leaflet-tile{filter:brightness(0.55) saturate(0.4) hue-rotate(180deg);}
@@ -169,9 +170,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 /* DIAG (right col) */
 .metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.35em;}
 .m-cell{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.35em 0.5em;text-align:center;}
-.m-cell .mc-lbl{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.72vw,9px);color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;}
-.m-cell .mc-val{font-family:'Orbitron',monospace;font-size:clamp(13px,1.5vw,18px);font-weight:900;margin:0.08em 0;letter-spacing:-0.01em;}
-.m-cell .mc-unit{font-family:'Rajdhani',sans-serif;font-size:clamp(8px,0.72vw,9px);color:var(--text-dim);font-weight:600;}
+.m-cell .mc-lbl{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.78vw,11px);color:var(--text-mid);letter-spacing:0.1em;text-transform:uppercase;}
+.m-cell .mc-val{font-family:'Orbitron',monospace;font-size:clamp(14px,1.5vw,19px);font-weight:900;margin:0.08em 0;letter-spacing:-0.01em;}
+.m-cell .mc-unit{font-family:'Rajdhani',sans-serif;font-size:clamp(9px,0.78vw,11px);color:var(--text-mid);font-weight:600;}
 .mc-c0{color:var(--neon-c);text-shadow:0 0 8px rgba(0,255,224,0.4);}
 .mc-c1{color:var(--neon-y);text-shadow:0 0 8px rgba(255,224,0,0.3);}
 .mc-c2{color:var(--neon-o);text-shadow:0 0 8px rgba(255,106,0,0.3);}
@@ -180,15 +181,15 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 #canvas-chart{width:100%;height:clamp(24px,4.5vh,44px);display:block;}
 .diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.35em;}
 .dl-cell{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.35em 0.5em;text-align:center;}
-.dl-cell .dlc-lbl{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.1em;}
-.dl-cell .dlc-val{font-family:'Orbitron',monospace;font-size:clamp(11px,1.3vw,16px);font-weight:900;color:var(--neon-y);text-shadow:0 0 8px rgba(255,224,0,0.3);margin:0.08em 0;letter-spacing:-0.01em;}
-.dl-cell .dlc-sub{font-family:'Rajdhani',sans-serif;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);font-weight:600;}
+.dl-cell .dlc-lbl{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.78vw,11px);color:var(--text-mid);letter-spacing:0.1em;}
+.dl-cell .dlc-val{font-family:'Orbitron',monospace;font-size:clamp(12px,1.3vw,17px);font-weight:900;color:var(--neon-y);text-shadow:0 0 8px rgba(255,224,0,0.3);margin:0.08em 0;letter-spacing:-0.01em;}
+.dl-cell .dlc-sub{font-family:'Rajdhani',sans-serif;font-size:clamp(9px,0.78vw,11px);color:var(--text-mid);font-weight:600;}
 
 /* FOOTER */
 #footer{border-top:1px solid var(--border);background:var(--surface);padding:0.35em 1.2em;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:1em;}
-#footer p{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.8vw,10px);color:#8888a8;line-height:1.6;flex:1;letter-spacing:0.04em;}
-#footer p strong{color:#c0c0e0;}
-#footer .f-right{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.8vw,10px);color:#8888a8;text-align:right;white-space:nowrap;line-height:1.6;}
+#footer p{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.85vw,11px);color:#a0a0c0;line-height:1.6;flex:1;letter-spacing:0.04em;}
+#footer p strong{color:#d0d0f0;}
+#footer .f-right{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.85vw,11px);color:#a0a0c0;text-align:right;white-space:nowrap;line-height:1.6;}
 
 /* MODALES */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
@@ -197,10 +198,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 #info-modal .modal-box{width:min(94vw,540px);border:1px solid var(--neon-c);box-shadow:0 0 40px rgba(0,255,224,0.15);}
 #ops-modal .modal-box{width:min(94vw,500px);border:1px solid var(--neon-v);box-shadow:0 0 40px rgba(191,0,255,0.15);}
 .modal-head{display:flex;align-items:center;justify-content:space-between;padding:0.6em 1em;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0;}
-.modal-head-title{font-family:'Orbitron',monospace;font-size:clamp(10px,1.2vw,14px);font-weight:900;letter-spacing:0.14em;}
+.modal-head-title{font-family:'Orbitron',monospace;font-size:clamp(11px,1.2vw,15px);font-weight:900;letter-spacing:0.14em;}
 #info-modal .modal-head-title{color:var(--neon-c);text-shadow:0 0 10px var(--neon-c);}
 #ops-modal .modal-head-title{color:var(--neon-v);text-shadow:0 0 10px var(--neon-v);}
-.modal-close-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);font-family:'Orbitron',monospace;font-size:clamp(8px,0.9vw,10px);font-weight:700;padding:0.25em 0.7em;border-radius:3px;cursor:pointer;letter-spacing:0.1em;transition:all 0.15s;}
+.modal-close-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:700;padding:0.25em 0.7em;border-radius:3px;cursor:pointer;letter-spacing:0.1em;transition:all 0.15s;}
 .modal-close-btn:hover{background:var(--danger);color:#fff;}
 .modal-body{padding:0.7em;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:0.55em;}
 .info-row{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.5em 0.7em;position:relative;overflow:hidden;}
@@ -209,13 +210,13 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .info-c1::after{background:var(--neon-v);}
 .info-c2::after{background:var(--neon-y);}
 .info-c3::after{background:var(--neon-o);}
-.info-title{font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:0.08em;margin-bottom:0.25em;}
+.info-title{font-family:'Orbitron',monospace;font-size:clamp(10px,0.95vw,13px);font-weight:700;letter-spacing:0.08em;margin-bottom:0.25em;}
 .info-c0 .info-title{color:var(--neon-c);}
 .info-c1 .info-title{color:var(--neon-v);}
 .info-c2 .info-title{color:var(--neon-y);}
 .info-c3 .info-title{color:var(--neon-o);}
-.info-desc{font-family:'Rajdhani',sans-serif;font-size:clamp(10px,0.95vw,13px);color:var(--text-mid);font-weight:600;line-height:1.5;}
-.info-note{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.72vw,9px);color:var(--text-dim);border-top:1px solid var(--border);padding-top:0.4em;line-height:1.6;}
+.info-desc{font-family:'Rajdhani',sans-serif;font-size:clamp(12px,1.05vw,14px);color:var(--text);font-weight:600;line-height:1.5;}
+.info-note{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.8vw,11px);color:var(--text-mid);border-top:1px solid var(--border);padding-top:0.4em;line-height:1.6;}
 .ops-op-row{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.45em 0.6em 0.45em 0.85em;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:0.5em;}
 .ops-op-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
 .ops-entel::after{background:var(--neon-entel);}
@@ -224,14 +225,14 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .ops-wom::after{background:var(--neon-wom);}
 .ops-gtd::after{background:var(--neon-gtd);}
 .ops-otro::after{background:var(--neon-otro);}
-.ops-name{font-family:'Orbitron',monospace;font-size:clamp(9px,1vw,12px);font-weight:900;letter-spacing:0.06em;}
+.ops-name{font-family:'Orbitron',monospace;font-size:clamp(10px,1vw,13px);font-weight:900;letter-spacing:0.06em;}
 .ops-entel .ops-name{color:var(--neon-entel);}
 .ops-movistar .ops-name{color:var(--neon-movistar);}
 .ops-claro .ops-name{color:var(--neon-claro);}
 .ops-wom .ops-name{color:var(--neon-wom);}
 .ops-gtd .ops-name{color:var(--neon-gtd);}
 .ops-otro .ops-name{color:var(--neon-otro);}
-.ops-mncs{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.72vw,9px);color:var(--text-dim);}
+.ops-mncs{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.82vw,11px);color:var(--text-mid);}
 .ops-bar-wrap{width:80px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0;}
 .ops-bar{height:100%;border-radius:3px;transition:width 0.5s;}
 .ops-entel .ops-bar{background:var(--neon-entel);}
@@ -240,7 +241,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .ops-wom .ops-bar{background:var(--neon-wom);}
 .ops-gtd .ops-bar{background:var(--neon-gtd);}
 .ops-otro .ops-bar{background:var(--neon-otro);}
-.ops-count{font-family:'Orbitron',monospace;font-size:clamp(12px,1.3vw,16px);font-weight:900;min-width:2em;text-align:right;}
+.ops-count{font-family:'Orbitron',monospace;font-size:clamp(13px,1.3vw,17px);font-weight:900;min-width:2em;text-align:right;}
 .ops-entel .ops-count{color:var(--neon-entel);}
 .ops-movistar .ops-count{color:var(--neon-movistar);}
 .ops-claro .ops-count{color:var(--neon-claro);}
@@ -250,9 +251,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 /* FILTROS */
 #filter-bar{display:flex;flex-direction:column;gap:0.35em;flex-shrink:0;}
-.filter-section-label{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.75vw,10px);color:var(--text-dim);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.1em;}
+.filter-section-label{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.82vw,11px);color:var(--text-mid);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.1em;}
 .filter-chips{display:flex;flex-wrap:wrap;gap:0.25em;}
-.chip{font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.22em 0.55em;border-radius:3px;cursor:pointer;transition:all 0.15s;letter-spacing:0.06em;opacity:0.45;border:1px solid;}
+.chip{font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.25em 0.6em;border-radius:3px;cursor:pointer;transition:all 0.15s;letter-spacing:0.06em;opacity:0.5;border:1px solid;}
 .chip.active{opacity:1;}
 .chip-GSM{border-color:var(--neon-c);color:var(--neon-c);}
 .chip-GSM.active{background:rgba(0,255,224,0.15);box-shadow:0 0 8px rgba(0,255,224,0.4);}
@@ -269,49 +270,50 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .chip-op.active-wom{border-color:var(--neon-wom);color:var(--neon-wom);background:rgba(255,224,0,0.1);box-shadow:0 0 8px rgba(255,224,0,0.3);}
 .chip-op.active-gtd{border-color:var(--neon-gtd);color:var(--neon-gtd);background:rgba(255,106,0,0.1);box-shadow:0 0 8px rgba(255,106,0,0.3);}
 .chip-op.active-otro{border-color:var(--neon-otro);color:var(--neon-otro);background:rgba(68,170,255,0.1);box-shadow:0 0 8px rgba(68,170,255,0.3);}
-.chip-reset{border-color:var(--danger);color:var(--danger);opacity:0.6;}
+.chip-reset{border-color:var(--danger);color:var(--danger);opacity:0.7;}
 .chip-reset:hover{opacity:1;background:rgba(255,34,68,0.12);}
+
 /* BEST OP PANEL */
 #best-op-card{flex-shrink:0;}
 .best-op-inner{display:flex;align-items:center;gap:0.7em;padding:0.3em 0;}
-.best-op-badge{font-family:'Orbitron',monospace;font-size:clamp(10px,1.1vw,14px);font-weight:900;padding:0.3em 0.7em;border-radius:4px;border:2px solid;letter-spacing:0.1em;white-space:nowrap;text-align:center;min-width:5em;}
+.best-op-badge{font-family:'Orbitron',monospace;font-size:clamp(11px,1.1vw,15px);font-weight:900;padding:0.3em 0.7em;border-radius:4px;border:2px solid;letter-spacing:0.1em;white-space:nowrap;text-align:center;min-width:5em;}
 .best-op-details{flex:1;display:flex;flex-direction:column;gap:0.15em;}
-.best-op-reason{font-family:'Rajdhani',sans-serif;font-size:clamp(10px,0.95vw,12px);color:var(--text-mid);font-weight:600;line-height:1.3;}
-.best-op-stats{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.06em;}
+.best-op-reason{font-family:'Rajdhani',sans-serif;font-size:clamp(11px,1vw,13px);color:var(--text);font-weight:600;line-height:1.3;}
+.best-op-stats{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.75vw,10px);color:var(--text-mid);letter-spacing:0.06em;}
 .best-op-score{font-family:'Orbitron',monospace;font-size:clamp(18px,2vw,24px);font-weight:900;text-align:center;min-width:2.5em;}
-.best-op-score-label{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);letter-spacing:0.1em;text-align:center;}
-.filter-count-badge{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.06em;margin-top:0.1em;}
+.best-op-score-label{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.68vw,10px);color:var(--text-mid);letter-spacing:0.1em;text-align:center;}
+.filter-count-badge{font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.78vw,11px);color:var(--text-mid);letter-spacing:0.06em;margin-top:0.1em;}
 
 /* BENCHMARKS */
 #benchmarks-card{flex-shrink:0;}
 .bm-tabs{display:flex;gap:0.25em;margin-bottom:0.5em;border-bottom:1px solid var(--border);padding-bottom:0.35em;}
-.bm-tab{font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.55em;border-radius:3px 3px 0 0;cursor:pointer;letter-spacing:0.06em;color:var(--text-dim);border:1px solid transparent;border-bottom:none;transition:all 0.15s;}
+.bm-tab{font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.22em 0.6em;border-radius:3px 3px 0 0;cursor:pointer;letter-spacing:0.06em;color:var(--text-mid);border:1px solid transparent;border-bottom:none;transition:all 0.15s;}
 .bm-tab.active{color:var(--neon-c);border-color:var(--border);background:var(--surface2);text-shadow:0 0 6px var(--neon-c);}
-.bm-tab:not(.active):hover{color:var(--text-mid);}
+.bm-tab:not(.active):hover{color:var(--text);}
 .bm-panel{display:none;}.bm-panel.active{display:block;}
-.bm-source-note{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);letter-spacing:0.06em;margin-bottom:0.4em;}
+.bm-source-note{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.7vw,10px);color:var(--text-mid);letter-spacing:0.06em;margin-bottom:0.4em;}
 .bm-source-note a{color:var(--neon-c);text-decoration:none;}
 .bm-source-note a:hover{text-decoration:underline;}
 /* speed table */
 .bm-table{width:100%;border-collapse:collapse;}
-.bm-table th{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.65vw,8px);color:var(--text-dim);letter-spacing:0.1em;padding:0.18em 0.3em;text-align:right;border-bottom:1px solid var(--border);}
+.bm-table th{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.72vw,10px);color:var(--text-mid);letter-spacing:0.1em;padding:0.2em 0.3em;text-align:right;border-bottom:1px solid var(--border);}
 .bm-table th:first-child{text-align:left;}
-.bm-table td{font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.22em 0.3em;text-align:right;border-bottom:1px solid rgba(30,30,50,0.5);}
-.bm-table td:first-child{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:clamp(9px,0.85vw,11px);text-align:left;}
+.bm-table td{font-family:'Orbitron',monospace;font-size:clamp(9px,0.82vw,11px);font-weight:700;padding:0.25em 0.3em;text-align:right;border-bottom:1px solid rgba(30,30,50,0.5);}
+.bm-table td:first-child{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:clamp(10px,0.9vw,12px);text-align:left;}
 .bm-bar-wrap{display:flex;align-items:center;gap:0.3em;}
 .bm-bar-bg{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
 .bm-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
 /* links section */
 .bm-links-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.3em;}
-.bm-link-item{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.35em 0.5em;display:flex;flex-direction:column;gap:0.15em;cursor:pointer;transition:all 0.15s;text-decoration:none;}
+.bm-link-item{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.4em 0.55em;display:flex;flex-direction:column;gap:0.15em;cursor:pointer;transition:all 0.15s;text-decoration:none;}
 .bm-link-item:hover{border-color:var(--neon-c);box-shadow:0 0 8px rgba(0,255,224,0.15);}
-.bm-link-icon{font-size:clamp(11px,1.1vw,14px);line-height:1;}
-.bm-link-name{font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;color:var(--neon-c);letter-spacing:0.06em;}
-.bm-link-desc{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);line-height:1.3;}
-.bm-award{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.6vw,7px);padding:0.1em 0.35em;border-radius:2px;letter-spacing:0.06em;margin-left:0.2em;vertical-align:middle;}
+.bm-link-icon{font-size:clamp(12px,1.1vw,15px);line-height:1;}
+.bm-link-name{font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;color:var(--neon-c);letter-spacing:0.06em;}
+.bm-link-desc{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.7vw,10px);color:var(--text-mid);line-height:1.3;}
+.bm-award{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.65vw,9px);padding:0.1em 0.35em;border-radius:2px;letter-spacing:0.06em;margin-left:0.2em;vertical-align:middle;}
 .award-gold{background:rgba(255,224,0,0.15);color:var(--neon-y);border:1px solid var(--neon-y);}
-.award-silver{background:rgba(144,144,176,0.15);color:#9090b0;border:1px solid #9090b0;}
-.bm-period{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.6vw,7px);color:var(--text-dim);letter-spacing:0.06em;float:right;}
+.award-silver{background:rgba(144,144,176,0.15);color:#c0c0d8;border:1px solid #9090b0;}
+.bm-period{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.68vw,10px);color:var(--text-mid);letter-spacing:0.06em;float:right;}
 
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:var(--surface);}
@@ -320,191 +322,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 @keyframes pulse-glow{0%,100%{opacity:1;}50%{opacity:0.55;}}
 .pulsing{animation:pulse-glow 0.9s ease-in-out infinite;}
 @keyframes neon-flicker{0%,100%{opacity:1;}92%{opacity:1;}93%{opacity:0.4;}94%{opacity:1;}96%{opacity:0.6;}97%{opacity:1;}}
-
-/* ═══════════════════════════════════════════════════════
-   MÓVIL VERTICAL — Letras más grandes y mejor contraste
-   ═══════════════════════════════════════════════════════ */
-@media (orientation:portrait) {
-  /* Base general */
-  html, body { font-size: 16px; }
-
-  /* Subtítulo del header */
-  #header-left .subtitle {
-    font-size: 11px !important;
-    color: #9090b0 !important;
-    letter-spacing: 0.08em;
-  }
-
-  /* Botones del header */
-  .hdr-btn { font-size: 11px !important; padding: 0.4em 1em !important; }
-
-  /* Etiquetas de tarjetas */
-  .card-label {
-    font-size: 11px !important;
-    color: #9090b0 !important;
-    letter-spacing: 0.12em;
-  }
-
-  /* Input de búsqueda */
-  #addr-input { font-size: 15px !important; padding: 0.5em 0.7em !important; }
-  #btn-search { font-size: 12px !important; padding: 0.5em 1em !important; }
-
-  /* Radio label y valor */
-  .radius-row label {
-    font-size: 11px !important;
-    color: #9090b0 !important;
-  }
-  #radius-val { font-size: 12px !important; }
-
-  /* Línea de estado */
-  #status-line {
-    font-size: 11px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Métricas — etiquetas y subtítulos */
-  .met-lbl {
-    font-size: 10px !important;
-    letter-spacing: 0.08em;
-  }
-  .met-lbl-c { color: var(--neon-c) !important; }
-  .met-lbl-v { color: var(--neon-v) !important; }
-  .met-lbl-y { color: var(--neon-y) !important; }
-
-  .met-sub {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Nombre del operador en cards */
-  .op-name { font-size: 11px !important; }
-
-  /* Tecnología debajo del operador */
-  .op-tech {
-    font-size: 9px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Tech badges (GSM, LTE…) */
-  .tech-badge { font-size: 11px !important; padding: 0.25em 0.6em !important; }
-
-  /* Etiqueta del mapa */
-  #map-label {
-    font-size: 11px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Tabla de antenas */
-  #towers-table { font-size: 11px !important; }
-  #towers-table th {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-    padding: 0.3em 0.5em !important;
-  }
-  #towers-table td {
-    font-size: 11px !important;
-    color: #c0c0d8 !important;
-    padding: 0.28em 0.5em !important;
-  }
-  #towers-placeholder {
-    font-size: 12px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Filtros — etiquetas de sección */
-  .filter-section-label {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Chips de filtro */
-  .chip { font-size: 10px !important; padding: 0.3em 0.65em !important; }
-  .filter-count-badge {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Mejor operador */
-  .best-op-reason {
-    font-size: 12px !important;
-    color: #c0c0d8 !important;
-  }
-  .best-op-stats {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-  .best-op-score-label {
-    font-size: 9px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Benchmarks — tabs */
-  .bm-tab { font-size: 10px !important; padding: 0.28em 0.7em !important; }
-
-  /* Benchmarks — nota de fuente */
-  .bm-source-note {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Benchmarks — tabla */
-  .bm-table th {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-  .bm-table td { font-size: 11px !important; }
-  .bm-table td:first-child { font-size: 12px !important; }
-
-  /* Benchmarks — links */
-  .bm-link-name { font-size: 10px !important; }
-  .bm-link-desc {
-    font-size: 9px !important;
-    color: #9090b0 !important;
-  }
-  .bm-award { font-size: 9px !important; }
-  .bm-period {
-    font-size: 9px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Diagrama / métricas auxiliares */
-  .mc-lbl {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-  .mc-unit {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Modal títulos y contenido */
-  .modal-head-title { font-size: 13px !important; }
-  .modal-close-btn { font-size: 11px !important; }
-  .info-title { font-size: 12px !important; }
-  .info-desc {
-    font-size: 13px !important;
-    color: #c0c0d8 !important;
-  }
-  .info-note {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-
-  /* Modal operadores */
-  .ops-mncs {
-    font-size: 10px !important;
-    color: #9090b0 !important;
-  }
-
-  /* FAB botón flotante */
-  #fab-search { font-size: 13px !important; }
-
-  /* Texto genérico dim → legible en blanco apagado */
-  [style*="color:var(--text-dim)"],
-  [style*="color: var(--text-dim)"] {
-    color: #9090b0 !important;
-  }
-}
 </style>
 </head>
 <body>
@@ -562,7 +379,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
     <div class="card" style="flex-shrink:0;">
       <div class="card-label">TECNOLOGÍAS DETECTADAS</div>
-      <div id="tech-row"><span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span></div>
+      <div id="tech-row"><span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-mid);">— sin datos —</span></div>
     </div>
 
     <!-- FILTROS INTERACTIVOS -->
@@ -590,7 +407,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
     <div class="card" style="flex-shrink:0;">
       <div class="card-label">OPERADORES EN LA ZONA</div>
-      <div id="ops-grid"><span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span></div>
+      <div id="ops-grid"><span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-mid);">— sin datos —</span></div>
     </div>
 
     <div class="card grow" style="display:flex;flex-direction:column;">
@@ -646,8 +463,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="card-label">ÍNDICE DE SEÑAL</div>
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0.4em;" id="signal-index-wrap">
         <div style="font-family:'Orbitron',monospace;font-size:clamp(36px,5vw,64px);font-weight:900;color:var(--text-dim);text-align:center;line-height:1;" id="signal-score">—</div>
-        <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.9vw,12px);color:var(--text-dim);letter-spacing:0.1em;text-align:center;" id="signal-label">SIN DATOS</div>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:clamp(10px,0.95vw,13px);color:var(--text-dim);text-align:center;max-width:180px;line-height:1.4;" id="signal-desc">Busca una dirección para ver el índice de cobertura</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(11px,0.95vw,13px);color:var(--text-mid);letter-spacing:0.1em;text-align:center;" id="signal-label">SIN DATOS</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:clamp(12px,1vw,14px);color:var(--text-mid);text-align:center;max-width:180px;line-height:1.4;" id="signal-desc">Busca una dirección para ver el índice de cobertura</div>
       </div>
     </div>
 
@@ -691,9 +508,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
             {name:'Movistar',val:41.4,cls:'movistar',color:'var(--neon-movistar)'},
             {name:'Claro',val:38.1,cls:'claro',color:'var(--neon-claro)'}
           ].map(op=>`<div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:${op.color};min-width:4.5em;">${op.name}</div>
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(8px,.72vw,10px);font-weight:700;color:${op.color};min-width:4.5em;">${op.name}</div>
             <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:${Math.round(op.val/62.7*100)}%;background:${op.color};box-shadow:0 0 4px ${op.color}80;"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">${op.val}</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,.72vw,10px);color:var(--text-mid);min-width:3em;text-align:right;">${op.val}</div>
           </div>`).join('')}
         </div>
       </div>
@@ -727,8 +544,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
           </tbody>
         </table>
         <div style="margin-top:0.45em;padding:0.35em 0.5em;background:var(--surface2);border-radius:4px;border-left:2px solid var(--neon-o);">
-          <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.65vw,8px);color:var(--neon-o);letter-spacing:0.08em;margin-bottom:0.15em;">⚠ NOTA 5G</div>
-          <div style="font-family:'Rajdhani',sans-serif;font-size:clamp(9px,0.85vw,11px);color:var(--text-mid);font-weight:600;line-height:1.35;">OpenCelliD tiene datos 5G escasos. Los benchmarks de arriba son mediciones reales de usuarios Speedtest/Opensignal en campo, no antenas registradas.</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.72vw,10px);color:var(--neon-o);letter-spacing:0.08em;margin-bottom:0.15em;">⚠ NOTA 5G</div>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:clamp(11px,0.92vw,13px);color:var(--text);font-weight:600;line-height:1.35;">OpenCelliD tiene datos 5G escasos. Los benchmarks de arriba son mediciones reales de usuarios Speedtest/Opensignal en campo, no antenas registradas.</div>
         </div>
         <div style="margin-top:0.4em;">
           <div class="bm-source-note" style="margin-bottom:0.25em;">Velocidad descarga 5G comparada</div>
@@ -738,9 +555,9 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
             {name:'WOM',val:138.3,color:'var(--neon-wom)'},
             {name:'Claro',val:110,color:'var(--neon-claro)'}
           ].map(op=>`<div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:${op.color};min-width:4.5em;">${op.name}</div>
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(8px,.72vw,10px);font-weight:700;color:${op.color};min-width:4.5em;">${op.name}</div>
             <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:${Math.round(op.val/165.5*100)}%;background:${op.color};box-shadow:0 0 4px ${op.color}80;"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">${op.val}</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,.72vw,10px);color:var(--text-mid);min-width:3.5em;text-align:right;">${op.val}</div>
           </div>`).join('')}
         </div>
       </div>
@@ -749,7 +566,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="bm-panel" id="bm-links">
         <div class="bm-source-note" style="margin-bottom:0.4em;">Links inteligentes · se abren en tus coordenadas buscadas</div>
         <div class="bm-links-grid" id="bm-links-grid">
-          <!-- generado por JS tras la búsqueda -->
           <a class="bm-link-item" href="https://www.speedtest.net/ookla-5g-map" target="_blank">
             <span class="bm-link-icon">🗺</span>
             <span class="bm-link-name">OOKLA 5G MAP</span>
@@ -994,7 +810,6 @@ async function fetchTowers(lat,lon,radiusM){
   return generateDemoTowers(lat,lon,radiusM);
 }
 
-// Generador demo (para cuando no hay API key real o CORS falla)
 function generateDemoTowers(lat,lon,radiusM){
   const ops=[
     {mnc:1,name:'Entel'},{mnc:1,name:'Entel'},{mnc:1,name:'Entel'},
@@ -1028,11 +843,9 @@ function renderResults(towers,uLat,uLon,radiusM){
   const withDist = towers.map(t=>({...t,_dist:distM(uLat,uLon,+t.lat,+t.lon)}))
     .sort((a,b)=>a._dist-b._dist);
 
-  // guardar estado para filtros
   _allTowers = withDist;
   _uLat = uLat; _uLon = uLon; _radiusM = radiusM;
 
-  // métricas
   const opsMap={}, techSet=new Set();
   withDist.forEach(t=>{
     const op=getOp(t.mnc);
@@ -1050,15 +863,13 @@ function renderResults(towers,uLat,uLon,radiusM){
   document.getElementById('m-tech').textContent = techs.length||'0';
   document.getElementById('m-tech-sub').textContent = techs.join(' · ') || '—';
 
-  // tech badges
   const techRow = document.getElementById('tech-row');
   if(techs.length){
     techRow.innerHTML = techs.map(t=>`<span class="tech-badge tech-${t}">${t} ${t==='GSM'?'2G':t==='UMTS'?'3G':t==='LTE'?'4G':t==='NR'?'5G':''}</span>`).join('');
   } else {
-    techRow.innerHTML = '<span style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span>';
+    techRow.innerHTML = '<span style="font-family:\'Share Tech Mono\',monospace;font-size:11px;color:var(--text-mid);">— sin datos —</span>';
   }
 
-  // operadores grid
   const opsGrid = document.getElementById('ops-grid');
   if(opsArr.length){
     opsGrid.innerHTML = opsArr.map(([name,info])=>`
@@ -1070,10 +881,9 @@ function renderResults(towers,uLat,uLon,radiusM){
         <div class="op-count">${info.count}</div>
       </div>`).join('');
   } else {
-    opsGrid.innerHTML = '<span style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span>';
+    opsGrid.innerHTML = '<span style="font-family:\'Share Tech Mono\',monospace;font-size:11px;color:var(--text-mid);">— sin datos —</span>';
   }
 
-  // tabla torres
   if(withDist.length){
     document.getElementById('towers-placeholder').style.display='none';
     document.getElementById('towers-table').style.display='table';
@@ -1082,16 +892,15 @@ function renderResults(towers,uLat,uLon,radiusM){
       const c=OP_COLORS[op.cls]||'#44aaff';
       const tc=TECH_COLORS[t.radio]||'#9090b0';
       return `<tr>
-        <td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td>
-        <td style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${t.radio||'?'}</td>
-        <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td>
-        <td style="color:var(--text-dim);">${t.mnc}</td>
-        <td style="color:var(--text-dim);">${t.range||'?'}m</td>
+        <td style="color:${c};font-family:'Orbitron',monospace;font-size:10px;font-weight:700;">${op.name}</td>
+        <td style="color:${tc};font-family:'Orbitron',monospace;font-size:10px;">${t.radio||'?'}</td>
+        <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:10px;">${t._dist.toFixed(0)}m</td>
+        <td style="color:var(--text-mid);font-size:10px;">${t.mnc}</td>
+        <td style="color:var(--text-mid);font-size:10px;">${t.range||'?'}m</td>
       </tr>`;
     }).join('');
   }
 
-  // diag col right
   if(opsArr.length){
     document.getElementById('d-best-op').textContent = opsArr[0][0].substring(0,6);
     document.getElementById('d-min-dist').textContent = withDist[0]._dist.toFixed(0);
@@ -1105,19 +914,10 @@ function renderResults(towers,uLat,uLon,radiusM){
     document.getElementById('cov-wom').textContent = countOp(opsMap,'WOM');
   }
 
-  // índice de señal
   renderSignalIndex(withDist,opsArr,techs,radiusM);
-
-  // chart densidad
   renderDensityChart(withDist,uLat,uLon,radiusM);
-
-  // mapa
   addTowerMarkers(withDist,uLat,uLon,radiusM);
-
-  // filtros interactivos
   buildFilterChips(withDist);
-
-  // mejor operador
   renderBestOperator(withDist, opsArr);
 
   const isDemo = withDist.length && withDist[0]._demo;
@@ -1143,15 +943,11 @@ function renderSignalIndex(towers,opsArr,techs,radiusM){
     return;
   }
   let score=0;
-  // factor cantidad torres (max 40pts)
   score += Math.min(40, towers.length*2.5);
-  // factor operadores (max 20pts)
   score += Math.min(20, opsArr.length*5);
-  // factor techs modernas (max 20pts)
   if(techs.includes('NR')) score+=20;
   else if(techs.includes('LTE')) score+=14;
   else if(techs.includes('UMTS')) score+=7;
-  // factor distancia mínima (max 20pts)
   const minD=towers[0]._dist;
   if(minD<100)score+=20;
   else if(minD<250)score+=16;
@@ -1201,12 +997,10 @@ function renderDensityChart(towers,uLat,uLon,radiusM){
     ctx.fillRect(i*bw+1,h-bh,bw-2,bh);
     ctx.shadowBlur=0;
   });
-  // eje
   ctx.strokeStyle='rgba(30,30,50,0.8)';ctx.lineWidth=0.5;
   ctx.beginPath();ctx.moveTo(0,h-0.5);ctx.lineTo(w,h-0.5);ctx.stroke();
 }
 
-// ── MÓVIL: scroll a búsqueda ──
 function scrollToSearch() {
   location.reload();
 }
@@ -1216,7 +1010,6 @@ function showResetBtn() {
   if(btn) btn.style.display = '';
 }
 
-// ── BENCHMARKS ──
 function switchBmTab(tab) {
   document.querySelectorAll('.bm-tab').forEach((el,i) => {
     const tabs = ['speed','5g','links'];
@@ -1227,11 +1020,9 @@ function switchBmTab(tab) {
 }
 
 function updateBmLinks(lat, lon, addr) {
-  // nPerf con coordenadas exactas
   const nperf = document.getElementById('link-nperf');
   if(nperf) nperf.href = `https://www.nperf.com/es/map/CL/-/-/signal/?ll=${lat.toFixed(5)}&lng=${lon.toFixed(5)}&zoom=14`;
 
-  // Ookla 5G map con coordenadas
   const ooklaLinks = document.querySelectorAll('#bm-links-grid a');
   ooklaLinks.forEach(a => {
     if(a.textContent.includes('OOKLA 5G MAP')) {
@@ -1246,8 +1037,8 @@ function updateBmLinks(lat, lon, addr) {
 
 // ── FILTROS ──
 let _allTowers = [], _uLat = 0, _uLon = 0, _radiusM = 750;
-let _activeTechs = new Set(); // vacío = todos
-let _activeOps = new Set();   // vacío = todos
+let _activeTechs = new Set();
+let _activeOps = new Set();
 
 function buildFilterChips(towers) {
   const techSet = new Set(), opsMap = {};
@@ -1257,16 +1048,14 @@ function buildFilterChips(towers) {
     opsMap[op.name] = op.cls;
   });
 
-  // chips de tecnología
   const techChips = document.getElementById('tech-chips');
   const techOrder = ['GSM','UMTS','LTE','NR'];
   const techLabels = {GSM:'2G GSM',UMTS:'3G UMTS',LTE:'4G LTE',NR:'5G NR'};
   techChips.innerHTML = techOrder.filter(t=>techSet.has(t)).map(t=>
     `<span class="chip chip-${t} active" data-tech="${t}" onclick="toggleTechFilter('${t}')">${techLabels[t]||t}</span>`
   ).join('');
-  _activeTechs = new Set(techSet); // todos activos al inicio
+  _activeTechs = new Set(techSet);
 
-  // chips de operador
   const opChips = document.getElementById('op-chips');
   const opsSorted = Object.entries(opsMap);
   opChips.innerHTML = opsSorted.map(([name,cls])=>
@@ -1280,7 +1069,7 @@ function buildFilterChips(towers) {
 
 function toggleTechFilter(tech) {
   if(_activeTechs.has(tech)) {
-    if(_activeTechs.size === 1) return; // al menos 1 activo
+    if(_activeTechs.size === 1) return;
     _activeTechs.delete(tech);
   } else {
     _activeTechs.add(tech);
@@ -1307,7 +1096,6 @@ function toggleOpFilter(name, cls) {
 }
 
 function resetFilters() {
-  // reactivar todo
   document.querySelectorAll('[data-tech]').forEach(el => {
     const tech = el.dataset.tech;
     _activeTechs.add(tech);
@@ -1329,7 +1117,6 @@ function applyFilters() {
     return _activeTechs.has(t.radio) && _activeOps.has(op.name);
   });
   updateFilterCount(filtered.length);
-  // re-render mapa y tabla con filtered
   markerLayer.clearLayers();
   circleLayer.clearLayers();
   addTowerMarkers(filtered, _uLat, _uLon, _radiusM);
@@ -1352,11 +1139,11 @@ function updateTowersTable(towers) {
     const c=OP_COLORS[op.cls]||'#44aaff';
     const tc=TECH_COLORS[t.radio]||'#9090b0';
     return `<tr>
-      <td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td>
-      <td style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${t.radio||'?'}</td>
-      <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td>
-      <td style="color:var(--text-dim);">${t.mnc}</td>
-      <td style="color:var(--text-dim);">${t.range||'?'}m</td>
+      <td style="color:${c};font-family:'Orbitron',monospace;font-size:10px;font-weight:700;">${op.name}</td>
+      <td style="color:${tc};font-family:'Orbitron',monospace;font-size:10px;">${t.radio||'?'}</td>
+      <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:10px;">${t._dist.toFixed(0)}m</td>
+      <td style="color:var(--text-mid);font-size:10px;">${t.mnc}</td>
+      <td style="color:var(--text-mid);font-size:10px;">${t.range||'?'}m</td>
     </tr>`;
   }).join('');
 }
@@ -1365,28 +1152,22 @@ function updateTowersTable(towers) {
 function renderBestOperator(towers, opsArr) {
   if(!opsArr.length) { document.getElementById('best-op-card').style.display='none'; return; }
 
-  // Calcular score por operador
   const opScores = opsArr.map(([name, info]) => {
     const opTowers = towers.filter(t => getOp(t.mnc).name === name);
     let score = 0;
-    // cantidad (máx 40)
     score += Math.min(40, opTowers.length * 4);
-    // tecnología más avanzada (máx 30)
     const hasNR = opTowers.some(t => t.radio === 'NR');
     const hasLTE = opTowers.some(t => t.radio === 'LTE');
     const hasUMTS = opTowers.some(t => t.radio === 'UMTS');
     if(hasNR) score += 30; else if(hasLTE) score += 20; else if(hasUMTS) score += 10;
-    // distancia mínima (máx 20)
     const minDist = Math.min(...opTowers.map(t => t._dist));
     if(minDist < 100) score += 20; else if(minDist < 300) score += 15;
     else if(minDist < 600) score += 10; else if(minDist < 1000) score += 5;
-    // diversidad de techs (máx 10)
     const techCount = new Set(opTowers.map(t=>t.radio)).size;
     score += Math.min(10, techCount * 3);
 
     score = Math.min(100, Math.round(score));
     const techs = [...new Set(opTowers.map(t=>t.radio).filter(Boolean))];
-    const techLabels = {GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'};
     const topTech = ['NR','LTE','UMTS','GSM'].find(t => techs.includes(t)) || techs[0];
     return {name, cls: info.cls, count: info.count, score, techs, topTech, minDist: Math.round(minDist)};
   }).sort((a,b) => b.score - a.score);
@@ -1408,7 +1189,7 @@ function renderBestOperator(towers, opsArr) {
     <div class="best-op-inner">
       <div>
         <div class="best-op-badge" style="color:${c};border-color:${c};text-shadow:0 0 10px ${c};box-shadow:0 0 12px ${c}30;">${best.name}</div>
-        <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.65vw,8px);color:${c};text-align:center;margin-top:0.2em;letter-spacing:.06em;">${techStr}</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.72vw,10px);color:${c};text-align:center;margin-top:0.2em;letter-spacing:.06em;">${techStr}</div>
       </div>
       <div class="best-op-details">
         <div class="best-op-reason">${reason}</div>
@@ -1417,9 +1198,9 @@ function renderBestOperator(towers, opsArr) {
             const oc = OP_COLORS[op.cls]||'#44aaff';
             const w = Math.round((op.score/opScores[0].score)*60);
             return `<div style="display:flex;align-items:center;gap:.25em;">
-              <span style="font-family:'Orbitron',monospace;font-size:clamp(7px,.65vw,8px);color:${oc};font-weight:700;">${op.name}</span>
+              <span style="font-family:'Orbitron',monospace;font-size:clamp(8px,.72vw,10px);color:${oc};font-weight:700;">${op.name}</span>
               <div style="width:${w}px;height:3px;background:${oc};border-radius:2px;box-shadow:0 0 4px ${oc}80;"></div>
-              <span style="font-family:'Share Tech Mono',monospace;font-size:clamp(6px,.6vw,8px);color:var(--text-dim);">${op.score}</span>
+              <span style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,.68vw,10px);color:var(--text-mid);">${op.score}</span>
             </div>`;
           }).join('')}
         </div>
@@ -1430,14 +1211,14 @@ function renderBestOperator(towers, opsArr) {
       </div>
     </div>
     <div style="border-top:1px solid var(--border);margin-top:0.5em;padding-top:0.5em;">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.12em;margin-bottom:0.35em;">REVISAR 5G Y MÁS DETALLES →</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.78vw,11px);color:var(--text-mid);letter-spacing:0.12em;margin-bottom:0.35em;">REVISAR 5G Y MÁS DETALLES →</div>
       <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
-        <a href="https://www.entel.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-entel);color:var(--neon-entel);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(0,255,224,0.12)';this.style.boxShadow='0 0 8px rgba(0,255,224,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">ENTEL</a>
-        <a href="https://www.movistar.cl/cobertura-movil" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-movistar);color:var(--neon-movistar);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(191,0,255,0.12)';this.style.boxShadow='0 0 8px rgba(191,0,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MOVISTAR</a>
-        <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-claro);color:var(--neon-claro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,34,68,0.12)';this.style.boxShadow='0 0 8px rgba(255,34,68,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">CLARO</a>
-        <a href="https://www.wom.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-wom);color:var(--neon-wom);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,224,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,224,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">WOM</a>
-        <a href="https://www.gtd.cl/cobertura" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-gtd);color:var(--neon-gtd);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,106,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,106,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">GTD</a>
-        <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-otro);color:var(--neon-otro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(68,170,255,0.12)';this.style.boxShadow='0 0 8px rgba(68,170,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MAPA 5G</a>
+        <a href="https://www.entel.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-entel);color:var(--neon-entel);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(0,255,224,0.12)';this.style.boxShadow='0 0 8px rgba(0,255,224,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">ENTEL</a>
+        <a href="https://www.movistar.cl/cobertura-movil" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-movistar);color:var(--neon-movistar);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(191,0,255,0.12)';this.style.boxShadow='0 0 8px rgba(191,0,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MOVISTAR</a>
+        <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-claro);color:var(--neon-claro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,34,68,0.12)';this.style.boxShadow='0 0 8px rgba(255,34,68,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">CLARO</a>
+        <a href="https://www.wom.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-wom);color:var(--neon-wom);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,224,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,224,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">WOM</a>
+        <a href="https://www.gtd.cl/cobertura" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-gtd);color:var(--neon-gtd);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,106,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,106,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">GTD</a>
+        <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(8px,0.78vw,10px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-otro);color:var(--neon-otro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(68,170,255,0.12)';this.style.boxShadow='0 0 8px rgba(68,170,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MAPA 5G</a>
       </div>
     </div>`;
   document.getElementById('best-op-card').style.display = '';
@@ -1474,10 +1255,8 @@ async function doSearch(){
   btn.disabled=false;
 }
 
-// Enter para buscar
 document.getElementById('addr-input').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
 
-// Slider radio
 document.getElementById('radius-slider').addEventListener('input',function(){
   document.getElementById('radius-val').textContent=this.value+' m';
 });
@@ -1501,9 +1280,8 @@ function buildOpsModal(){
     {name:'WOM',cls:'wom',mncs:[6,8,13],techs:'LTE·NR'},
     {name:'GTD',cls:'gtd',mncs:[7],techs:'LTE'},
   ];
-  const tbody=document.getElementById('towers-tbody');
   const body=document.getElementById('ops-modal-body');
-  body.innerHTML='<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-dim);letter-spacing:.1em;margin-bottom:.5em;">MCC CHILE: 730 · Todos los operadores con licencia vigente</div>'+
+  body.innerHTML='<div style="font-family:\'Share Tech Mono\',monospace;font-size:11px;color:var(--text-mid);letter-spacing:.1em;margin-bottom:.5em;">MCC CHILE: 730 · Todos los operadores con licencia vigente</div>'+
   ALL_OPS.map(op=>{
     const c=OP_COLORS[op.cls];
     return `<div class="ops-op-row ops-${op.cls}">
@@ -1515,10 +1293,10 @@ function buildOpsModal(){
       <div class="ops-count">${op.mncs.length}</div>
     </div>`;
   }).join('')+
-  '<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:.5em;margin-top:.3em;">■ El número indica cuántos MNC tiene asignados el operador · Fuente: OpenCelliD / ITU</div>';
+  '<div style="font-family:\'Share Tech Mono\',monospace;font-size:10px;color:var(--text-mid);border-top:1px solid var(--border);padding-top:.5em;margin-top:.3em;">■ El número indica cuántos MNC tiene asignados el operador · Fuente: OpenCelliD / ITU</div>';
 }
 
-// ── MAPA INICIAL (Santiago) ──
+// ── MAPA INICIAL ──
 window.addEventListener('load',()=>{
   initMap(-33.4489,-70.6693);
   setTimeout(()=>{
