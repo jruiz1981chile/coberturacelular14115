@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v2.0:-Cobertura Celular 14115-:.</title>
+<title>.v2.1:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -213,14 +213,14 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .modal-overlay.open{display:flex;}
 .modal-box{background:var(--surface);border-radius:8px;display:flex;flex-direction:column;overflow:hidden;max-height:88vh;}
 #info-modal .modal-box{width:min(94vw,540px);border:1px solid var(--neon-c);box-shadow:0 0 40px rgba(0,255,224,0.15);}
-#ops-modal .modal-box{width:min(94vw,500px);border:1px solid var(--neon-v);box-shadow:0 0 40px rgba(191,0,255,0.15);}
-.modal-head{display:flex;align-items:center;justify-content:space-between;padding:0.6em 1em;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0;}
-.modal-head-title{font-family:'Orbitron',monospace;font-size:clamp(10px,1.2vw,14px);font-weight:900;letter-spacing:0.14em;}
+#ops-modal .modal-box{width:min(96vw,680px);border:1px solid var(--neon-v);box-shadow:0 0 40px rgba(191,0,255,0.15);}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:0.75em 1.2em;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0;}
+.modal-head-title{font-family:'Orbitron',monospace;font-size:clamp(12px,1.4vw,17px);font-weight:900;letter-spacing:0.14em;}
 #info-modal .modal-head-title{color:var(--neon-c);text-shadow:0 0 10px var(--neon-c);}
 #ops-modal .modal-head-title{color:var(--neon-v);text-shadow:0 0 10px var(--neon-v);}
-.modal-close-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);font-family:'Orbitron',monospace;font-size:clamp(8px,0.9vw,10px);font-weight:700;padding:0.25em 0.7em;border-radius:3px;cursor:pointer;letter-spacing:0.1em;transition:all 0.15s;}
+.modal-close-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);font-family:'Orbitron',monospace;font-size:clamp(10px,1vw,12px);font-weight:700;padding:0.3em 0.9em;border-radius:3px;cursor:pointer;letter-spacing:0.1em;transition:all 0.15s;}
 .modal-close-btn:hover{background:var(--danger);color:#fff;}
-.modal-body{padding:0.7em;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:0.55em;}
+.modal-body{padding:1em;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:0.7em;}
 .info-row{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.5em 0.7em;position:relative;overflow:hidden;}
 .info-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;}
 .info-c0::after{background:var(--neon-c);}
@@ -234,23 +234,23 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .info-c3 .info-title{color:var(--neon-o);}
 .info-desc{font-family:'Rajdhani',sans-serif;font-size:clamp(10px,0.95vw,13px);color:var(--text-mid);font-weight:600;line-height:1.5;}
 .info-note{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.72vw,9px);color:var(--text-dim);border-top:1px solid var(--border);padding-top:0.4em;line-height:1.6;}
-.ops-op-row{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.45em 0.6em 0.45em 0.85em;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:0.5em;}
-.ops-op-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.ops-op-row{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.6em 0.9em 0.6em 1.1em;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:0.6em;}
+.ops-op-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;}
 .ops-entel::after{background:var(--neon-entel);}
 .ops-movistar::after{background:var(--neon-movistar);}
 .ops-claro::after{background:var(--neon-claro);}
 .ops-wom::after{background:var(--neon-wom);}
 .ops-gtd::after{background:var(--neon-gtd);}
 .ops-otro::after{background:var(--neon-otro);}
-.ops-name{font-family:'Orbitron',monospace;font-size:clamp(9px,1vw,12px);font-weight:900;letter-spacing:0.06em;}
+.ops-name{font-family:'Orbitron',monospace;font-size:clamp(13px,1.3vw,17px);font-weight:900;letter-spacing:0.06em;}
 .ops-entel .ops-name{color:var(--neon-entel);}
 .ops-movistar .ops-name{color:var(--neon-movistar);}
 .ops-claro .ops-name{color:var(--neon-claro);}
 .ops-wom .ops-name{color:var(--neon-wom);}
 .ops-gtd .ops-name{color:var(--neon-gtd);}
 .ops-otro .ops-name{color:var(--neon-otro);}
-.ops-mncs{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.72vw,9px);color:var(--text-dim);}
-.ops-bar-wrap{width:80px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0;}
+.ops-mncs{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,0.95vw,13px);color:var(--text-dim);}
+.ops-bar-wrap{width:110px;height:8px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0;}
 .ops-bar{height:100%;border-radius:3px;transition:width 0.5s;}
 .ops-entel .ops-bar{background:var(--neon-entel);}
 .ops-movistar .ops-bar{background:var(--neon-movistar);}
@@ -258,7 +258,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .ops-wom .ops-bar{background:var(--neon-wom);}
 .ops-gtd .ops-bar{background:var(--neon-gtd);}
 .ops-otro .ops-bar{background:var(--neon-otro);}
-.ops-count{font-family:'Orbitron',monospace;font-size:clamp(12px,1.3vw,16px);font-weight:900;min-width:2em;text-align:right;}
+.ops-count{font-family:'Orbitron',monospace;font-size:clamp(18px,1.8vw,24px);font-weight:900;min-width:2em;text-align:right;}
 .ops-entel .ops-count{color:var(--neon-entel);}
 .ops-movistar .ops-count{color:var(--neon-movistar);}
 .ops-claro .ops-count{color:var(--neon-claro);}
@@ -302,12 +302,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 
 /* BOTONES COBERTURA OFICIAL */
 .cob-btn{
-  font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;
-  padding:0.3em 0.65em;border-radius:4px;border:1px solid;
+  font-family:'Orbitron',monospace;font-size:clamp(10px,0.95vw,12px);font-weight:700;
+  padding:0.4em 0.85em;border-radius:4px;border:1.5px solid;
   text-decoration:none;letter-spacing:0.05em;transition:all 0.15s;
-  display:inline-flex;align-items:center;gap:0.3em;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:0.35em;white-space:nowrap;
 }
-.cob-5g{font-size:clamp(10px,0.9vw,12px) !important;border-width:2px !important;}
+.cob-5g{font-size:clamp(11px,1vw,13px) !important;border-width:2px !important;}
 .cob-entel{border-color:var(--neon-entel);color:var(--neon-entel);}
 .cob-entel:hover{background:rgba(0,255,224,0.15);box-shadow:0 0 10px rgba(0,255,224,0.4);}
 .cob-movistar{border-color:var(--neon-movistar);color:var(--neon-movistar);}
@@ -328,11 +328,11 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 }
 
 /* BENCHMARKS */
-#benchmarks-card{flex-shrink:0;}
+#benchmarks-card{flex-shrink:0;min-height:clamp(280px,34vh,440px);}
 .bm-tabs{display:flex;gap:0.25em;margin-bottom:0.5em;border-bottom:1px solid var(--border);padding-bottom:0.35em;}
-.bm-tab{font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.55em;border-radius:3px 3px 0 0;cursor:pointer;letter-spacing:0.06em;color:var(--text-dim);border:1px solid transparent;border-bottom:none;transition:all 0.15s;}
-.bm-tab.active{color:var(--neon-c);border-color:var(--border);background:var(--surface2);text-shadow:0 0 6px var(--neon-c);}
-.bm-tab:not(.active):hover{color:var(--text-mid);}
+.bm-tab{font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:700;padding:0.28em 0.7em;border-radius:3px 3px 0 0;cursor:pointer;letter-spacing:0.06em;color:var(--text-mid);border:1px solid transparent;border-bottom:none;transition:all 0.15s;}
+.bm-tab.active{color:var(--neon-c);border-color:var(--border);background:var(--surface2);text-shadow:0 0 8px var(--neon-c);box-shadow:0 0 10px rgba(0,255,224,0.15);}
+.bm-tab:not(.active):hover{color:var(--text);background:rgba(255,255,255,0.04);}
 .bm-panel{display:none;}.bm-panel.active{display:block;}
 .bm-source-note{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);letter-spacing:0.06em;margin-bottom:0.4em;}
 .bm-source-note a{color:var(--neon-c);text-decoration:none;}
@@ -347,12 +347,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .bm-bar-bg{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
 .bm-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
 /* links section */
-.bm-links-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.3em;}
-.bm-link-item{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.35em 0.5em;display:flex;flex-direction:column;gap:0.15em;cursor:pointer;transition:all 0.15s;text-decoration:none;}
-.bm-link-item:hover{border-color:var(--neon-c);box-shadow:0 0 8px rgba(0,255,224,0.15);}
-.bm-link-icon{font-size:clamp(11px,1.1vw,14px);line-height:1;}
-.bm-link-name{font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;color:var(--neon-c);letter-spacing:0.06em;}
-.bm-link-desc{font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.62vw,8px);color:var(--text-dim);line-height:1.3;}
+.bm-links-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.4em;}
+.bm-link-item{background:var(--surface2);border:1.5px solid var(--border);border-radius:5px;padding:0.5em 0.6em;display:flex;flex-direction:column;gap:0.18em;cursor:pointer;transition:all 0.18s;text-decoration:none;}
+.bm-link-item:hover{border-color:var(--neon-c);box-shadow:0 0 10px rgba(0,255,224,0.2);background:rgba(0,255,224,0.04);}
+.bm-link-icon{font-size:clamp(14px,1.3vw,18px);line-height:1;}
+.bm-link-name{font-family:'Orbitron',monospace;font-size:clamp(9px,0.88vw,11px);font-weight:700;color:var(--neon-c);letter-spacing:0.06em;}
+.bm-link-desc{font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.72vw,9px);color:var(--text-mid);line-height:1.3;}
 .bm-award{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:clamp(6px,0.6vw,7px);padding:0.1em 0.35em;border-radius:2px;letter-spacing:0.06em;margin-left:0.2em;vertical-align:middle;}
 .award-gold{background:rgba(255,224,0,0.15);color:var(--neon-y);border:1px solid var(--neon-y);}
 .award-silver{background:rgba(144,144,176,0.15);color:#9090b0;border:1px solid #9090b0;}
@@ -427,16 +427,18 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   .best-op-score-label { font-size: 10px !important; color: #b0b0cc !important; }
 
   /* Benchmarks */
-  .bm-tab { font-size: 11px !important; padding: 0.32em 0.75em !important; }
+  .bm-tab { font-size: 12px !important; padding: 0.38em 0.85em !important; }
   .bm-source-note { font-size: 11px !important; color: #b0b0cc !important; }
   .bm-table th { font-size: 11px !important; color: #b0b0cc !important; }
   .bm-table td { font-size: 12px !important; }
   .bm-table td:first-child { font-size: 13px !important; }
-  .bm-link-name { font-size: 11px !important; }
-  .bm-link-desc { font-size: 10px !important; color: #b0b0cc !important; }
+  .bm-link-name { font-size: 12px !important; }
+  .bm-link-desc { font-size: 11px !important; color: #b0b0cc !important; }
   .bm-award { font-size: 10px !important; }
   .bm-period { font-size: 10px !important; color: #b0b0cc !important; }
-  .bm-link-icon { font-size: 16px !important; }
+  .bm-link-icon { font-size: 18px !important; }
+  .cob-btn { font-size: 13px !important; padding: 0.5em 1em !important; }
+  .cob-5g { font-size: 14px !important; }
 
   /* Diagnóstico */
   .mc-lbl { font-size: 11px !important; color: #b0b0cc !important; }
@@ -553,6 +555,16 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div id="ops-grid"><span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);">— sin datos —</span></div>
     </div>
 
+    <div class="card" style="flex-shrink:0;">
+      <div class="card-label">COBERTURA POR OPERADOR</div>
+      <div id="coverage-grid" class="diag-grid">
+        <div class="dl-cell"><div class="dlc-lbl">Entel</div><div class="dlc-val" id="cov-entel">—</div><div class="dlc-sub">antenas</div></div>
+        <div class="dl-cell"><div class="dlc-lbl">Movistar</div><div class="dlc-val" id="cov-movistar">—</div><div class="dlc-sub">antenas</div></div>
+        <div class="dl-cell"><div class="dlc-lbl">Claro</div><div class="dlc-val" id="cov-claro">—</div><div class="dlc-sub">antenas</div></div>
+        <div class="dl-cell"><div class="dlc-lbl">WOM</div><div class="dlc-val" id="cov-wom">—</div><div class="dlc-sub">antenas</div></div>
+      </div>
+    </div>
+
     <div class="card grow" style="display:flex;flex-direction:column;">
       <div class="card-label">ANTENAS MÁS CERCANAS</div>
       <div id="towers-scroll">
@@ -593,16 +605,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <canvas id="canvas-chart"></canvas>
     </div>
 
-    <div class="card" style="flex-shrink:0;">
-      <div class="card-label">COBERTURA POR OPERADOR</div>
-      <div id="coverage-grid" class="diag-grid">
-        <div class="dl-cell"><div class="dlc-lbl">Entel</div><div class="dlc-val" id="cov-entel">—</div><div class="dlc-sub">antenas</div></div>
-        <div class="dl-cell"><div class="dlc-lbl">Movistar</div><div class="dlc-val" id="cov-movistar">—</div><div class="dlc-sub">antenas</div></div>
-        <div class="dl-cell"><div class="dlc-lbl">Claro</div><div class="dlc-val" id="cov-claro">—</div><div class="dlc-sub">antenas</div></div>
-        <div class="dl-cell"><div class="dlc-lbl">WOM</div><div class="dlc-val" id="cov-wom">—</div><div class="dlc-sub">antenas</div></div>
-      </div>
-    </div>
-
     <div class="card grow" style="display:flex;flex-direction:column;">
       <div class="card-label">ÍNDICE DE SEÑAL</div>
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0.4em;" id="signal-index-wrap">
@@ -613,7 +615,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     </div>
 
     <div class="card" style="flex-shrink:0;" id="benchmarks-card">
-      <div class="card-label">📊 BENCHMARKS CHILE <span class="bm-period" id="bm-period">oct–dic 2025</span></div>
+      <div class="card-label" style="font-size:clamp(11px,1.1vw,14px) !important;color:var(--neon-c) !important;letter-spacing:0.14em;text-shadow:0 0 8px rgba(0,255,224,0.4);">📊 BENCHMARKS CHILE <span class="bm-period" id="bm-period" style="font-size:clamp(9px,0.85vw,11px);color:var(--text-mid);text-shadow:none;">oct–dic 2025</span></div>
       <div class="bm-tabs">
         <span class="bm-tab active" onclick="switchBmTab('speed')">VELOCIDAD</span>
         <span class="bm-tab" onclick="switchBmTab('5g')">5G</span>
@@ -647,16 +649,26 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         </table>
         <div style="margin-top:0.4em;">
           <div class="bm-source-note" style="margin-bottom:0.25em;">Velocidad descarga comparada</div>
-          ${[
-            {name:'Entel',val:62.7,cls:'entel',color:'var(--neon-entel)'},
-            {name:'WOM',val:49.5,cls:'wom',color:'var(--neon-wom)'},
-            {name:'Movistar',val:41.4,cls:'movistar',color:'var(--neon-movistar)'},
-            {name:'Claro',val:38.1,cls:'claro',color:'var(--neon-claro)'}
-          ].map(op=>`<div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:${op.color};min-width:4.5em;">${op.name}</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:${Math.round(op.val/62.7*100)}%;background:${op.color};box-shadow:0 0 4px ${op.color}80;"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">${op.val}</div>
-          </div>`).join('')}
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-entel);min-width:4.5em;">Entel</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:100%;background:var(--neon-entel);box-shadow:0 0 4px rgba(0,255,224,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">62.7</div>
+          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-wom);min-width:4.5em;">WOM</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:79%;background:var(--neon-wom);box-shadow:0 0 4px rgba(255,224,0,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">49.5</div>
+          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-movistar);min-width:4.5em;">Movistar</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:66%;background:var(--neon-movistar);box-shadow:0 0 4px rgba(191,0,255,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">41.4</div>
+          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-claro);min-width:4.5em;">Claro</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:61%;background:var(--neon-claro);box-shadow:0 0 4px rgba(255,34,68,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3em;text-align:right;">38.1</div>
+          </div>
         </div>
       </div>
 
@@ -694,16 +706,26 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         </div>
         <div style="margin-top:0.4em;">
           <div class="bm-source-note" style="margin-bottom:0.25em;">Velocidad descarga 5G comparada</div>
-          ${[
-            {name:'Movistar',val:165.5,color:'var(--neon-movistar)'},
-            {name:'Entel',val:162.9,color:'var(--neon-entel)'},
-            {name:'WOM',val:138.3,color:'var(--neon-wom)'},
-            {name:'Claro',val:110,color:'var(--neon-claro)'}
-          ].map(op=>`<div class="bm-bar-wrap" style="margin-bottom:0.2em;">
-            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:${op.color};min-width:4.5em;">${op.name}</div>
-            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:${Math.round(op.val/165.5*100)}%;background:${op.color};box-shadow:0 0 4px ${op.color}80;"></div></div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">${op.val}</div>
-          </div>`).join('')}
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-movistar);min-width:4.5em;">Movistar</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:100%;background:var(--neon-movistar);box-shadow:0 0 4px rgba(191,0,255,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">165.5</div>
+          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-entel);min-width:4.5em;">Entel</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:98%;background:var(--neon-entel);box-shadow:0 0 4px rgba(0,255,224,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">162.9</div>
+          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-wom);min-width:4.5em;">WOM</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:84%;background:var(--neon-wom);box-shadow:0 0 4px rgba(255,224,0,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">138.3</div>
+          </div>
+          <div class="bm-bar-wrap" style="margin-bottom:0.2em;">
+            <div style="font-family:'Orbitron',monospace;font-size:clamp(7px,.68vw,9px);font-weight:700;color:var(--neon-claro);min-width:4.5em;">Claro</div>
+            <div class="bm-bar-bg"><div class="bm-bar-fill" style="width:66%;background:var(--neon-claro);box-shadow:0 0 4px rgba(255,34,68,0.5);"></div></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,.68vw,8px);color:var(--text-dim);min-width:3.5em;text-align:right;">~110</div>
+          </div>
         </div>
       </div>
 
@@ -712,43 +734,43 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         <div class="bm-source-note" style="margin-bottom:0.5em;">Mapas oficiales de cada operador · se abren en nueva pestaña</div>
 
         <!-- ENTEL -->
-        <div style="margin-bottom:0.5em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-entel);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-entel);">▸ ENTEL</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+        <div style="margin-bottom:0.6em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-entel);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-entel);">▸ ENTEL</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
             <a href="https://www.entel.cl/cobertura/movil/" target="_blank" class="cob-btn cob-entel">📶 COBERTURA 2G·3G·4G·5G</a>
             <a href="https://www.entel.cl/5g" target="_blank" class="cob-btn cob-entel cob-5g">⚡ MAPA 5G ENTEL</a>
           </div>
         </div>
 
         <!-- MOVISTAR -->
-        <div style="margin-bottom:0.5em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-movistar);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-movistar);">▸ MOVISTAR</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+        <div style="margin-bottom:0.6em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-movistar);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-movistar);">▸ MOVISTAR</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
             <a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" class="cob-btn cob-movistar">📶 COBERTURA 2G·3G·4G</a>
             <a href="https://ww2.movistar.cl/5g/" target="_blank" class="cob-btn cob-movistar cob-5g">⚡ MAPA 5G MOVISTAR</a>
           </div>
         </div>
 
         <!-- WOM -->
-        <div style="margin-bottom:0.5em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-wom);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-wom);">▸ WOM</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+        <div style="margin-bottom:0.6em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-wom);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-wom);">▸ WOM</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
             <a href="https://www.wom.cl/cobertura/" target="_blank" class="cob-btn cob-wom">📶 COBERTURA 3G·4G·5G</a>
           </div>
         </div>
 
         <!-- CLARO -->
-        <div style="margin-bottom:0.5em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-claro);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-claro);">▸ CLARO</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+        <div style="margin-bottom:0.6em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-claro);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-claro);">▸ CLARO</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
             <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" class="cob-btn cob-claro">📶 CONSULTA COBERTURA</a>
           </div>
         </div>
 
         <!-- GTD -->
-        <div style="margin-bottom:0.5em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:900;color:var(--neon-gtd);letter-spacing:0.08em;margin-bottom:0.3em;text-shadow:0 0 6px var(--neon-gtd);">▸ GTD / TELSUR</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
+        <div style="margin-bottom:0.6em;">
+          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-gtd);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-gtd);">▸ GTD / TELSUR</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
             <a href="https://www.gtd.cl/cobertura" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA GTD</a>
             <a href="https://www.telsur.cl/cobertura-movil" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA TELSUR</a>
           </div>
@@ -785,25 +807,30 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
             <span class="bm-link-name">nPERF</span>
             <span class="bm-link-desc">Cobertura real · datos de campo</span>
           </a>
-          <a class="bm-link-item" href="https://www.entel.cl/cobertura/" target="_blank">
+          <a class="bm-link-item" href="https://www.entel.cl/cobertura/" target="_blank" style="border-color:rgba(0,255,224,0.35);">
             <span class="bm-link-icon">📍</span>
             <span class="bm-link-name" style="color:var(--neon-entel);">ENTEL COB.</span>
             <span class="bm-link-desc">Mapa oficial Entel Chile</span>
           </a>
-          <a class="bm-link-item" href="https://www.movistar.cl/cobertura-movil" target="_blank">
+          <a class="bm-link-item" href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" style="border-color:rgba(191,0,255,0.35);">
             <span class="bm-link-icon">📍</span>
             <span class="bm-link-name" style="color:var(--neon-movistar);">MOVISTAR COB.</span>
             <span class="bm-link-desc">Mapa oficial Movistar Chile</span>
           </a>
-          <a class="bm-link-item" href="https://www.clarochile.cl/personas/servicios/servicios-moviles/cobertura/" target="_blank">
+          <a class="bm-link-item" href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" style="border-color:rgba(255,34,68,0.35);">
             <span class="bm-link-icon">📍</span>
             <span class="bm-link-name" style="color:var(--neon-claro);">CLARO COB.</span>
             <span class="bm-link-desc">Mapa oficial Claro Chile</span>
           </a>
-          <a class="bm-link-item" href="https://www.wom.cl/cobertura/" target="_blank">
+          <a class="bm-link-item" href="https://www.wom.cl/cobertura/" target="_blank" style="border-color:rgba(255,224,0,0.35);">
             <span class="bm-link-icon">📍</span>
             <span class="bm-link-name" style="color:var(--neon-wom);">WOM COB.</span>
             <span class="bm-link-desc">Mapa oficial WOM Chile</span>
+          </a>
+          <a class="bm-link-item" href="https://www.gtd.cl/cobertura" target="_blank" style="border-color:rgba(255,106,0,0.35);">
+            <span class="bm-link-icon">📍</span>
+            <span class="bm-link-name" style="color:var(--neon-gtd);">GTD COB.</span>
+            <span class="bm-link-desc">Mapa oficial GTD Chile</span>
           </a>
           <a class="bm-link-item" href="https://insights.opensignal.com/reports/2025/02/chile/mobile-network-experience" target="_blank">
             <span class="bm-link-icon">📄</span>
@@ -1516,15 +1543,15 @@ function renderBestOperator(towers, opsArr) {
         <div class="best-op-score-label">SCORE</div>
       </div>
     </div>
-    <div style="border-top:1px solid var(--border);margin-top:0.5em;padding-top:0.5em;">
-      <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(7px,0.7vw,9px);color:var(--text-dim);letter-spacing:0.12em;margin-bottom:0.35em;">REVISAR 5G Y MÁS DETALLES →</div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
-        <a href="https://www.entel.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-entel);color:var(--neon-entel);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(0,255,224,0.12)';this.style.boxShadow='0 0 8px rgba(0,255,224,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">ENTEL</a>
-        <a href="https://www.movistar.cl/cobertura-movil" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-movistar);color:var(--neon-movistar);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(191,0,255,0.12)';this.style.boxShadow='0 0 8px rgba(191,0,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MOVISTAR</a>
-        <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-claro);color:var(--neon-claro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,34,68,0.12)';this.style.boxShadow='0 0 8px rgba(255,34,68,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">CLARO</a>
-        <a href="https://www.wom.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-wom);color:var(--neon-wom);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,224,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,224,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">WOM</a>
-        <a href="https://www.gtd.cl/cobertura" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-gtd);color:var(--neon-gtd);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(255,106,0,0.12)';this.style.boxShadow='0 0 8px rgba(255,106,0,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">GTD</a>
-        <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(7px,0.72vw,9px);font-weight:700;padding:0.2em 0.5em;border-radius:3px;border:1px solid var(--neon-otro);color:var(--neon-otro);text-decoration:none;transition:all 0.15s;letter-spacing:0.06em;" onmouseover="this.style.background='rgba(68,170,255,0.12)';this.style.boxShadow='0 0 8px rgba(68,170,255,0.3)'" onmouseout="this.style.background='';this.style.boxShadow=''">MAPA 5G</a>
+      <div style="border-top:1px solid var(--border);margin-top:0.5em;padding-top:0.5em;">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.78vw,10px);color:var(--text-mid);letter-spacing:0.12em;margin-bottom:0.4em;">REVISAR 5G Y MÁS DETALLES →</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
+        <a href="https://www.entel.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-entel);color:var(--neon-entel);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(0,255,224,0.4);" onmouseover="this.style.background='rgba(0,255,224,0.14)';this.style.boxShadow='0 0 10px rgba(0,255,224,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">ENTEL</a>
+        <a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-movistar);color:var(--neon-movistar);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(191,0,255,0.4);" onmouseover="this.style.background='rgba(191,0,255,0.14)';this.style.boxShadow='0 0 10px rgba(191,0,255,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">MOVISTAR</a>
+        <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-claro);color:var(--neon-claro);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(255,34,68,0.4);" onmouseover="this.style.background='rgba(255,34,68,0.14)';this.style.boxShadow='0 0 10px rgba(255,34,68,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">CLARO</a>
+        <a href="https://www.wom.cl/cobertura/" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-wom);color:var(--neon-wom);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(255,224,0,0.4);" onmouseover="this.style.background='rgba(255,224,0,0.14)';this.style.boxShadow='0 0 10px rgba(255,224,0,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">WOM</a>
+        <a href="https://www.gtd.cl/cobertura" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-gtd);color:var(--neon-gtd);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(255,106,0,0.4);" onmouseover="this.style.background='rgba(255,106,0,0.14)';this.style.boxShadow='0 0 10px rgba(255,106,0,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">GTD</a>
+        <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" style="font-family:'Orbitron',monospace;font-size:clamp(9px,0.85vw,11px);font-weight:700;padding:0.3em 0.7em;border-radius:3px;border:1.5px solid var(--neon-otro);color:var(--neon-otro);text-decoration:none;transition:all 0.15s;letter-spacing:0.07em;text-shadow:0 0 6px rgba(68,170,255,0.4);" onmouseover="this.style.background='rgba(68,170,255,0.14)';this.style.boxShadow='0 0 10px rgba(68,170,255,0.4)'" onmouseout="this.style.background='';this.style.boxShadow=''">MAPA 5G</a>
       </div>
     </div>`;
   document.getElementById('best-op-card').style.display = '';
