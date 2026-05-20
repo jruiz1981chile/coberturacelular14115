@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v1.4:-Cobertura Celular 14115-:.</title>
+<title>.v1.5:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -45,6 +45,31 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   #col-center{order:1;}
   #col-left{order:2;}
   #footer{display:none;}
+  /* mapa con altura fija en móvil */
+  #map-card{flex:none;height:55vw;min-height:220px;max-height:340px;}
+  #map{height:100%;}
+  /* col-center no crece infinito */
+  #col-center{flex:none;}
+  /* botón flotante nueva búsqueda */
+  #fab-search{display:flex;}
+}
+
+/* FAB nueva búsqueda (solo móvil portrait) */
+#fab-search{
+  display:none;
+  position:fixed;bottom:1.4em;right:1.2em;z-index:2000;
+  align-items:center;gap:0.45em;
+  background:var(--surface2);border:1.5px solid var(--neon-c);
+  color:var(--neon-c);font-family:'Orbitron',monospace;font-size:11px;font-weight:700;
+  letter-spacing:0.1em;padding:0.6em 1.1em;border-radius:24px;
+  box-shadow:0 0 18px rgba(0,255,224,0.35),0 4px 20px rgba(0,0,0,0.6);
+  cursor:pointer;text-shadow:0 0 8px var(--neon-c);
+  animation:fab-pulse 2.5s ease-in-out infinite;
+}
+#fab-search:active{background:var(--neon-c);color:#000;text-shadow:none;}
+@keyframes fab-pulse{
+  0%,100%{box-shadow:0 0 18px rgba(0,255,224,0.3),0 4px 20px rgba(0,0,0,0.6);}
+  50%{box-shadow:0 0 32px rgba(0,255,224,0.6),0 4px 20px rgba(0,0,0,0.6);}
 }
 
 /* COLS */
@@ -606,9 +631,12 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <div class="f-right">v1.0 · 2025<br>datos abiertos</div>
 </footer>
 
+<!-- FAB búsqueda móvil -->
+<div id="fab-search" onclick="scrollToSearch()">
+  <span>🔍</span><span>NUEVA BÚSQUEDA</span>
 </div>
 
-<!-- MODAL FUENTES -->
+</div>
 <div class="modal-overlay" id="info-modal">
   <div class="modal-box">
     <div class="modal-head">
@@ -993,6 +1021,15 @@ function renderDensityChart(towers,uLat,uLon,radiusM){
   // eje
   ctx.strokeStyle='rgba(30,30,50,0.8)';ctx.lineWidth=0.5;
   ctx.beginPath();ctx.moveTo(0,h-0.5);ctx.lineTo(w,h-0.5);ctx.stroke();
+}
+
+// ── MÓVIL: scroll a búsqueda ──
+function scrollToSearch() {
+  const el = document.getElementById('search-card') || document.getElementById('addr-input');
+  if(el) {
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(()=>{ document.getElementById('addr-input').focus(); }, 400);
+  }
 }
 
 // ── BENCHMARKS ──
