@@ -33,6 +33,8 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .hdr-btn-info:hover{background:var(--neon-c);color:#000;box-shadow:0 0 18px var(--neon-c);}
 .hdr-btn-ops{border:1px solid var(--neon-v);color:var(--neon-v);text-shadow:0 0 8px var(--neon-v);}
 .hdr-btn-ops:hover{background:var(--neon-v);color:#fff;box-shadow:0 0 18px var(--neon-v);}
+.hdr-btn-cob{border:1px solid var(--neon-y);color:var(--neon-y);text-shadow:0 0 8px var(--neon-y);}
+.hdr-btn-cob:hover{background:var(--neon-y);color:#000;box-shadow:0 0 18px var(--neon-y);}
 
 /* MAIN */
 #main{flex:1;display:grid;gap:0.55em;padding:0.55em;overflow:hidden;min-height:0;}
@@ -214,6 +216,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .modal-box{background:var(--surface);border-radius:8px;display:flex;flex-direction:column;overflow:hidden;max-height:88vh;}
 #info-modal .modal-box{width:min(94vw,540px);border:1px solid var(--neon-c);box-shadow:0 0 40px rgba(0,255,224,0.15);}
 #ops-modal .modal-box{width:min(96vw,680px);border:1px solid var(--neon-v);box-shadow:0 0 40px rgba(191,0,255,0.15);}
+#cob-modal .modal-box{width:min(96vw,640px);border:1px solid var(--neon-y);box-shadow:0 0 40px rgba(255,224,0,0.15);}
 .modal-head{display:flex;align-items:center;justify-content:space-between;padding:0.75em 1.2em;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0;}
 .modal-head-title{font-family:'Orbitron',monospace;font-size:clamp(12px,1.4vw,17px);font-weight:900;letter-spacing:0.14em;}
 #info-modal .modal-head-title{color:var(--neon-c);text-shadow:0 0 10px var(--neon-c);}
@@ -480,6 +483,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   <div style="display:flex;gap:0.5em;align-items:center;flex-shrink:0;">
     <button class="hdr-btn" style="border:1px solid var(--danger);color:var(--danger);text-shadow:0 0 8px var(--danger);display:none;" id="btn-reset" onclick="location.reload()">↺ NUEVA</button>
     <button class="hdr-btn hdr-btn-info" onclick="openInfoModal()">ℹ FUENTES</button>
+    <button class="hdr-btn hdr-btn-cob" onclick="openCobModal()">📡 COBERTURA</button>
     <button class="hdr-btn hdr-btn-ops" onclick="openOpsModal()">📶 OPERADORES</button>
   </div>
 </header>
@@ -619,8 +623,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
       <div class="bm-tabs">
         <span class="bm-tab active" onclick="switchBmTab('speed')">VELOCIDAD</span>
         <span class="bm-tab" onclick="switchBmTab('5g')">5G</span>
-        <span class="bm-tab" onclick="switchBmTab('cob')">📡 COBERTURA</span>
-        <span class="bm-tab" onclick="switchBmTab('links')">EXPLORAR</span>
       </div>
 
       <!-- PANEL VELOCIDAD -->
@@ -729,116 +731,6 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
         </div>
       </div>
 
-      <!-- PANEL COBERTURA OFICIAL -->
-      <div class="bm-panel" id="bm-cob">
-        <div class="bm-source-note" style="margin-bottom:0.5em;">Mapas oficiales de cada operador · se abren en nueva pestaña</div>
-
-        <!-- ENTEL -->
-        <div style="margin-bottom:0.6em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-entel);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-entel);">▸ ENTEL</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
-            <a href="https://www.entel.cl/cobertura/movil/" target="_blank" class="cob-btn cob-entel">📶 COBERTURA 2G·3G·4G·5G</a>
-            <a href="https://www.entel.cl/5g" target="_blank" class="cob-btn cob-entel cob-5g">⚡ MAPA 5G ENTEL</a>
-          </div>
-        </div>
-
-        <!-- MOVISTAR -->
-        <div style="margin-bottom:0.6em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-movistar);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-movistar);">▸ MOVISTAR</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
-            <a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" class="cob-btn cob-movistar">📶 COBERTURA 2G·3G·4G</a>
-            <a href="https://ww2.movistar.cl/5g/" target="_blank" class="cob-btn cob-movistar cob-5g">⚡ MAPA 5G MOVISTAR</a>
-          </div>
-        </div>
-
-        <!-- WOM -->
-        <div style="margin-bottom:0.6em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-wom);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-wom);">▸ WOM</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
-            <a href="https://www.wom.cl/cobertura/" target="_blank" class="cob-btn cob-wom">📶 COBERTURA 3G·4G·5G</a>
-          </div>
-        </div>
-
-        <!-- CLARO -->
-        <div style="margin-bottom:0.6em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-claro);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-claro);">▸ CLARO</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
-            <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" class="cob-btn cob-claro">📶 CONSULTA COBERTURA</a>
-          </div>
-        </div>
-
-        <!-- GTD -->
-        <div style="margin-bottom:0.6em;">
-          <div style="font-family:'Orbitron',monospace;font-size:clamp(11px,1.05vw,13px);font-weight:900;color:var(--neon-gtd);letter-spacing:0.1em;margin-bottom:0.35em;text-shadow:0 0 8px var(--neon-gtd);">▸ GTD / TELSUR</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.35em;">
-            <a href="https://www.gtd.cl/cobertura" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA GTD</a>
-            <a href="https://www.telsur.cl/cobertura-movil" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA TELSUR</a>
-          </div>
-        </div>
-
-        <!-- REFERENCIA GLOBAL -->
-        <div style="border-top:1px solid var(--border);padding-top:0.4em;margin-top:0.1em;">
-          <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.75vw,10px);color:var(--neon-otro);letter-spacing:0.08em;margin-bottom:0.3em;">▸ REFERENCIAS GLOBALES</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.3em;">
-            <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" class="cob-btn cob-otro">🌐 OOKLA 5G MAP</a>
-            <a href="https://www.nperf.com/es/map/CL/-/-/signal/" target="_blank" class="cob-btn cob-otro">📡 nPERF CHILE</a>
-            <a href="https://www.subtel.gob.cl/banner-mapa-cobertura-digital/" target="_blank" class="cob-btn cob-otro">🏛 SUBTEL</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANEL EXPLORAR -->
-      <div class="bm-panel" id="bm-links">
-        <div class="bm-source-note" style="margin-bottom:0.4em;">Links inteligentes · se abren en tus coordenadas buscadas</div>
-        <div class="bm-links-grid" id="bm-links-grid">
-          <!-- generado por JS tras la búsqueda -->
-          <a class="bm-link-item" href="https://www.speedtest.net/ookla-5g-map" target="_blank">
-            <span class="bm-link-icon">🗺</span>
-            <span class="bm-link-name">OOKLA 5G MAP</span>
-            <span class="bm-link-desc">Mapa 5G global · busca Chile</span>
-          </a>
-          <a class="bm-link-item" href="https://www.opensignal.com/networks" target="_blank">
-            <span class="bm-link-icon">📶</span>
-            <span class="bm-link-name">OPENSIGNAL</span>
-            <span class="bm-link-desc">Rankings por país y operador</span>
-          </a>
-          <a class="bm-link-item" href="https://www.nperf.com/es/map/CL/-/-/signal/?ll=-33.4489&lng=-70.6693&zoom=12" target="_blank" id="link-nperf">
-            <span class="bm-link-icon">📡</span>
-            <span class="bm-link-name">nPERF</span>
-            <span class="bm-link-desc">Cobertura real · datos de campo</span>
-          </a>
-          <a class="bm-link-item" href="https://www.entel.cl/cobertura/" target="_blank" style="border-color:rgba(0,255,224,0.35);">
-            <span class="bm-link-icon">📍</span>
-            <span class="bm-link-name" style="color:var(--neon-entel);">ENTEL COB.</span>
-            <span class="bm-link-desc">Mapa oficial Entel Chile</span>
-          </a>
-          <a class="bm-link-item" href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" style="border-color:rgba(191,0,255,0.35);">
-            <span class="bm-link-icon">📍</span>
-            <span class="bm-link-name" style="color:var(--neon-movistar);">MOVISTAR COB.</span>
-            <span class="bm-link-desc">Mapa oficial Movistar Chile</span>
-          </a>
-          <a class="bm-link-item" href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" style="border-color:rgba(255,34,68,0.35);">
-            <span class="bm-link-icon">📍</span>
-            <span class="bm-link-name" style="color:var(--neon-claro);">CLARO COB.</span>
-            <span class="bm-link-desc">Mapa oficial Claro Chile</span>
-          </a>
-          <a class="bm-link-item" href="https://www.wom.cl/cobertura/" target="_blank" style="border-color:rgba(255,224,0,0.35);">
-            <span class="bm-link-icon">📍</span>
-            <span class="bm-link-name" style="color:var(--neon-wom);">WOM COB.</span>
-            <span class="bm-link-desc">Mapa oficial WOM Chile</span>
-          </a>
-          <a class="bm-link-item" href="https://www.gtd.cl/cobertura" target="_blank" style="border-color:rgba(255,106,0,0.35);">
-            <span class="bm-link-icon">📍</span>
-            <span class="bm-link-name" style="color:var(--neon-gtd);">GTD COB.</span>
-            <span class="bm-link-desc">Mapa oficial GTD Chile</span>
-          </a>
-          <a class="bm-link-item" href="https://insights.opensignal.com/reports/2025/02/chile/mobile-network-experience" target="_blank">
-            <span class="bm-link-icon">📄</span>
-            <span class="bm-link-name">INFORME OS 2025</span>
-            <span class="bm-link-desc">Reporte completo Opensignal</span>
-          </a>
-        </div>
-      </div>
     </div>
 
     <div class="card" style="flex-shrink:0;">
@@ -908,6 +800,77 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
     </div>
     <div class="modal-body" id="ops-modal-body">
       <!-- generado por JS -->
+    </div>
+  </div>
+</div>
+
+<!-- MODAL COBERTURA -->
+<div class="modal-overlay" id="cob-modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <span class="modal-head-title" style="color:var(--neon-y);text-shadow:0 0 10px var(--neon-y);">📡 COBERTURA OFICIAL · CHILE</span>
+      <button class="modal-close-btn" onclick="closeCobModal()">✕ CERRAR</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="ops-op-row ops-entel">
+        <div>
+          <div class="ops-name">ENTEL</div>
+          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
+            <a href="https://www.entel.cl/cobertura/movil/" target="_blank" class="cob-btn cob-entel">📶 COBERTURA 2G·3G·4G·5G</a>
+            <a href="https://www.entel.cl/5g" target="_blank" class="cob-btn cob-entel cob-5g">⚡ MAPA 5G</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ops-op-row ops-movistar">
+        <div>
+          <div class="ops-name">MOVISTAR</div>
+          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
+            <a href="https://ww2.movistar.cl/cobertura-movil/" target="_blank" class="cob-btn cob-movistar">📶 COBERTURA 2G·3G·4G</a>
+            <a href="https://ww2.movistar.cl/5g/" target="_blank" class="cob-btn cob-movistar cob-5g">⚡ MAPA 5G</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ops-op-row ops-wom">
+        <div>
+          <div class="ops-name">WOM</div>
+          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
+            <a href="https://www.wom.cl/cobertura/" target="_blank" class="cob-btn cob-wom">📶 COBERTURA 3G·4G·5G</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ops-op-row ops-claro">
+        <div>
+          <div class="ops-name">CLARO</div>
+          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
+            <a href="https://www.clarochile.cl/personas/servicios/servicios-moviles/consulta-tu-cobertura/" target="_blank" class="cob-btn cob-claro">📶 CONSULTA COBERTURA</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ops-op-row ops-gtd">
+        <div>
+          <div class="ops-name">GTD / TELSUR</div>
+          <div class="ops-mncs" style="margin-top:0.4em;display:flex;flex-wrap:wrap;gap:0.4em;">
+            <a href="https://www.gtd.cl/cobertura" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA GTD</a>
+            <a href="https://www.telsur.cl/cobertura-movil" target="_blank" class="cob-btn cob-gtd">📶 COBERTURA TELSUR</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:0.6em;margin-top:0.2em;">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:clamp(9px,0.85vw,11px);color:var(--neon-otro);letter-spacing:0.1em;margin-bottom:0.5em;">▸ REFERENCIAS GLOBALES</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5em;">
+          <a href="https://www.speedtest.net/ookla-5g-map" target="_blank" class="cob-btn cob-otro">🌐 OOKLA 5G MAP</a>
+          <a href="https://www.nperf.com/es/map/CL/-/-/signal/" target="_blank" class="cob-btn cob-otro">📡 nPERF CHILE</a>
+          <a href="https://www.subtel.gob.cl/banner-mapa-cobertura-digital/" target="_blank" class="cob-btn cob-otro">🏛 SUBTEL</a>
+          <a href="https://www.opensignal.com/networks" target="_blank" class="cob-btn cob-otro">📊 OPENSIGNAL</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1604,7 +1567,10 @@ function openOpsModal(){
   document.getElementById('ops-modal').classList.add('open');
 }
 function closeOpsModal(){document.getElementById('ops-modal').classList.remove('open');}
+function openCobModal(){document.getElementById('cob-modal').classList.add('open');}
+function closeCobModal(){document.getElementById('cob-modal').classList.remove('open');}
 document.getElementById('info-modal').addEventListener('click',e=>{if(e.target===document.getElementById('info-modal'))closeInfoModal();});
+document.getElementById('cob-modal').addEventListener('click',e=>{if(e.target===document.getElementById('cob-modal'))closeCobModal();});
 document.getElementById('ops-modal').addEventListener('click',e=>{if(e.target===document.getElementById('ops-modal'))closeOpsModal();});
 
 function buildOpsModal(){
