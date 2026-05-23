@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>.v3.7:-Cobertura Celular 14115-:.</title>
+    <title>.v3.9:-Cobertura Celular 14115-:.</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -217,17 +217,33 @@
         /* MODALES */
         .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
         .modal-overlay.open{display:flex;}
-        .modal-box{background:var(--surface);border-radius:8px;display:flex;flex-direction:column;overflow:hidden;max-height:88vh;}
+        .modal-box{background:var(--surface);border-radius:8px;display:flex;flex-direction:column;overflow:hidden;max-height:min(88vh,88dvh);}
         #info-modal .modal-box{width:min(94vw,540px);border:1px solid var(--neon-c);box-shadow:0 0 40px rgba(0,255,224,0.15);}
         #ops-modal .modal-box{width:min(96vw,680px);border:1px solid var(--neon-v);box-shadow:0 0 40px rgba(191,0,255,0.15);}
         #cob-modal .modal-box{width:min(96vw,640px);border:1px solid var(--neon-y);box-shadow:0 0 40px rgba(255,224,0,0.15);}
+        #donate-modal .modal-box{width:min(94vw,620px);max-height:min(92vh,92dvh);border:1px solid var(--neon-otro);box-shadow:0 0 40px rgba(68,170,255,0.18);}
         .modal-head{display:flex;align-items:center;justify-content:space-between;padding:0.75em 1.2em;background:var(--surface2);border-bottom:1px solid var(--border);flex-shrink:0;}
         .modal-head-title{font-family:'Orbitron',monospace;font-size:clamp(12px,1.4vw,17px);font-weight:900;letter-spacing:0.14em;}
         #info-modal .modal-head-title{color:var(--neon-c);text-shadow:0 0 10px var(--neon-c);}
         #ops-modal .modal-head-title{color:var(--neon-v);text-shadow:0 0 10px var(--neon-v);}
+        #donate-modal .modal-head-title{color:var(--neon-otro);text-shadow:0 0 10px var(--neon-otro);}
         .modal-close-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);font-family:'Orbitron',monospace;font-size:clamp(10px,1vw,12px);font-weight:700;padding:0.3em 0.9em;border-radius:3px;cursor:pointer;letter-spacing:0.1em;transition:all 0.15s;}
         .modal-close-btn:hover{background:var(--danger);color:#fff;}
-        .modal-body{padding:1em;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:0.7em;}
+        .modal-body{padding:1em;overflow-y:auto;flex:1;min-height:0;display:flex;flex-direction:column;gap:0.7em;}
+        #donate-modal .modal-body{padding:0.75em;gap:0.55em;}
+        #donate-modal .info-row{overflow:visible;}
+        #donate-modal .info-title{font-size:12px;line-height:1.25;letter-spacing:0.04em;overflow-wrap:anywhere;}
+        #donate-modal .info-desc{font-size:13px;line-height:1.35;overflow-wrap:anywhere;}
+        .donate-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7em;}
+        .donate-card{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:0.65em;display:flex;flex-direction:column;gap:0.35em;min-width:0;overflow-wrap:anywhere;}
+        .donate-title{font-family:'Orbitron',monospace;font-size:12px;line-height:1.2;font-weight:900;letter-spacing:0.05em;color:var(--neon-otro);}
+        .donate-desc{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;line-height:1.3;color:var(--text-mid);}
+        .donate-data{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.55;color:var(--text);overflow-wrap:anywhere;}
+        .donate-link{font-family:'Orbitron',monospace;font-size:11px;line-height:1.2;font-weight:700;text-align:center;text-decoration:none;border:1px solid var(--neon-otro);color:var(--neon-otro);border-radius:4px;padding:0.42em 0.55em;letter-spacing:0.05em;transition:all 0.15s;}
+        .donate-link:hover{background:rgba(68,170,255,0.14);box-shadow:0 0 12px rgba(68,170,255,0.35);}
+        .social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.45em;}
+        .social-link{font-family:'Orbitron',monospace;font-size:10px;line-height:1.2;font-weight:700;text-align:center;text-decoration:none;border:1px solid var(--border);color:var(--text-mid);border-radius:4px;padding:0.42em 0.45em;letter-spacing:0.04em;transition:all 0.15s;overflow-wrap:anywhere;}
+        .social-link:hover{border-color:var(--neon-c);color:var(--neon-c);box-shadow:0 0 10px rgba(0,255,224,0.25);}
         .info-row{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.5em 0.7em;position:relative;overflow:hidden;}
         .info-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;}
         .info-c0::after{background:var(--neon-c);}
@@ -471,6 +487,10 @@
           .modal-close-btn { font-size: 12px !important; }
           .info-title { font-size: 13px !important; }
           .info-desc { font-size: 14px !important; color: #d0d0e8 !important; }
+          #donate-modal .info-title { font-size: 12px !important; line-height:1.25 !important; }
+          #donate-modal .info-desc { font-size: 13px !important; line-height:1.35 !important; }
+          #donate-modal .modal-body { padding:0.65em !important; gap:0.5em !important; }
+          #donate-modal .donate-card { padding:0.6em !important; gap:0.3em !important; }
           .info-note { font-size: 11px !important; color: #b0b0cc !important; }
           .ops-name { font-size: 13px !important; }
           .ops-mncs { font-size: 11px !important; color: #b0b0cc !important; }
@@ -647,6 +667,11 @@
 
         .bm-links-grid{
           grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+        }
+
+        .donate-grid,
+        .social-grid{
+          grid-template-columns:1fr;
         }
 
         .bm-table{
@@ -882,6 +907,7 @@
             <button class="hdr-btn" style="border:1px solid var(--danger);color:var(--danger);text-shadow:0 0 8px var(--danger);display:none;" id="btn-reset" onclick="location.reload()">↺ NUEVA</button>
             <button class="hdr-btn hdr-btn-info" onclick="openInfoModal()">ℹ FUENTES</button>
             <button class="hdr-btn hdr-btn-cob" onclick="openCobModal()">📡 COBERTURA</button>
+            <button class="hdr-btn" style="border:1px solid var(--neon-otro);color:var(--neon-otro);text-shadow:0 0 8px var(--neon-otro);" onclick="openDonateModal()">APOYAR</button>
             <!--<button class="hdr-btn hdr-btn-ops" onclick="openOpsModal()">📶 OPERADORES</button>-->
         </div>
     </header>
@@ -1270,6 +1296,49 @@
     </div>
 </div>
 
+<!-- MODAL DONACIONES -->
+<div class="modal-overlay" id="donate-modal">
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-head-title">APOYAR EL PROYECTO</span>
+            <button class="modal-close-btn" onclick="closeDonateModal()">CERRAR</button>
+        </div>
+        <div class="modal-body">
+            <div class="info-row info-c0">
+                <div class="info-title">Gracias por apoyar Cobertura Celular 14115</div>
+                <div class="info-desc">Si esta pagina te fue util, puedes apoyar su desarrollo con una donacion voluntaria o compartiendo el proyecto en redes.</div>
+            </div>
+            <div class="donate-grid">
+                <div class="donate-card">
+                    <div class="donate-title">PAYPAL</div>
+                    <div class="donate-desc">Donacion directa por PayPal.</div>
+                    <div class="donate-data">paypal.me/jruizcanivilo</div>
+                    <a class="donate-link" href="https://paypal.me/jruizcanivilo" target="_blank" rel="noopener">ABRIR PAYPAL</a>
+                </div>
+                <div class="donate-card">
+                    <div class="donate-title">MERCADOPAGO</div>
+                    <div class="donate-desc">Transferencia desde Chile.</div>
+                    <div class="donate-data">
+                        Cuenta: 1066770230<br>
+                        RUT: 141159194<br>
+                        Tipo: cuenta vista
+                    </div>
+                </div>
+            </div>
+            <div class="donate-card">
+                <div class="donate-title">REDES Y CONTACTO</div>
+                <div class="social-grid">
+                    <a class="social-link" href="https://www.youtube.com/@jueguitosclasicoscl" target="_blank" rel="noopener">YOUTUBE</a>
+                    <a class="social-link" href="https://x.com/betoid777" target="_blank" rel="noopener">X / TWITTER</a>
+                    <a class="social-link" href="https://www.facebook.com/betoid555" target="_blank" rel="noopener">FACEBOOK</a>
+                    <a class="social-link" href="https://www.instagram.com/betoid555/" target="_blank" rel="noopener">INSTAGRAM</a>
+                    <a class="social-link" href="mailto:retrogamingchile01@gmail.com">CORREO</a>
+                </div>
+                <div class="donate-data">retrogamingchile01@gmail.com</div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- MODAL OPERADORES -->
 <div class="modal-overlay" id="ops-modal">
     <div class="modal-box">
@@ -1399,6 +1468,14 @@
       GTD:{fiveG:false,officialWeight:0.35,bands:'LTE / MVNO',note:'sin red 5G nacional propia en esta base'}
     });
 
+    const OFFICIAL_TECHS = Object.freeze({
+      Entel:['LTE','NR'],
+      Movistar:['LTE'],
+      Claro:['LTE','NR'],
+      WOM:['LTE','NR'],
+      GTD:['LTE']
+    });
+
     const TECH_ALIASES = Object.freeze({
       '2G':'GSM',GSM:'GSM',GPRS:'GSM',EDGE:'GSM',
       '3G':'UMTS',UMTS:'UMTS',WCDMA:'UMTS',HSPA:'UMTS',HSDPA:'UMTS',HSUPA:'UMTS',
@@ -1440,6 +1517,7 @@
 
     function getNperf(opName){return NPERF_DB[opName] || null;}
     function getSubtel(opName){return SUBTEL_DB[opName] || null;}
+    function getOfficialTechs(opName){return OFFICIAL_TECHS[opName] || [];}
 
     function buildExternalCoverageModel(towers, opsArr){
       const ops = opsArr.map(([name, info]) => {
@@ -1448,14 +1526,15 @@
         const subtel = getSubtel(name);
         const hasNR = local.some(t => t.radio === 'NR');
         const hasLTE = local.some(t => t.radio === 'LTE');
+        const hasOfficialModern = local.length > 0 && getOfficialTechs(name).some(t => t === 'LTE' || t === 'NR');
         const density = Math.min(1, local.length / 8);
         const nperf5g = nperf && nperf.fiveG ? Math.min(1, nperf.fiveG.score / 95000) : 0;
         const official5g = subtel && subtel.fiveG ? subtel.officialWeight : 0;
-        const local5g = hasNR ? 1 : (hasLTE && official5g ? 0.55 : 0);
+        const local5g = hasNR ? 1 : (hasLTE && official5g ? 0.55 : (hasOfficialModern && official5g ? 0.35 : 0));
         const fiveGConfidence = Math.min(1, (local5g * 0.45) + (official5g * 0.30) + (nperf5g * 0.25)) * density;
-        return {name, cls:info.cls, local, nperf, subtel, hasNR, hasLTE, fiveGConfidence};
+        return {name, cls:info.cls, local, nperf, subtel, hasNR, hasLTE, hasOfficialModern, fiveGConfidence};
       }).sort((a,b)=>b.fiveGConfidence-a.fiveGConfidence);
-      const fiveGReadyOps = ops.filter(op => op.hasNR || (op.hasLTE && op.subtel && op.subtel.fiveG));
+      const fiveGReadyOps = ops.filter(op => op.hasNR || (op.hasLTE && op.subtel && op.subtel.fiveG) || op.hasOfficialModern);
       const nperfAvg = ops.length ? ops.reduce((sum,op)=>sum+(op.nperf ? op.nperf.score : 0),0)/ops.length : 0;
       const zoneBoost = Math.round(Math.min(8, (fiveGReadyOps.length * 2) + (nperfAvg ? nperfAvg / 18000 : 0)));
       return {ops, fiveGReadyOps, zoneBoost};
@@ -1484,11 +1563,55 @@
     }
 
     // ── MAPA ──
+    function addOfficialModernReferences(towers){
+      const refs = [];
+      const byOp = {};
+      towers.filter(t=>!t._externalOfficial).forEach(t => {
+        const op = getOp(t.mnc);
+        if(!byOp[op.name] || t._dist < byOp[op.name]._dist) byOp[op.name] = t;
+      });
+      Object.entries(byOp).forEach(([name,t]) => {
+        getOfficialTechs(name).forEach(tech => {
+          const alreadyHasTech = towers.some(tw => getOp(tw.mnc).name === name && tw.radio === tech);
+          if(alreadyHasTech) return;
+          refs.push({
+            ...t,
+            radio: tech,
+            range: 'Oficial',
+            _externalOfficial: true,
+            _external5g: tech === 'NR',
+            _source: 'Cobertura oficial'
+          });
+        });
+      });
+      return refs.length ? towers.concat(refs).sort((a,b)=>a._dist-b._dist) : towers;
+    }
+
+    function renderTechCell(t){
+      const techs = (t._siteTechs && t._siteTechs.length ? t._siteTechs : [t.radio]).filter(Boolean);
+      const uniqueTechs = [...new Set(techs)];
+      const title = uniqueTechs.map(x=>TECH_SHORT[x]||x).join(' + ');
+      const html = uniqueTechs.map((x,idx)=>{
+        const color = TECH_COLORS[x] || '#9090b0';
+        const sep = idx ? '<span style="color:var(--text-dim);font-size:8px;"> + </span>' : '';
+        return `${sep}<span style="color:${color};">${TECH_SHORT[x]||x}</span>`;
+      }).join('');
+      return {title, html: html || '?'};
+    }
+
+    const CHILE_MAP_BOUNDS = [[-56.2,-110.0],[-17.3,-65.5]];
+
     let map, markerLayer, circleLayer, userMarker;
 
     function initMap(lat,lon){
       if(!map){
-        map = L.map('map',{zoomControl:true,attributionControl:true}).setView([lat,lon],14);
+        map = L.map('map',{
+          zoomControl:true,
+          attributionControl:true,
+          maxBounds:CHILE_MAP_BOUNDS,
+          maxBoundsViscosity:0.85,
+          minZoom:4
+        }).setView([lat,lon],14);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
           attribution:'© OpenStreetMap contributors',maxZoom:19
         }).addTo(map);
@@ -1504,13 +1627,43 @@
 
     // ── BÚSQUEDA POR CLICK EN MAPA ──
     // Bounding box de Chile continental + Isla de Pascua (aprox)
+    const CHILE_CONTINENTAL_POLYGON = [
+      [-17.5,-70.5],[-20.0,-70.3],[-25.0,-70.7],[-30.0,-71.8],[-35.0,-72.8],
+      [-40.0,-73.8],[-45.0,-74.8],[-50.0,-75.4],[-55.9,-75.7],[-55.9,-67.0],
+      [-53.0,-69.2],[-51.0,-68.6],[-48.0,-72.3],[-44.0,-72.2],[-41.0,-71.9],
+      [-38.0,-71.4],[-34.5,-70.6],[-32.5,-70.4],[-30.0,-69.8],[-26.0,-68.5],
+      [-22.0,-68.3],[-18.5,-68.9]
+    ];
+
+    function pointInPolygon(lat, lon, polygon){
+      let inside = false;
+      for(let i=0,j=polygon.length-1; i<polygon.length; j=i++){
+        const yi = polygon[i][0], xi = polygon[i][1];
+        const yj = polygon[j][0], xj = polygon[j][1];
+        const intersects = ((xi > lon) !== (xj > lon)) && (lat < (yj-yi) * (lon-xi) / (xj-xi) + yi);
+        if(intersects) inside = !inside;
+      }
+      return inside;
+    }
+
     function isInChile(lat, lon){
-      const continental = lat >= -55.9 && lat <= -17.5 && lon >= -75.7 && lon <= -66.0;
+      const continentalBox = lat >= -55.9 && lat <= -17.5 && lon >= -75.7 && lon <= -66.0;
+      const continental = continentalBox && pointInPolygon(lat, lon, CHILE_CONTINENTAL_POLYGON);
       const islaEaster  = lat >= -27.25 && lat <= -26.95 && lon >= -109.55 && lon <= -109.15;
       return continental || islaEaster;
     }
 
+    function assertChileLocation(lat, lon, mode){
+      if(isInChile(lat, lon)) return;
+      const msg = mode === 'map'
+        ? 'Esta pagina es exclusiva para Chile. Haz clic dentro de Chile para consultar cobertura.'
+        : 'Esta pagina es exclusiva para Chile. Ingresa una direccion, ciudad o region dentro de Chile.';
+      alert(msg);
+      throw new Error('Ubicacion fuera de Chile.');
+    }
+
     async function doSearchFromCoords(lat, lon){
+      try{ assertChileLocation(lat, lon, 'map'); }catch(e){ setStatus('ATENCION: punto fuera de Chile', 0); return; }
       // Validar que el punto esté en Chile
       if(!isInChile(lat, lon)){
         alert('⚠️ Esta página es exclusiva para Chile.\nEl punto seleccionado está fuera del territorio chileno.\n\nHaz clic dentro de Chile para consultar cobertura.');
@@ -1584,11 +1737,13 @@
         const anchor = Math.round(size/2);
         const techTxt = is5g ? '5G' : (is4g ? '4G' : '');
         const techColor = TECH_COLORS[t.radio] || c;
-        const bg = is5g && t._external5g ? 'rgba(5,5,8,0.72)' : c;
-        const border = is5g ? `2px solid ${TECH_COLORS.NR}` : (is4g ? `2px solid ${TECH_COLORS.LTE}` : '1.5px solid rgba(255,255,255,0.5)');
+        const isOfficialRef = !!t._externalOfficial;
+        const bg = isOfficialRef ? 'rgba(5,5,8,0.72)' : (is5g && t._external5g ? 'rgba(5,5,8,0.72)' : c);
+        const border = isOfficialRef ? `2px dashed ${techColor}` : (is5g ? `2px solid ${TECH_COLORS.NR}` : (is4g ? `2px solid ${TECH_COLORS.LTE}` : '1.5px solid rgba(255,255,255,0.5)'));
         const shadow = is5g ? `0 0 10px ${TECH_COLORS.NR},0 0 18px ${c}` : (is4g ? `0 0 8px ${TECH_COLORS.LTE},0 0 12px ${c}` : `0 0 6px ${c}`);
-        const lat = t._external5g ? (+t.lat + 0.000045) : +t.lat;
-        const lon = t._external5g ? (+t.lon + 0.000045) : +t.lon;
+        const refOffset = isOfficialRef ? (is5g ? 0.00007 : -0.00007) : (t._external5g ? 0.000045 : 0);
+        const lat = +t.lat + refOffset;
+        const lon = +t.lon + refOffset;
         const icon = L.divIcon({
           html:`<div title="${op.name} ${TECH_SHORT[t.radio]||''}" style="width:${size}px;height:${size}px;background:${bg};border:${border};border-radius:50%;box-shadow:${shadow};display:flex;align-items:center;justify-content:center;color:${techColor};font-family:'Orbitron',monospace;font-size:${is5g?'7px':'6px'};font-weight:900;line-height:1;text-shadow:0 0 4px #000;">${techTxt}</div>`,
           className:'',iconAnchor:[anchor,anchor]
@@ -1597,10 +1752,11 @@
         L.marker([lat,lon],{icon,zIndexOffset:is5g?900:(is4g?500:100)})
           .bindPopup(
             `<b style="color:${c}">${op.name}</b><br>`+
-            `Red: <b style="color:${TECH_COLORS[t.radio]||'#fff'}">${TECH_LABELS[t.radio]||t.radio||'?'}</b>${t._external5g?' (ref. SUBTEL/nPerf)':''}<br>`+
+            `Red: <b style="color:${TECH_COLORS[t.radio]||'#fff'}">${TECH_LABELS[t.radio]||t.radio||'?'}</b>${isOfficialRef?' (cobertura oficial)':(t._external5g?' (ref. SUBTEL/nPerf)':'')}<br>`+
             `MCC:${t.mcc} MNC:${t.mnc}<br>`+
             `Distancia: <b>${dist} m</b><br>`+
-            `Rango aprox: ${t.range||'?'}${t._external5g?'':' m'}`
+            `Fuente: ${isOfficialRef?'Mapa oficial operador/SUBTEL':'OpenCelliD'}<br>`+
+            `Rango aprox: ${t.range||'?'}${(t._external5g||isOfficialRef)?'':' m'}`
           ).addTo(markerLayer);
       });
     }
@@ -1631,7 +1787,10 @@
         alert('⚠️ Esta página es exclusiva para Chile.\nLa dirección ingresada corresponde a otro país.\n\nIngresa una dirección, ciudad o región de Chile.');
         throw new Error('Ubicación fuera de Chile. Esta herramienta es exclusiva para territorio chileno.');
       }
-      return {lat:+j[0].lat,lon:+j[0].lon,display:j[0].display_name};
+      const lat = +j[0].lat;
+      const lon = +j[0].lon;
+      assertChileLocation(lat, lon, 'search');
+      return {lat,lon,display:j[0].display_name};
     }
 
     async function reverseGeocode(lat,lon){
@@ -1776,18 +1935,32 @@
       let lastError = null;
       for(let i=0; i<tiles.length; i++){
         const bbox = bboxToParam(tiles[i]);
+        const basePct = 58 + Math.round((i/Math.max(1,tiles.length))*12);
+        const allRadiosUrl = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=1000`;
+        try{
+          const chunk = await fetchOpenCellIdUrl(allRadiosUrl, `tile ${i+1}/${tiles.length} todas`, basePct);
+          cells.push(...chunk.map(c => ({
+            ...c,
+            _ocidRadio: normalizeTech(c.radio),
+            radio: normalizeTech(c.radio)
+          })));
+          continue;
+        }catch(e){
+          lastError = e.message || String(e);
+        }
+
         for(let r=0; r<OCID_RADIOS.length; r++){
           const radio = OCID_RADIOS[r];
           const apiUrl = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&radio=${radio}&format=json&limit=200`;
           try{
             const done = (i*OCID_RADIOS.length)+r;
             const total = tiles.length*OCID_RADIOS.length;
-            const pct = 58 + Math.round((done/Math.max(1,total))*22);
-            const chunk = await fetchOpenCellIdUrl(apiUrl, `tile ${i+1}/${tiles.length} ${radio}`, pct);
+            const pct = 70 + Math.round((done/Math.max(1,total))*10);
+            const chunk = await fetchOpenCellIdUrl(apiUrl, `respaldo ${i+1}/${tiles.length} ${radio}`, pct);
             cells.push(...chunk.map(c => ({
               ...c,
               _ocidRadio: normalizeTech(c.radio),
-              radio: normalizeTech(radio)
+              radio: normalizeTech(c.radio) || normalizeTech(radio)
             })));
           }catch(e){
             lastError = e.message || String(e);
@@ -1866,6 +2039,7 @@
         .filter(t=>Number.isFinite(+t.lat)&&Number.isFinite(+t.lon)&&Number.isFinite(t._dist))
         .sort((a,b)=>a._dist-b._dist);
       withDist = addExternal5gReferences(withDist);
+      withDist = addOfficialModernReferences(withDist);
 
       // guardar estado para filtros
       _allTowers = withDist;
@@ -1926,15 +2100,13 @@
         document.getElementById('towers-tbody').innerHTML = displayTowers.slice(0,30).map(t=>{
           const op=getOp(t.mnc);
           const c=OP_COLORS[op.cls]||'#44aaff';
-          const tc=TECH_COLORS[t.radio]||'#9090b0';
-          const techTitle = (t._siteTechs||[]).map(x=>TECH_SHORT[x]||x).join(' + ');
-          const techExtra = t._siteTechs && t._siteTechs.length>1 ? `<span style="font-size:8px;color:var(--text-dim);"> +${t._siteTechs.length-1}</span>` : '';
+          const techCell = renderTechCell(t);
           return `<tr>
             <td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td>
-            <td title="${techTitle}" style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${TECH_SHORT[t.radio]||t.radio||'?'}${techExtra}</td>
+            <td title="${techCell.title}" style="font-family:'Orbitron',monospace;font-size:9px;">${techCell.html}</td>
             <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td>
             <td style="color:var(--text-dim);">${t.mnc}</td>
-            <td style="color:var(--text-dim);">${t._siteCells>1?t._siteCells+' cel.':((t.range||'?')+(t._external5g?'':'m'))}</td>
+            <td style="color:var(--text-dim);">${t._externalOfficial?'oficial':(t._siteCells>1?t._siteCells+' cel.':((t.range||'?')+(t._external5g?'':'m')))}</td>
           </tr>`;
         }).join('');
       }
@@ -1981,9 +2153,12 @@
     function techsForOp(towers,opName){
       const techs=new Set();
       towers.forEach(t=>{if(getOp(t.mnc).name===opName&&t.radio)techs.add(t.radio);});
-      return [...techs].join('·')||'?';
+      const local = ['NR','LTE','UMTS','GSM'].filter(t=>techs.has(t)).map(t=>TECH_SHORT[t]||t);
+      const official = getOfficialTechs(opName).filter(t=>!techs.has(t)).map(t=>TECH_SHORT[t]||t);
+      if(!local.length && !official.length) return '?';
+      if(!official.length) return `OCID ${local.join('/')}`;
+      return `OCID ${local.join('/') || '?'} <span style="color:var(--neon-y);">| OFICIAL ${official.join('/')}</span>`;
     }
-
     function renderNearestTower(towers){
       const card = document.getElementById('nearest-tower-card');
       const box = document.getElementById('nearest-tower-content');
@@ -1998,7 +2173,7 @@
       const c = OP_COLORS[op.cls] || '#44aaff';
       const tech = TECH_LABELS[nearest.radio] || nearest.radio || '?';
       const techShort = TECH_SHORT[nearest.radio] || nearest.radio || '?';
-      const source = nearest._external5g ? 'referencia SUBTEL/nPerf' : 'OpenCelliD';
+      const source = nearest._externalOfficial ? 'cobertura oficial' : (nearest._external5g ? 'referencia SUBTEL/nPerf' : 'OpenCelliD');
       box.innerHTML = `
         <div style="display:flex;align-items:center;justify-content:space-between;gap:0.45em;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:0.4em 0.55em;">
           <div style="min-width:0;">
@@ -2096,9 +2271,9 @@
       } else {
         nperfDesc.textContent = 'nPerf no tiene benchmark local por torre; se usa como experiencia nacional por operador.';
       }
-      const subtelOps = external.ops.filter(op => op.subtel && op.subtel.fiveG && (op.hasLTE || op.hasNR)).map(op => `${op.name} ${op.subtel.bands}`);
-      subtelDesc.textContent = subtelOps.length ? `SUBTEL/5G: ${subtelOps.slice(0,3).join(' | ')}.` : 'SUBTEL: sin operador 5G inferido desde las torres locales detectadas.';
-      note.textContent = `Analisis combinado: OpenCelliD=${confidence}; nPerf aporta rendimiento real; SUBTEL aporta referencia oficial 5G.`;
+      const subtelOps = external.ops.filter(op => op.subtel && op.subtel.fiveG && (op.hasLTE || op.hasNR || op.hasOfficialModern)).map(op => `${op.name} ${op.subtel.bands}`);
+      subtelDesc.textContent = subtelOps.length ? `SUBTEL/5G ref.: ${subtelOps.slice(0,3).join(' | ')}.` : 'SUBTEL: sin referencia 5G para operadores presentes en las torres locales.';
+      note.textContent = `Analisis combinado: OpenCelliD=${confidence}; si falta LTE/NR en OCID, contrasta con mapa oficial del operador antes de concluir sin 4G/5G.`;
     }
 
     function renderDensityChart(towers,uLat,uLon,radiusM){
@@ -2300,15 +2475,13 @@
       document.getElementById('towers-tbody').innerHTML = displayTowers.slice(0,30).map(t => {
         const op=getOp(t.mnc);
         const c=OP_COLORS[op.cls]||'#44aaff';
-        const tc=TECH_COLORS[t.radio]||'#9090b0';
-        const techTitle = (t._siteTechs||[]).map(x=>TECH_SHORT[x]||x).join(' + ');
-        const techExtra = t._siteTechs && t._siteTechs.length>1 ? `<span style="font-size:8px;color:var(--text-dim);"> +${t._siteTechs.length-1}</span>` : '';
+        const techCell = renderTechCell(t);
         return `<tr>
           <td style="color:${c};font-family:'Orbitron',monospace;font-size:9px;font-weight:700;">${op.name}</td>
-          <td title="${techTitle}" style="color:${tc};font-family:'Orbitron',monospace;font-size:9px;">${TECH_SHORT[t.radio]||t.radio||'?'}${techExtra}</td>
+          <td title="${techCell.title}" style="font-family:'Orbitron',monospace;font-size:9px;">${techCell.html}</td>
           <td style="color:var(--neon-y);font-family:'Orbitron',monospace;font-size:9px;">${t._dist.toFixed(0)}m</td>
           <td style="color:var(--text-dim);">${t.mnc}</td>
-          <td style="color:var(--text-dim);">${t._siteCells>1?t._siteCells+' cel.':((t.range||'?')+(t._external5g?'':'m'))}</td>
+          <td style="color:var(--text-dim);">${t._externalOfficial?'oficial':(t._siteCells>1?t._siteCells+' cel.':((t.range||'?')+(t._external5g?'':'m')))}</td>
         </tr>`;
       }).join('');
     }
@@ -2329,6 +2502,7 @@
         const hasNR = opTowers.some(t => t.radio === 'NR');
         const hasLTE = opTowers.some(t => t.radio === 'LTE');
         const hasUMTS = opTowers.some(t => t.radio === 'UMTS');
+        const hasOfficialModern = opTowers.length > 0 && getOfficialTechs(name).some(t => t === 'LTE' || t === 'NR');
         if(hasNR) score += 30; else if(hasLTE) score += 20; else if(hasUMTS) score += 10;
         // distancia mínima (máx 20)
         const minDist = Math.min(...opTowers.map(t => t._dist));
@@ -2338,14 +2512,14 @@
         const techCount = new Set(opTowers.map(t=>t.radio)).size;
         score += Math.min(10, techCount * 3);
         if(nperf) score += Math.min(8, nperf.score / 9000);
-        if(nperf && nperf.fiveG && (hasNR || hasLTE)) score += Math.min(8, nperf.fiveG.score / 12000);
-        if(subtel && subtel.fiveG && (hasNR || hasLTE)) score += Math.round(subtel.officialWeight * 8);
+        if(nperf && nperf.fiveG && (hasNR || hasLTE || hasOfficialModern)) score += Math.min(8, nperf.fiveG.score / 12000);
+        if(subtel && subtel.fiveG && (hasNR || hasLTE || hasOfficialModern)) score += Math.round(subtel.officialWeight * 8);
 
         score = Math.min(100, Math.round(score));
         const techs = [...new Set(opTowers.map(t=>t.radio).filter(Boolean))];
         const techLabels = {GSM:'2G',UMTS:'3G',LTE:'4G',NR:'5G'};
         const topTech = ['NR','LTE','UMTS','GSM'].find(t => techs.includes(t)) || techs[0];
-        return {name, cls: info.cls, count: info.count, score, techs, topTech, minDist: Math.round(minDist), nperf, subtel};
+        return {name, cls: info.cls, count: info.count, score, techs, topTech, minDist: Math.round(minDist), nperf, subtel, hasOfficialModern};
       }).sort((a,b) => b.score - a.score);
 
       const best = opScores[0];
@@ -2451,9 +2625,12 @@
     function closeOpsModal(){document.getElementById('ops-modal').classList.remove('open');}
     function openCobModal(){document.getElementById('cob-modal').classList.add('open');}
     function closeCobModal(){document.getElementById('cob-modal').classList.remove('open');}
+    function openDonateModal(){document.getElementById('donate-modal').classList.add('open');}
+    function closeDonateModal(){document.getElementById('donate-modal').classList.remove('open');}
     document.getElementById('info-modal').addEventListener('click',e=>{if(e.target===document.getElementById('info-modal'))closeInfoModal();});
     document.getElementById('cob-modal').addEventListener('click',e=>{if(e.target===document.getElementById('cob-modal'))closeCobModal();});
     document.getElementById('ops-modal').addEventListener('click',e=>{if(e.target===document.getElementById('ops-modal'))closeOpsModal();});
+    document.getElementById('donate-modal').addEventListener('click',e=>{if(e.target===document.getElementById('donate-modal'))closeDonateModal();});
 
     function buildOpsModal(){
       const ALL_OPS=[
