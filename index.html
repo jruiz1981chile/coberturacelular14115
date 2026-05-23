@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>.v3.3:-Cobertura Celular 14115-:.</title>
+<title>.v3.4:-Cobertura Celular 14115-:.</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -88,6 +88,10 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 #btn-search{background:transparent;border:1px solid var(--neon-c);color:var(--neon-c);font-family:'Orbitron',monospace;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:0.1em;padding:0.38em 0.8em;border-radius:4px;cursor:pointer;transition:all 0.18s;white-space:nowrap;text-shadow:0 0 8px var(--neon-c);}
 #btn-search:hover{background:var(--neon-c);color:#000;box-shadow:0 0 16px var(--neon-c);}
 #btn-search:disabled{opacity:0.4;cursor:not-allowed;}
+.location-row{display:flex;margin-bottom:0.35em;}
+#btn-location{width:100%;background:transparent;border:1px solid var(--neon-y);color:var(--neon-y);font-family:'Orbitron',monospace;font-size:clamp(8px,0.82vw,10px);font-weight:700;letter-spacing:0.09em;padding:0.36em 0.75em;border-radius:4px;cursor:pointer;transition:all 0.18s;white-space:normal;text-shadow:0 0 8px rgba(255,224,0,0.8);}
+#btn-location:hover{background:var(--neon-y);color:#000;box-shadow:0 0 16px rgba(255,224,0,0.75);text-shadow:none;}
+#btn-location:disabled{opacity:0.45;cursor:not-allowed;}
 .radius-row{display:flex;align-items:center;gap:0.5em;}
 .radius-row label{font-family:'Share Tech Mono',monospace;font-size:clamp(8px,0.78vw,10px);color:var(--text-dim);letter-spacing:0.1em;white-space:nowrap;}
 #radius-slider{flex:1;accent-color:var(--neon-c);}
@@ -397,6 +401,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
   /* Búsqueda */
   #addr-input { font-size: 16px !important; padding: 0.55em 0.7em !important; }
   #btn-search { font-size: 13px !important; padding: 0.55em 1em !important; }
+  #btn-location { font-size: 12px !important; padding: 0.55em 1em !important; }
   .radius-row label { font-size: 12px !important; color: #b0b0cc !important; }
   #radius-val { font-size: 13px !important; }
   #status-line { font-size: 12px !important; color: #b0b0cc !important; }
@@ -892,6 +897,9 @@ body{
         <input type="text" id="addr-input" placeholder="Ej: Av. Providencia 1234, Santiago" autocomplete="off"/>
         <button id="btn-search" onclick="doSearch()">▶ BUSCAR</button>
       </div>
+      <div class="location-row">
+        <button id="btn-location" onclick="detectCurrentLocation()">GPS: DETECTAR MI UBICACION ACTUAL</button>
+      </div>
       <div class="radius-row">
         <label>RADIO:</label>
         <input type="range" id="radius-slider" min="250" max="2000" step="250" value="750"/>
@@ -1350,6 +1358,7 @@ body{
 // ── CONSTANTES ──
 const OCID_API = 'https://opencellid.org/cell/getInArea';
 const NOMINATIM = 'https://nominatim.openstreetmap.org/search';
+const NOMINATIM_REVERSE = 'https://nominatim.openstreetmap.org/reverse';
 const MCC_CHILE = 730;
 const OCID_RADIOS = ['GSM','UMTS','LTE','NR'];
 
@@ -1601,7 +1610,7 @@ async function geocode(addr){
 
 async function reverseGeocode(lat,lon){
   try{
-    const url=`${NOMINATIM}?lat=${lat}&lon=${lon}&format=json`;
+    const url=`${NOMINATIM_REVERSE}?lat=${lat}&lon=${lon}&format=json&addressdetails=1`;
     const r = await fetch(url,{headers:{'Accept-Language':'es','User-Agent':'SeñalCelular14115/1.0'}});
     const j = await r.json();
     if(j && j.display_name) return j.display_name;
@@ -1610,6 +1619,50 @@ async function reverseGeocode(lat,lon){
 }
 
 // ── OPENCELLID ──
+function getCurrentDevicePosition(){
+  return new Promise((resolve, reject)=>{
+    if(!navigator.geolocation){
+      reject(new Error('Este navegador no tiene geolocalizacion disponible.'));
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(resolve, reject, {
+      enableHighAccuracy:true,
+      timeout:20000,
+      maximumAge:0
+    });
+  });
+}
+
+function getLocationErrorMessage(err){
+  if(!err || typeof err.code === 'undefined') return 'No se pudo obtener la ubicacion actual.';
+  if(err.code === 1) return 'Permiso de ubicacion denegado por el navegador.';
+  if(err.code === 2) return 'La ubicacion del dispositivo no esta disponible.';
+  if(err.code === 3) return 'Tiempo agotado esperando GPS/ubicacion.';
+  return 'No se pudo obtener la ubicacion actual.';
+}
+
+async function detectCurrentLocation(){
+  const btnLoc = document.getElementById('btn-location');
+  const btnSearch = document.getElementById('btn-search');
+  btnLoc.disabled = true;
+  btnSearch.disabled = true;
+  setStatus('SOLICITANDO UBICACION DEL DISPOSITIVO...', 8);
+
+  try{
+    const pos = await getCurrentDevicePosition();
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
+    const accuracy = pos.coords.accuracy ? Math.round(pos.coords.accuracy) : null;
+    setStatus(accuracy ? `UBICACION DETECTADA - precision aprox. ${accuracy} m` : 'UBICACION DETECTADA', 25);
+    await doSearchFromCoords(lat, lon);
+  }catch(e){
+    setStatus('ATENCION: '+getLocationErrorMessage(e), 0);
+  }finally{
+    btnLoc.disabled = false;
+    btnSearch.disabled = false;
+  }
+}
+
 function buildBbox(lat,lon,radiusM){
   const latDelta = radiusM/111000;
   const lonDelta = radiusM/(111000*Math.cos(lat*Math.PI/180));
