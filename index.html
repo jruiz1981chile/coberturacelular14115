@@ -1312,29 +1312,19 @@
                 <div class="donate-card">
                     <div class="donate-title">PAYPAL</div>
                     <div class="donate-desc">Donacion directa por PayPal.</div>
-                    <div class="donate-data">paypal.me/jruizcanivilo</div>
-                    <a class="donate-link" href="https://paypal.me/jruizcanivilo" target="_blank" rel="noopener">ABRIR PAYPAL</a>
+                    <div class="donate-data" id="d-pp-data"></div>
+                    <a class="donate-link" href="#" target="_blank" rel="noopener" id="d-pp-link">ABRIR PAYPAL</a>
                 </div>
                 <div class="donate-card">
                     <div class="donate-title">MERCADOPAGO</div>
                     <div class="donate-desc">Transferencia desde Chile.</div>
-                    <div class="donate-data">
-                        Cuenta: 1066770230<br>
-                        RUT: 141159194<br>
-                        Tipo: cuenta vista
-                    </div>
+                    <div class="donate-data" id="d-mp-data"></div>
                 </div>
             </div>
             <div class="donate-card">
                 <div class="donate-title">REDES Y CONTACTO</div>
-                <div class="social-grid">
-                    <a class="social-link" href="https://www.youtube.com/@jueguitosclasicoscl" target="_blank" rel="noopener">YOUTUBE</a>
-                    <a class="social-link" href="https://x.com/betoid777" target="_blank" rel="noopener">X / TWITTER</a>
-                    <a class="social-link" href="https://www.facebook.com/betoid555" target="_blank" rel="noopener">FACEBOOK</a>
-                    <a class="social-link" href="https://www.instagram.com/betoid555/" target="_blank" rel="noopener">INSTAGRAM</a>
-                    <a class="social-link" href="mailto:retrogamingchile01@gmail.com">CORREO</a>
-                </div>
-                <div class="donate-data">retrogamingchile01@gmail.com</div>
+                <div class="social-grid" id="d-social-grid"></div>
+                <div class="donate-data" id="d-em-data"></div>
             </div>
         </div>
     </div>
@@ -1424,6 +1414,20 @@
 </div>
 
 <script>
+    function _d(b){return atob(b);}
+    const _C=Object.freeze({
+      k:_d('cGsuNzE5Y2Q4MzI4ZThiYzk0OGI3ZjQ4N2E5MzJmODUwMmY='),
+      pp:_d('aHR0cHM6Ly9wYXlwYWwubWUvanJ1aXpjYW5pdmlsbw=='),
+      pps:_d('cGF5cGFsLm1lL2pydWl6Y2FuaXZpbG8='),
+      mc:_d('MTA2Njc3MDIzMA=='),
+      mr:_d('MTQxMTU5MTk0'),
+      em:_d('cmV0cm9nYW1pbmdjaGlsZTAxQGdtYWlsLmNvbQ=='),
+      eml:_d('bWFpbHRvOnJldHJvZ2FtaW5nY2hpbGUwMUBnbWFpbC5jb20='),
+      yt:_d('aHR0cHM6Ly93d3cueW91dHViZS5jb20vQGp1ZWd1aXRvc2NsYXNpY29zY2w='),
+      tw:_d('aHR0cHM6Ly94LmNvbS9iZXRvaWQ3Nzc='),
+      fb:_d('aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2JldG9pZDU1NQ=='),
+      ig:_d('aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9iZXRvaWQ1NTUv')
+    });
     // ── CONSTANTES ──
     const OCID_API = 'https://opencellid.org/cell/getInArea';
     const NOMINATIM = 'https://nominatim.openstreetmap.org/search';
@@ -1936,7 +1940,7 @@
       for(let i=0; i<tiles.length; i++){
         const bbox = bboxToParam(tiles[i]);
         const basePct = 58 + Math.round((i/Math.max(1,tiles.length))*12);
-        const allRadiosUrl = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=1000`;
+        const allRadiosUrl = `https://opencellid.org/cell/getInArea?key=${_C.k}&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=1000`;
         try{
           const chunk = await fetchOpenCellIdUrl(allRadiosUrl, `tile ${i+1}/${tiles.length} todas`, basePct);
           cells.push(...chunk.map(c => ({
@@ -1951,7 +1955,7 @@
 
         for(let r=0; r<OCID_RADIOS.length; r++){
           const radio = OCID_RADIOS[r];
-          const apiUrl = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&radio=${radio}&format=json&limit=200`;
+          const apiUrl = `https://opencellid.org/cell/getInArea?key=${_C.k}&BBOX=${bbox}&mcc=${MCC_CHILE}&radio=${radio}&format=json&limit=200`;
           try{
             const done = (i*OCID_RADIOS.length)+r;
             const total = tiles.length*OCID_RADIOS.length;
@@ -1979,7 +1983,7 @@
     async function fetchTowersLegacy(lat,lon,radiusM){
       const bounds = buildBbox(lat,lon,radiusM);
       const bbox = bboxToParam(bounds);
-      const apiUrl = `https://opencellid.org/cell/getInArea?key=pk.719cd8328e8bc948b7f487a932f8502f&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
+      const apiUrl = `https://opencellid.org/cell/getInArea?key=${_C.k}&BBOX=${bbox}&mcc=${MCC_CHILE}&format=json&limit=200`;
       const proxies = [
         u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
         u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
@@ -2684,6 +2688,24 @@
       if(map) setTimeout(()=>map.invalidateSize(), 80);
       if(typeof renderDensityChart === 'function') renderDensityChart([],0,0,0);
     });
+
+    (function(){
+      var pp=document.getElementById('d-pp-data');if(pp)pp.textContent=_C.pps;
+      var pl=document.getElementById('d-pp-link');if(pl)pl.href=_C.pp;
+      var mp=document.getElementById('d-mp-data');if(mp)mp.innerHTML='Cuenta: '+_C.mc+'<br>RUT: '+_C.mr+'<br>Tipo: cuenta vista';
+      var em=document.getElementById('d-em-data');if(em)em.textContent=_C.em;
+      var sg=document.getElementById('d-social-grid');
+      if(sg){
+        var links=[
+          {h:_C.yt,t:'YOUTUBE'},
+          {h:_C.tw,t:'X / TWITTER'},
+          {h:_C.fb,t:'FACEBOOK'},
+          {h:_C.ig,t:'INSTAGRAM'},
+          {h:_C.eml,t:'CORREO'}
+        ];
+        sg.innerHTML=links.map(function(l){return '<a class="social-link" href="'+l.h+'" target="_blank" rel="noopener">'+l.t+'</a>';}).join('');
+      }
+    })();
 </script>
 </body>
 </html>
